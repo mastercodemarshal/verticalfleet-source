@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        hind: ["Hind Madurai"],
-        raleway: ["Raleway"],
+        hind: ["Hind Madurai", "sans-serif"],
+        raleway: ["Raleway", "sans-serif"],
+        open_sans: ["Open Sans", "sans-serif"],
       },
     },
   },
