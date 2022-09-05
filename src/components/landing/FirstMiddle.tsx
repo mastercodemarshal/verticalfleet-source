@@ -2,8 +2,9 @@ import React from "react";
 
 import f192Icon from "../../assets/img/landing/f192.png";
 import f0c8Icon from "../../assets/img/landing/f0c8.png";
-import { FlightSchedules, forePhoneNumbers } from "../../constants";
+import { FlightSchedules } from "../../constants";
 import FlightSchdule from "./FlightSchedule";
+import ContactForm from "./ContactForm";
 
 const MiddleCard: React.FC = (): JSX.Element => {
   return (
@@ -80,36 +81,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
         Submit contact details or call us at 1-888-883-4146 to secure best price
       </p>
       <div className="flex my-[10px] justify-between">
-        <div className="flex text-[#494949]">
-          <input
-            className="px-[15px] py-[14px] w-[240px] font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9] bg-white border border-[#D7D7D7] rounded-l-[4px] box-border"
-            placeholder="Your name"
-          />
-          <input
-            className="px-[15px] py-[14px] w-[240px] font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9] bg-white border-r border-[#D7D7D7] box-border"
-            placeholder="E-mail"
-          />
-          <div className="flex">
-            <select
-              name="phonenumber"
-              id="phonenumber"
-              className="px-[15px] w-[50px] py-[14px] font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9] bg-white"
-            >
-              {forePhoneNumbers.map((phone, index) => (
-                <option value={phone} key={index}>
-                  {phone}
-                </option>
-              ))}
-            </select>
-            <input
-              className="px-[15px] w-[190px] py-[14px] font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9] bg-white rounded-r-[4px]"
-              placeholder="Phone number"
-            />
-          </div>
-        </div>
-        <button className="py-[14px] ml-[10px] w-[160px] text-center text-[#10091D] font-open_sans font-bold text-[16px] leading-[22px] bg-[#F3E351] rounded-[4px]">
-          Submit
-        </button>
+        <ContactForm />
       </div>
       <p className="font-open_sans font-normal text-[12px] leading-[14px] text-white">
         By submitting my contact information I agree to discuss my travel

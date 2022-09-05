@@ -3,7 +3,18 @@ import React from "react";
 import arrow from "../../assets/img/landing/arrow.png";
 
 interface IFlightScheduleProps {
-  schedule: object;
+  schedule: {
+    from: {
+      ground: string;
+      date: string;
+      destination: string;
+    };
+    to: {
+      ground: string;
+      date: string;
+      destination: string;
+    };
+  };
 }
 
 const FlightSchdule: React.FC<IFlightScheduleProps> = ({
@@ -12,26 +23,26 @@ const FlightSchdule: React.FC<IFlightScheduleProps> = ({
   return (
     <div className="flex items-center">
       <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
-        jfk
+        {schedule.from.ground}
       </p>
       <div className="ml-[10px]">
         <p className="font-bold text-[12px] font-open_sans leading-[17px]">
-          Aug 18
+          {schedule.from.date}
         </p>
         <p className="font-bold text-[10px] font-open_sans leading-[14px]">
-          New-York, NY
+          {schedule.from.destination}
         </p>
       </div>
       <img src={arrow} className="mx-[20px]" alt="arrow" />
       <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
-        slc
+        {schedule.to.ground}
       </p>
       <div className="ml-[10px]">
         <p className="font-bold text-[12px] font-open_sans leading-[17px]">
-          Aug 22
+          {schedule.to.date}
         </p>
         <p className="font-bold text-[10px] font-open_sans leading-[14px]">
-          Salt-Lake City, UT
+          {schedule.to.destination}
         </p>
       </div>
     </div>

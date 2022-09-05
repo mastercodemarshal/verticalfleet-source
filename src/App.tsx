@@ -12,9 +12,9 @@ const App: React.FC = (): JSX.Element => {
     <Router>
       <Layout>
         <Routes>
-          <Route path="/first-landing" element={<FirstLandingPage />} />
-          <Route path="/second-landing" element={<SecondLandingPage />} />
-          <Route path="/main" element={<MainPage />} />
+          <Route path="/landing-1" element={<FirstLandingPage />} />
+          <Route path="/landing-2" element={<SecondLandingPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/guides" element={<GuidesPage />} />
         </Routes>
       </Layout>

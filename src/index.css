@@ -19,3 +19,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main-search-form .from-input {
+  width: calc(100% / 1370 * 260);
+}
+
+.main-search-form .to-input {
+  width: calc(100% / 1370 * 260);
+}
+
+.main-search-form .date {
+  width: calc(100% / 1370 * 313);
+}
+
+.main-search-form .users {
+  width: calc(100% / 1370 * 330);
+}
+
+.main-search-form .btn {
+  width: calc(100% / 1370 * 205);
+}
+
