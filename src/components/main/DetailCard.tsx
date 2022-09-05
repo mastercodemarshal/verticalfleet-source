@@ -39,7 +39,7 @@ const DetailCard: React.FC<IDetailCardDataProps> = ({ data }): JSX.Element => {
           </span>
           <span className="text-[12px] leading-[17px] font-normal">from</span>
         </div>
-        <p className="text-[#645E70]/[.15] xl:tracking-[.35em] 2xl:tracking-[.6em] font-bold font-hind text-[21px] leading-[29px] mt-[16px] uppercase">
+        <p className="text-[#645E70]/[.15] xl:tracking-[.35em] 2xl:tracking-[.42em] font-bold font-hind text-[21px] leading-[29px] mt-[16px] uppercase">
           business class
         </p>
       </div>

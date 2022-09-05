@@ -11,7 +11,7 @@ const MainContent: React.FC = (): JSX.Element => {
         <WhatWeDo />
       </div>
       <div className="pt-[57px] container mx-auto">
-        <div className="grid grid-cols-2 gap-0">
+        <div className="grid xl:grid-cols-2 gap-0">
           <HowItWorks />
           <BestDetails />
         </div>

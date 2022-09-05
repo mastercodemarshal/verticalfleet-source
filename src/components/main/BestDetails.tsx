@@ -10,7 +10,7 @@ const BestDetails: React.FC = (): JSX.Element => {
         best details
       </h2>
       <div className="w-[200px] h-[3px] bg-white"></div>
-      <div className="mt-[107px] grid grid-cols-2 gap-x-[40px] gap-y-[50px]">
+      <div className="mt-[107px] grid md:grid-cols-2 gap-x-[40px] gap-y-[50px]">
         {DetailCardsData.map((data, index) => (
           <DetailCard data={{ ...data, num: index }} key={index} />
         ))}
