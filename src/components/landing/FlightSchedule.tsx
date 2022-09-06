@@ -21,7 +21,7 @@ const FlightSchdule: React.FC<IFlightScheduleProps> = ({
   schedule,
 }): JSX.Element => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center cursor-pointer">
       <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
         {schedule.from.ground}
       </p>

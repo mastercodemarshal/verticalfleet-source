@@ -10,7 +10,7 @@ const ReportItem: React.FC<IReportItemProps> = ({
   description,
 }): JSX.Element => {
   return (
-    <div className="font-hind w-[255px] text-white py-[3px] px-[10px] border-l-2 border-[#EDDF63]">
+    <div className="font-hind w-[255px] text-white py-[3px] md:ml-0 ml-[80px] px-[10px] border-l-2 border-[#EDDF63]">
       <p className="text-[18px] font-normal leading-[25px] uppercase">
         {title}
       </p>

@@ -1,10 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "./layouts";
 import GuidesPage from "./pages/Guides";
-import FirstLandingPage from "./pages/landing/FirstLanding";
-import SecondLandingPage from "./pages/landing/SecondLanding";
+import LandingPage from "./pages/landing/Landing";
+import ResultPage from "./pages/landing/Result";
 import MainPage from "./pages/Main";
 
 const App: React.FC = (): JSX.Element => {
@@ -12,12 +14,12 @@ const App: React.FC = (): JSX.Element => {
     <Router>
       <Layout>
         <Routes>
-          <Route path="/landing-1" element={<FirstLandingPage />} />
-          <Route path="/landing-2" element={<SecondLandingPage />} />
+          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/result" element={<ResultPage />} />
           <Route path="/" element={<MainPage />} />
-          <Route path="/guides" element={<GuidesPage />} />
         </Routes>
       </Layout>
+      <ToastContainer />
     </Router>
   );
 };

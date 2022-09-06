@@ -4,7 +4,7 @@ import whatWeDoImg from "../../assets/img/main/whatWeDo.png";
 
 const WhatWeDo: React.FC = (): JSX.Element => {
   return (
-    <div className="grid grid-cols-2 gap-[100px]">
+    <div className="grid md:grid-cols-2 gap-[100px]">
       <img src={whatWeDoImg} alt="intro-img" className="cursor-pointer" />
       <div className="mt-[30px]">
         <h2 className="font-hind font-bold text-[80px] leading-[100px] text-[#10091D]/[.1] uppercase">

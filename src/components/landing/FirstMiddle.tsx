@@ -15,8 +15,8 @@ const MiddleCard: React.FC = (): JSX.Element => {
             <FlightSchdule schedule={schedule} key={index} />
           ))}
         </div>
-        <div className="grid grid-cols-3 max-w-[450px] gap-[30px] mx-auto">
-          <div className="bg-white/[.2] rounded-[10px] px-[17px] py-[20px]">
+        <div className="grid grid-cols-3 max-w-[450px] gap-[30px] mx-auto xl:mt-0 mt-[20px]">
+          <div className="bg-white/[.2] rounded-[10px] cursor-pointer px-[17px] py-[20px]">
             <div className="flex justify-between">
               <p className="font-bold font-open_sans text-[20px] leading-[27px]">
                 $1,567
@@ -36,7 +36,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="bg-white/[.05] rounded-[10px] px-[17px] py-[20px]">
+          <div className="bg-white/[.05] rounded-[10px] cursor-pointer px-[17px] py-[20px]">
             <div className="flex justify-between">
               <p className="font-bold font-open_sans text-[20px] leading-[27px]">
                 $2,523
@@ -56,7 +56,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="bg-white/[.05] rounded-[10px] px-[17px] py-[20px]">
+          <div className="bg-white/[.05] rounded-[10px] cursor-pointer px-[17px] py-[20px]">
             <div className="flex justify-between">
               <p className="font-bold font-open_sans text-[20px] leading-[27px]">
                 $943
@@ -80,7 +80,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
       <p className="mt-[37px] font-open_sans font-bold text-[16px] leading-[22px] text-white">
         Submit contact details or call us at 1-888-883-4146 to secure best price
       </p>
-      <div className="flex my-[10px] justify-between">
+      <div className="md:flex my-[10px] justify-between md:space-y-0 space-y-[20px]">
         <ContactForm />
       </div>
       <p className="font-open_sans font-normal text-[12px] leading-[14px] text-white">
