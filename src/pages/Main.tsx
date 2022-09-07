@@ -8,10 +8,10 @@ import ContactUs from "../components/main/ContactUs";
 import Footer from "../layouts/Footer";
 
 const MainPage: React.FC = (): JSX.Element => {
-  const nagivate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    nagivate("/round-trip");
+    navigate("/round-trip");
   }, []);
 
   return (

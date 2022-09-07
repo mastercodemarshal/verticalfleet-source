@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "./layouts";
-import GuidesPage from "./pages/Guides";
 import LandingPage from "./pages/landing/Landing";
 import ResultPage from "./pages/landing/Result";
 import MainPage from "./pages/Main";

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import f192Icon from "../../assets/img/landing/f192.png";
 import f0c8Icon from "../../assets/img/landing/f0c8.png";
