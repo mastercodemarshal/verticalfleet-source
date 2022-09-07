@@ -56,7 +56,7 @@ const ContactUs: React.FC = (): JSX.Element => {
             arrangements.{" "}
           </p>
         </div>
-        <button className="xl:bg-[#F3E351] bg-white xl:border-none border rounded-[5px] border-[#494949] xl:opacity-[.5] hover:opacity-[.8] active:opacity-[1] xl:w-[296px] w-[296px] xl:mt-0 mt-[20px] uppercase mr-[57px] px-[75px] py-[10px] text-[#10091D]  font-open_sans font-bold text-[14px] leading-[19px]">
+        <button className="xl:bg-[#F3E351] bg-white xl:border-none border rounded-[5px] border-[#494949] xl:opacity-[.5] hover:opacity-[.8] active:opacity-[1] xl:w-[205px] w-[296px] xl:mt-0 mt-[20px] uppercase mr-[57px] px-[75px] py-[10px] text-[#10091D] font-open_sans font-bold text-[14px] leading-[19px]">
           submit
         </button>
       </div>

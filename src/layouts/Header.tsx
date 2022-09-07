@@ -11,14 +11,8 @@ const Header: React.FC = (): JSX.Element => {
           <img src={Logo} alt="" />
         </Link>
         <div className="flex items-center text-[14px] text-white font-light font-open_sans leading-[19.07px]">
-          <Link to="/" className="mr-5 underline">
+          <Link to="/round-trip" className="mr-[100px] underline">
             Main
-          </Link>
-          <Link to="/landing" className="mr-5 underline">
-            Landing1
-          </Link>
-          <Link to="/result" className="mr-5 underline">
-            Landing2
           </Link>
           <div className="md:flex text-right items-center">
             <div className="cursor-pointer md:mr-[30px] text-right">

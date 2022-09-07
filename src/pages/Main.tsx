@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Services from "../components/common/Services";
 import SearchPanel from "../components/main/SearchPanel";
@@ -7,6 +8,12 @@ import ContactUs from "../components/main/ContactUs";
 import Footer from "../layouts/Footer";
 
 const MainPage: React.FC = (): JSX.Element => {
+  const nagivate = useNavigate();
+
+  useEffect(() => {
+    nagivate("/round-trip");
+  }, []);
+
   return (
     <>
       <div className="relative">
