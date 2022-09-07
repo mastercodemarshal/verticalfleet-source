@@ -9,9 +9,13 @@ import Footer from "../layouts/Footer";
 
 const MainPage: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
+  const path = window.location.pathname;
 
   useEffect(() => {
-    navigate("/round-trip");
+    if (path === "/") {
+      navigate("/round-trip");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

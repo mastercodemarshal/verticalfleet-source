@@ -83,12 +83,14 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
     var filteredData = filterByCurrent();
 
     setCurrentFilteredList(filteredData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flightState.current]);
 
   useEffect(() => {
     var filteredData = filterByDestination();
 
     setDestinationFilteredList(filteredData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flightState.destination]);
 
   const filterByCurrent = () => {
