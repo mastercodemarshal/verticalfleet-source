@@ -9,12 +9,9 @@ import Footer from "../layouts/Footer";
 
 const MainPage: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
-  const path = window.location.pathname;
 
   useEffect(() => {
-    if (path === "/") {
-      navigate("/round-trip");
-    }
+    navigate("/round-trip");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -23,7 +20,7 @@ const MainPage: React.FC = (): JSX.Element => {
       <div className="relative">
         <div className="bg-[url('assets/img/landing/background.png')] bg-cover bg-center md:h-[1000px] h-[1400px]"></div>
         <div className="bg-[#10091D] opacity-[0.7] w-full h-[1000px] absolute top-0"></div>
-        <div className="absolute xl:top-[260px] top-[200px] w-full px-[24px]">
+        <div className="absolute xl:top-[260px] top-[200px] w-full px-[20px]">
           <SearchPanel />
         </div>
         <Services />

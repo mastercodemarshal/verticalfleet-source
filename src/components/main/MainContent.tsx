@@ -7,7 +7,7 @@ import WhatWeDo from "./WhatWeDo";
 const MainContent: React.FC = (): JSX.Element => {
   return (
     <div className="bg-white">
-      <div className="mt-[109px] container mx-auto">
+      <div className="mt-[109px] container mx-auto md:px-0 px-[20px]">
         <WhatWeDo />
       </div>
       <div className="pt-[57px] container mx-auto">

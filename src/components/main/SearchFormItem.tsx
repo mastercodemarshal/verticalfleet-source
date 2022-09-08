@@ -355,7 +355,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
               </div>
             )}
 
-            <div className="bg-[#D7D7D7] xl:w-[1px] xl:h-[52px] md:w-0 md:h-0 sm:w-[1px] sm:h-[52px]"></div>
+            <div className="bg-[#D7D7D7] xl:w-[1px] xl:h-[52px] md:w-0 md:h-0 w-[1px] h-[52px]"></div>
 
             {!state.editingDateTo ? (
               <div className="relative xl:w-[50%] bg-white md:w-[100%] flex items-center w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer text-center">

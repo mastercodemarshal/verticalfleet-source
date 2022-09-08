@@ -6,7 +6,7 @@ import DetailCard from "./DetailCard";
 const BestDetails: React.FC = (): JSX.Element => {
   return (
     <div className="bg-[#F3E351] pt-[70px] pl-[50px] pr-[50px] pb-[100px]">
-      <h2 className="uppercase font-hind font-bold text-[80px] leading-[100px] text-white">
+      <h2 className="uppercase font-hind font-bold md:text-[80px] leading-[100px] text-[44px] text-white">
         best details
       </h2>
       <div className="w-[200px] h-[3px] bg-white"></div>

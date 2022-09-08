@@ -5,7 +5,7 @@ import SearchTags from "./SearchTags";
 
 const SearchPanel: React.FC = (): JSX.Element => {
   return (
-    <div className="container mx-auto bg-[#10091D]/[.2] backdrop-blur-[5px] rounded-[5px] px-[30px] py-[20px]">
+    <div className="container mx-auto bg-[#10091D]/[.2] backdrop-blur-[5px] rounded-[5px] sm:px-[30px] px-[10px] py-[20px]">
       <SearchTags />
       <div className="mt-[30px]">
         <SearchForm />

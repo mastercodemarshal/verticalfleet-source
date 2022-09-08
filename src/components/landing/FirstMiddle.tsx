@@ -9,8 +9,6 @@ import { FlightContext } from "../../App";
 const MiddleCard: React.FC = (): JSX.Element => {
   const { flightState: FlightSchedules } = useContext(FlightContext);
 
-  console.log(FlightSchedules);
-
   const getPriceForBussiness = FlightSchedules[0].type.includes("one-way")
     ? Math.floor(Math.random() * (1500 - 1200) + 1200)
     : Math.floor(Math.random() * (2600 - 2200) + 2200);
@@ -24,15 +22,15 @@ const MiddleCard: React.FC = (): JSX.Element => {
     : Math.floor(Math.random() * (4900 - 4500) + 4500);
 
   return (
-    <div className="max-w-[952px] mx-auto bg-[#10091D]/[.7] rounded-[10px] backdrop-blur-[5px] px-[30px] pt-[30px] pb-[40px]">
+    <div className="max-w-[952px] mx-auto bg-[#10091D]/[.7] rounded-[10px] backdrop-blur-[5px] sm:px-[30px] px-[10px] pt-[30px] pb-[40px]">
       <div className="grid xl:grid-cols-2 text-white flex items-center">
         <div className="mx-auto">
           {FlightSchedules.map((schedule, index) => (
             <FlightSchdule schedule={schedule} key={index} />
           ))}
         </div>
-        <div className="grid grid-cols-3 max-w-[450px] gap-[30px] mx-auto xl:mt-0 mt-[20px]">
-          <div className="bg-white/[.2] rounded-[10px] cursor-pointer px-[17px] py-[20px]">
+        <div className="grid grid-cols-3 max-w-[450px] sm:gap-[30px] gap-[8px] mx-auto xl:mt-0 mt-[20px]">
+          <div className="bg-white/[.2] rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px]">
             <div className="flex justify-between">
               <p className="font-bold font-open_sans text-[20px] leading-[27px]">
                 ${getPriceForBussiness}
@@ -48,13 +46,13 @@ const MiddleCard: React.FC = (): JSX.Element => {
             </div>
             <div className="mt-[19px] flex items-center">
               <img src={f192Icon} width="16px" height="20px" alt="icon" />
-              <p className="ml-[6px] font-hind font-bold uppercase text-[12px] leading-[12px]">
+              <p className="md:ml-[6px] ml-[3px] font-hind font-bold uppercase text-[12px] leading-[12px]">
                 business
               </p>
             </div>
           </div>
 
-          <div className="bg-white/[.05] rounded-[10px] cursor-pointer px-[17px] py-[20px]">
+          <div className="bg-white/[.05] rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px]">
             <div className="flex justify-between">
               <p className="font-bold font-open_sans text-[20px] leading-[27px]">
                 ${getPriceForFirst}
@@ -70,13 +68,13 @@ const MiddleCard: React.FC = (): JSX.Element => {
             </div>
             <div className="mt-[19px] flex items-center">
               <img src={f0c8Icon} width="14px" height="14px" alt="icon" />
-              <p className="ml-[6px] font-hind font-bold uppercase text-[12px] leading-[12px]">
+              <p className="md:ml-[6px] ml-[3px] font-hind font-bold uppercase text-[12px] leading-[12px]">
                 first class
               </p>
             </div>
           </div>
 
-          <div className="bg-white/[.05] rounded-[10px] cursor-pointer px-[17px] py-[20px]">
+          <div className="bg-white/[.05] rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px]">
             <div className="flex justify-between">
               <p className="font-bold font-open_sans text-[20px] leading-[27px]">
                 ${getPriceForEconomy}
@@ -92,7 +90,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
             </div>
             <div className="mt-[19px] flex items-center">
               <img src={f0c8Icon} width="14px" height="14px" alt="icon" />
-              <p className="ml-[6px] font-hind font-bold uppercase text-[12px] ">
+              <p className="md:ml-[6px] ml-[3px] font-hind font-bold uppercase text-[12px] ">
                 p.economy
               </p>
             </div>

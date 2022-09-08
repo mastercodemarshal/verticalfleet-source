@@ -4,7 +4,7 @@ import { forePhoneNumbers } from "../../constants";
 const ContactUs: React.FC = (): JSX.Element => {
   return (
     <div className="bg-[#F5F5F5] pt-[80px]">
-      <div className="uppercase text-center font-hind font-bold text-[80px] leading-[100px] text-[#10091D]/[.1]">
+      <div className="uppercase text-center font-hind font-bold md:text-[80px] leading-[100px] text-[44px] text-[#10091D]/[.1]">
         contact us
       </div>
       <div className="mt-[20px] flex justify-center">
