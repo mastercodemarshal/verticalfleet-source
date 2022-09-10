@@ -1,9 +1,59 @@
-import React from "react";
+import React, { BaseSyntheticEvent, useState } from "react";
+import { toast } from "react-toastify";
+
 import { forePhoneNumbers } from "../../constants";
 
 const ContactUs: React.FC = (): JSX.Element => {
+  const [state, setState] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    description: "",
+  });
+
+  const handleChange = (e: BaseSyntheticEvent) => {
+    const { value, name } = e.target;
+
+    setState({
+      ...state,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (checkValidation()) {
+      toast("Submitted successfully", {
+        type: "success",
+      });
+
+      setState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        description: "",
+        phoneNumber: "",
+      });
+    } else {
+      toast("Please fill all inputs", {
+        type: "error",
+      });
+    }
+  };
+
+  const checkValidation = () => {
+    const { firstName, lastName, email, phoneNumber, description } = state;
+
+    return firstName && lastName && email && phoneNumber && description;
+  };
+
   return (
-    <div className="bg-[#F5F5F5] pt-[80px]">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-[#F5F5F5] pt-[80px] xl:px-0 px-[10px]"
+    >
       <div className="uppercase text-center font-hind font-bold md:text-[80px] leading-[100px] text-[44px] text-[#10091D]/[.1]">
         contact us
       </div>
@@ -11,22 +61,31 @@ const ContactUs: React.FC = (): JSX.Element => {
         <div className="grid xl:grid-rows-2 grid-rows-6 grid-flow-col gap-x-[40px] gap-y-[20px]">
           <input
             type="text"
-            className="py-[9px] rounded-[5px] px-[15px] w-[320px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
+            name="firstName"
+            value={state.firstName}
+            onChange={handleChange}
+            className="py-[9px] rounded-[5px] px-[15px] xl:w-[320px] xl:max-w-[320px] max-w-[296px] w-full bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
             placeholder="First name"
           />
           <input
             type="text"
-            className="py-[9px] rounded-[5px] px-[15px] w-[320px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
+            name="lastName"
+            value={state.lastName}
+            onChange={handleChange}
+            className="py-[9px] rounded-[5px] px-[15px] xl:w-[320px] xl:max-w-[320px] max-w-[296px] w-full bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
             placeholder="Last name"
           />
           <input
             type="email"
-            className="py-[9px] rounded-[5px] px-[15px] w-[320px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
+            name="email"
+            value={state.email}
+            onChange={handleChange}
+            className="py-[9px] rounded-[5px] px-[15px] xl:w-[320px] xl:max-w-[320px] max-w-[296px] w-full bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
             placeholder="E-mail"
           />
           <div className="flex items-center">
             +
-            <select className="w-[100px] py-[9px] px-[15px] mr-[10px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[5px] placeholder:text-[#494949] text-[16px] leading-[22px] font-open_sans font-normal">
+            <select className="xl:w-[100px] xl:max-w-[100px] max-w-[92px] w-full py-[9px] px-[15px] mr-[10px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[5px] placeholder:text-[#494949] text-[16px] leading-[22px] font-open_sans font-normal">
               {forePhoneNumbers.map((phone, index) => (
                 <option value={phone} key={index}>
                   {phone}
@@ -35,18 +94,24 @@ const ContactUs: React.FC = (): JSX.Element => {
             </select>
             <input
               type="text"
-              className="py-[9px] rounded-[5px] px-[15px] w-[198px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
+              name="phoneNumber"
+              value={state.phoneNumber}
+              onChange={handleChange}
+              className="py-[9px] rounded-[5px] px-[15px] xl:w-[198px] xl:max-w-[198px] max-w-[182px] w-full bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
               placeholder="Phone number*"
             />
           </div>
           <textarea
-            className="row-span-2 py-[9px] px-[15px] w-[320px] bg-white border border-[#D7D7D7] focus:border focus:border-[#86CEEB] focus:outline-none rounded-[5px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
+            name="description"
+            value={state.description}
+            onChange={handleChange}
+            className="row-span-2 py-[9px] px-[15px] xl:w-[320px] xl:max-w-[320px] max-w-[296px] w-full bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[5px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
             placeholder="Please describe what are you inquiring about"
           ></textarea>
         </div>
       </div>
-      <div className="xl:flex justify-between mt-[31px] mx-auto xl:w-[1040px] w-[296px]">
-        <div className="flex items-center">
+      <div className="xl:flex justify-between mt-[31px] mx-auto xl:w-[1040px]">
+        <div className="flex xl:justify-start justify-center xl:ml-0 mx-auto items-center xl:w-[550px] xl:max-w-[550px] max-w-[285px] w-full">
           <input
             type="checkbox"
             className="w-[14px] h-[16px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px]"
@@ -56,7 +121,7 @@ const ContactUs: React.FC = (): JSX.Element => {
             arrangements.{" "}
           </p>
         </div>
-        <button className="xl:bg-[#F3E351] bg-white xl:border-none border rounded-[5px] border-[#494949] xl:opacity-[.5] hover:opacity-[.8] active:opacity-[1] xl:w-[205px] w-[296px] xl:mt-0 mt-[20px] uppercase mr-[57px] px-[75px] py-[10px] text-[#10091D] font-open_sans font-bold text-[14px] leading-[19px]">
+        <button className="flex justify-center mx-auto xl:bg-[#F3E351] bg-white xl:border-none border rounded-[5px] border-[#494949] xl:opacity-[.5] hover:opacity-[.8] active:opacity-[1] xl:w-[205px] xl:max-w-[205px] max-w-[285px] w-full xl:mt-0 mt-[20px] uppercase xl:mr-[57px] px-[75px] py-[10px] text-[#10091D] font-open_sans font-bold text-[14px] leading-[19px]">
           submit
         </button>
       </div>
@@ -68,7 +133,7 @@ const ContactUs: React.FC = (): JSX.Element => {
         Fares are based on unrestricted fares of major airlines and can vary
         based on fare rules.
       </p>
-    </div>
+    </form>
   );
 };
 

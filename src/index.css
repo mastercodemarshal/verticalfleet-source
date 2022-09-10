@@ -42,3 +42,23 @@ code {
   line-height: 22px;
   color: #494949;
 }
+
+.react-calendar {
+  padding: 10px;
+}
+
+.react-calendar__navigation {
+  font-weight: bold;
+}
+
+.react-calendar__tile--active {
+  background-color: #F3E351 !important;
+  color: black !important;
+  border-radius: 50% !important;
+}
+
+.react-calendar__tile--now {
+  background-color: rgb(82, 82, 235) !important;
+  color: white !important;
+  border-radius: 50% !important;
+}

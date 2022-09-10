@@ -18,9 +18,9 @@ const MainPage: React.FC = (): JSX.Element => {
   return (
     <>
       <div className="relative">
-        <div className="bg-[url('assets/img/landing/background.png')] bg-cover bg-center md:h-[1000px] h-[1400px]"></div>
+        <div className="bg-[url('assets/img/landing/background.png')] bg-cover bg-center md:h-[1000px] h-[1200px]"></div>
         <div className="bg-[#10091D] opacity-[0.7] w-full h-[1000px] absolute top-0"></div>
-        <div className="absolute xl:top-[260px] top-[200px] w-full px-[20px]">
+        <div className="absolute xl:top-[260px] md:top-[200px] top-[120px] w-full px-[20px] z-10">
           <SearchPanel />
         </div>
         <Services />

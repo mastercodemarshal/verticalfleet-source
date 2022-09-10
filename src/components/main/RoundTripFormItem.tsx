@@ -13,15 +13,16 @@ import "react-calendar/dist/Calendar.css";
 import locationIcon from "../../assets/img/main/location.png";
 import calendarIcon from "../../assets/img/main/calendar.png";
 import usersIcon from "../../assets/img/main/users.png";
+import reloadIcon from "../../assets/img/main/reload.png";
 import AirportList from "./AirportList";
 import PassengerSelect from "./PassengerSelect";
 import { FlightContext } from "../../App";
 
-interface ISearchFormProps {
-  idx: string;
-  handleAddFlight: Function;
-  length: number;
-}
+// interface ISearchFormProps {
+//   idx: string;
+//   handleAddFlight: Function;
+//   length: number;
+// }
 
 type AirPort = {
   airport: string;
@@ -30,11 +31,7 @@ type AirPort = {
   city_code: string;
 };
 
-const SearchFormItem: React.FC<ISearchFormProps> = ({
-  idx,
-  length,
-  handleAddFlight,
-}): JSX.Element => {
+const RoundTripFormItem: React.FC = (): JSX.Element => {
   const flightContext = useContext(FlightContext);
 
   const navigate = useNavigate();
@@ -42,15 +39,19 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
   const [state, setState] = useState({
     editingCurrent: true,
     editingDestination: true,
-    editingDateFrom: true,
-    editingDateTo: true,
+    editingDateFrom: false,
+    editingDateTo: false,
     editingUsers: true,
   });
 
   const [openUserSelect, setOpenUserSelect] = useState(false);
+  const [openCurrentSelect, setOpenCurrentSelect] = useState(false);
+  const [openDestinationSelect, setOpenDestinationSelect] = useState(false);
 
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
   const [dateFrom, onChangeDateFrom] = useState(new Date());
-  const [dateTo, onChangeDateTo] = useState(new Date());
+  const [dateTo, onChangeDateTo] = useState(tomorrow);
 
   const [currentFilteredList, setCurrentFilteredList] = useState<
     AirPort[] | undefined
@@ -119,24 +120,28 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
     return filteredData;
   };
 
-  const [flightsData, setFlightsData] = useState([] as object[]);
-
   const handleSubmit = (e: BaseSyntheticEvent) => {
     e.preventDefault();
 
     if (checkValidation()) {
-      flightContext.setFlightState([
-        ...flightContext.flightState,
-        {
-          current: flightState.current,
-          destination: flightState.destination,
-          dateFrom: dateFrom,
-          dateTo: dateTo,
-          passengers: flightState.passengers[0],
-          type: window.location.pathname,
-        },
-      ]);
-      navigate("/landing");
+      if (flightState.passengers[1]?.split(":")[0] === "0") {
+        toast("Please select passengers", {
+          type: "error",
+        });
+      } else {
+        flightContext.setFlightState([
+          ...flightContext.flightState,
+          {
+            current: flightState.current,
+            destination: flightState.destination,
+            dateFrom: dateFrom,
+            dateTo: dateTo,
+            passengers: flightState.passengers[0],
+            type: window.location.pathname,
+          },
+        ]);
+        navigate("/landing");
+      }
     } else {
       toast("Please fill all inputs", {
         type: "error",
@@ -153,23 +158,6 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       ...flightState,
       [name]: value,
     });
-  };
-
-  const handleItemSubmit = (e: BaseSyntheticEvent) => {
-    e.preventDefault();
-    // console.error([...flightsData, flightState]);
-
-    if (checkValidation()) {
-      setFlightsData([...flightsData, flightState]);
-
-      handleAddFlight();
-    } else {
-      toast("Please fill all inputs", {
-        type: "error",
-      });
-    }
-
-    return;
   };
 
   const checkValidation = () => {
@@ -218,49 +206,81 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
 
   return (
     <div>
-      <form id={idx} onSubmit={handleItemSubmit} className="main-search-form">
+      <form onSubmit={handleSubmit} className="main-search-form">
         <div className="grid grid-cols-12 xl:gap-0 md:gap-[15px]">
           <div className="xl:col-span-5 xl:flex md:col-span-9 col-span-12">
-            {state.editingCurrent ? (
-              <div className="h-[67px] cursor-pointer pl-[30px] relative xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center">
-                <div className="mr-[9px]">
-                  <img src={locationIcon} alt="from" />
-                </div>
-                <input
-                  type="text"
-                  name="current"
-                  placeholder="From"
-                  value={flightState.current}
-                  onChange={handleChange}
-                  className="focus:outline-none w-full"
-                  autoFocus
-                />
-                <AirportList
-                  airportList={currentFilteredList}
-                  onSelect={handleCurrentSelect}
-                />
-              </div>
-            ) : (
-              <div
-                onClick={() => setState({ ...state, editingCurrent: true })}
-                className="h-[67px] cursor-pointer pl-[30px] xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
-              >
-                <div className="flex">
+            <>
+              {state.editingCurrent ? (
+                <div className="h-[67px] cursor-pointer pl-[30px] relative xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center">
                   <div className="mr-[9px]">
                     <img src={locationIcon} alt="from" />
                   </div>
-                  <div>
-                    <p className="font-hind font-bold text-[16px] leading-[107.5%] text-[#494949]">
-                      {`(${currentArray[0]}) ${currentArray[1]}`}
-                    </p>
-                    <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
-                      <span className="uppercase">{currentArray[2]}</span>
-                      {` - ${currentArray[3]}`}
-                    </p>
+                  <input
+                    type="text"
+                    name="current"
+                    placeholder="From"
+                    // value={flightState.current}
+                    onChange={handleChange}
+                    onFocus={() => {
+                      setOpenCurrentSelect(true);
+                      setOpenDestinationSelect(false);
+                      setState({
+                        ...state,
+                        editingDateFrom: false,
+                        editingDateTo: false,
+                        editingUsers: false,
+                      });
+                    }}
+                    className="focus:outline-none w-full"
+                    // autoFocus
+                  />
+                  {openCurrentSelect && (
+                    <AirportList
+                      airportList={currentFilteredList}
+                      onSelect={handleCurrentSelect}
+                    />
+                  )}
+                </div>
+              ) : (
+                <div
+                  onClick={() =>
+                    setState({
+                      ...state,
+                      editingDateFrom: false,
+                      editingDateTo: false,
+                      editingUsers: false,
+                      editingCurrent: true,
+                    })
+                  }
+                  className="h-[67px] cursor-pointer pl-[30px] xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
+                >
+                  <div className="flex">
+                    <div className="mr-[9px]">
+                      <img src={locationIcon} alt="from" />
+                    </div>
+                    <div>
+                      <p className="font-hind font-bold text-[16px] leading-[107.5%] text-[#494949]">
+                        {`(${currentArray[0]}) ${currentArray[1]}`}
+                      </p>
+                      <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
+                        <span className="uppercase">{currentArray[2]}</span>
+                        {` - ${currentArray[3]}`}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </>
+
+            <div className="bg-white w-[16px] relative flex items-center xl:inline-flex hidden">
+              <img
+                src={reloadIcon}
+                width="16px"
+                height="16px"
+                className="absolute -left-[8px] bg-white top-[26px]"
+                alt=""
+              />
+            </div>
 
             {state.editingDestination ? (
               <div className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center">
@@ -271,19 +291,39 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   type="text"
                   placeholder="To"
                   name="destination"
-                  value={flightState.destination}
+                  // value={flightState.destination}
                   onChange={handleChange}
+                  onFocus={() => {
+                    setOpenDestinationSelect(true);
+                    setOpenCurrentSelect(false);
+                    setState({
+                      ...state,
+                      editingDateFrom: false,
+                      editingDateTo: false,
+                      editingUsers: false,
+                    });
+                  }}
                   className="focus:outline-none w-full"
-                  autoFocus
+                  // autoFocus
                 />
-                <AirportList
-                  airportList={destinationFilteredList}
-                  onSelect={handleDestinationSelect}
-                />
+                {openDestinationSelect && (
+                  <AirportList
+                    airportList={destinationFilteredList}
+                    onSelect={handleDestinationSelect}
+                  />
+                )}
               </div>
             ) : (
               <div
-                onClick={() => setState({ ...state, editingDestination: true })}
+                onClick={() =>
+                  setState({
+                    ...state,
+                    editingDateFrom: false,
+                    editingDateTo: false,
+                    editingUsers: false,
+                    editingDestination: true,
+                  })
+                }
                 className="h-[67px] cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
               >
                 <div className="flex">
@@ -305,8 +345,8 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
           </div>
 
           <div className="xl:col-span-3 md:col-span-3 col-span-12 xl:flex md:block flex h-[67px] xl:rounded-none rounded-[4px] border-r border-[#D7D7D7] bg-white items-center justify-center">
-            {!state.editingDateFrom ? (
-              <div className="relative xl:w-[50%] md:w-[100%] bg-white flex items-center w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer text-center">
+            {state.editingDateFrom ? (
+              <div className="relative xl:w-[50%] md:w-[100%] bg-white flex items-center w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer justify-center">
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
                   {dateFrom.getDate()}
                 </p>
@@ -322,12 +362,12 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   </p>
                 </div>
                 <Calendar
-                  className="absolute top-[65px] xl:left-0 md:right-0 left-0 min-w-[400px] z-50"
+                  className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[400px] min-w-[299px] z-50"
                   onChange={(e: React.SetStateAction<Date>) => {
                     onChangeDateFrom(e);
                     setState({
                       ...state,
-                      editingDateFrom: true,
+                      editingDateFrom: false,
                     });
                   }}
                   value={dateFrom}
@@ -335,7 +375,16 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
               </div>
             ) : (
               <div
-                onClick={() => setState({ ...state, editingDateFrom: false })}
+                onClick={() => {
+                  setState({
+                    ...state,
+                    editingDateTo: false,
+                    editingUsers: false,
+                    editingDateFrom: true,
+                  });
+                  setOpenCurrentSelect(false);
+                  setOpenDestinationSelect(false);
+                }}
                 className="xl:w-[50%] md:w-[100%] w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 cursor-pointer xl:rounded-none rounded-[4px] border-t flex items-center justify-center"
               >
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
@@ -357,14 +406,14 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
 
             <div className="bg-[#D7D7D7] xl:w-[1px] xl:h-[52px] md:w-0 md:h-0 w-[1px] h-[52px]"></div>
 
-            {!state.editingDateTo ? (
-              <div className="relative xl:w-[50%] bg-white md:w-[100%] flex items-center w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer text-center">
+            {state.editingDateTo ? (
+              <div className="relative justify-center xl:w-[50%] bg-white md:w-[100%] flex items-center w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer text-center">
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
-                  20
+                  {dateTo.getDate()}
                 </p>
                 <div>
                   <div className="flex items-center font-open_sans font-normal text-[16px] leading-[22px] text-[#494949]">
-                    {dateTo.toLocaleDateString("en-US", { month: "long" })}{" "}
+                    {dateTo.toLocaleDateString("en-US", { month: "short" })}{" "}
                     <div className="ml-[8px]">
                       <img src={calendarIcon} alt="" />
                     </div>
@@ -374,12 +423,12 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   </p>
                 </div>
                 <Calendar
-                  className="absolute top-[65px] left-0 min-w-[400px] z-50"
+                  className="absolute top-[65px] xl:left-0 -right-[2px] md:min-w-[400px] min-w-[299px] z-50"
                   onChange={(e: React.SetStateAction<Date>) => {
                     onChangeDateTo(e);
                     setState({
                       ...state,
-                      editingDateTo: true,
+                      editingDateTo: false,
                     });
                   }}
                   value={dateTo}
@@ -387,7 +436,16 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
               </div>
             ) : (
               <div
-                onClick={() => setState({ ...state, editingDateTo: false })}
+                onClick={() => {
+                  setState({
+                    ...state,
+                    editingDateFrom: false,
+                    editingUsers: false,
+                    editingDateTo: true,
+                  });
+                  setOpenCurrentSelect(false);
+                  setOpenDestinationSelect(false);
+                }}
                 className="xl:w-[50%] md:w-[100%] w-[50%] h-[67px] cursor-pointer bg-white flex xl:rounded-none rounded-[4px] border-t items-center justify-center"
               >
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
@@ -410,6 +468,9 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
 
           {state.editingUsers ? (
             <div className="xl:col-span-2 relative col-span-12 cursor-pointer h-[67px] px-[30px] md:my-0 my-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center focus:outline-none">
+              <div className="mr-[5px]">
+                <img src={usersIcon} alt="" />
+              </div>
               <input
                 type="text"
                 name="passengers"
@@ -418,6 +479,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                 onChange={handleChange}
                 placeholder="Passengers"
                 className="focus:outline-none w-full"
+                // autoFocus
               />
               {openUserSelect && (
                 <PassengerSelect onSelect={handlePassengerSelect} />
@@ -425,7 +487,16 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
             </div>
           ) : (
             <div
-              onClick={() => setState({ ...state, editingUsers: true })}
+              onClick={() => {
+                setState({
+                  ...state,
+                  editingDateFrom: false,
+                  editingDateTo: false,
+                  editingUsers: true,
+                });
+                setOpenCurrentSelect(false);
+                setOpenDestinationSelect(false);
+              }}
               className="xl:col-span-2 col-span-12 cursor-pointer h-[67px] px-[30px] border-r border-t md:my-0 my-[15px] xl:rounded-none rounded-[4px] border-[#D7D7D7] bg-white flex items-center"
             >
               <div>
@@ -445,26 +516,16 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
             </div>
           )}
 
-          {idx === "0" && (
-            <button
-              onClick={handleSubmit}
-              className="xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
-            >
-              Get a quote
-            </button>
-          )}
-        </div>
-        {/* {Number(idx) === length - 1 && (
           <button
-            type="submit"
-            className="underline bg-[#10091D]/[.5] text-white mt-[7px] px-[10px] py-[3px] font-open_sans font-bold text-[16px] leading-[22px]"
+            onClick={handleSubmit}
+            className="xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
           >
-            +Add flight
+            Get a quote
           </button>
-        )} */}
+        </div>
       </form>
     </div>
   );
 };
 
-export default SearchFormItem;
+export default RoundTripFormItem;

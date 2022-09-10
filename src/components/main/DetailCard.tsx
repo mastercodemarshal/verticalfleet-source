@@ -1,6 +1,6 @@
 import React from "react";
 
-import ImgURL from "../../assets/img/main/dubai.png";
+// import ImgURL from "../../assets/img/main/dubai.png";
 
 interface IDetailCardDataProps {
   data: {
@@ -9,6 +9,7 @@ interface IDetailCardDataProps {
     from: string;
     price: string;
     num: number;
+    img: string;
   };
 }
 
@@ -17,7 +18,7 @@ const DetailCard: React.FC<IDetailCardDataProps> = ({ data }): JSX.Element => {
     <div
       className={`cursor-pointer ${
         // ""
-        data.num % 2 === 0 ? "-mt-[50px]" : "mt-[50px]"
+        data.num % 2 === 0 ? "md:mt-0 mt-[50px]" : "mt-[50px]"
       }`}
     >
       <img
@@ -25,7 +26,7 @@ const DetailCard: React.FC<IDetailCardDataProps> = ({ data }): JSX.Element => {
           ""
           //   data.num % 2 === 0 ? "-mt-[50px]" : ""
         }`}
-        src={ImgURL}
+        src={data.img}
         alt="img"
       />
       <div className="px-[16px] pt-[12px] shadow-[20px_10px_60px_rgba(0,0,0,0.15)] bg-white">
@@ -39,7 +40,7 @@ const DetailCard: React.FC<IDetailCardDataProps> = ({ data }): JSX.Element => {
           </span>
           <span className="text-[12px] leading-[17px] font-normal">from</span>
         </div>
-        <p className="text-[#645E70]/[.15] xl:tracking-[.35em] 2xl:tracking-[.42em] font-bold font-hind text-[21px] leading-[29px] mt-[16px] uppercase">
+        <p className="text-[#645E70]/[.15] xl:tracking-[.2em] 2xl:tracking-[.42em] md:tracking-[.7em] tracking-[.25em] font-bold font-hind text-[21px] leading-[29px] mt-[16px] uppercase">
           business class
         </p>
       </div>

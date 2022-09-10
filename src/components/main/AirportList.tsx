@@ -16,37 +16,36 @@ const AirportList: React.FC<IAirportListProps> = ({
   airportList,
   onSelect,
 }): JSX.Element => {
-  return (
-    <ul className="absolute top-[67px] left-0 lg:w-[760px] w-[600px] bg-white max-h-[350px] overflow-auto z-50">
+  return airportList?.length ? (
+    <ul className="absolute top-[67px] left-0 lg:w-[760px] sm:w-[500px] w-[300px] bg-white max-h-[350px] overflow-auto z-50">
       {airportList?.map((data, index) => {
-        if (!data) {
-          return (
-            <li
-              key={index}
-              className="text-[#10091D] border-t font-open_sans px-[15px] py-[9px] flex justify-between items-cemter"
-            >
-              <p className="text-[16px] leading-[22px]">Type to search</p>
-            </li>
-          );
-        } else {
-          return (
-            <li
-              key={index}
-              onClick={() => onSelect(data)}
-              className="text-[#10091D] border-t font-open_sans hover:bg-[#F3E351] active:bg-[#F3E351]/[.7] px-[15px] py-[9px] flex justify-between items-cemter"
-            >
-              <p className="text-[16px] leading-[22px]">
-                ({data.city_code}) <span>{data.city}</span> {data.country} -{" "}
-                {data.airport}
-              </p>
-              <p className="text-[14px] leading-[19px]">
-                Press enter to select
-              </p>
-            </li>
-          );
-        }
+        return (
+          <li
+            key={index}
+            onClick={() => onSelect(data)}
+            className="text-[#10091D] font-open_sans border-b hover:bg-[#F3E351] active:bg-[#F3E351]/[.7] px-[15px] py-[9px] flex justify-between items-cemter"
+          >
+            <p className="sm:text-[16px] text-[14px] leading-[22px]">
+              ({data.city_code}) <span>{data.city}</span> {data.country} -{" "}
+              {data.airport}
+            </p>
+            <p className="text-[14px] leading-[19px] xl:inline hidden">
+              Press enter to select
+            </p>
+          </li>
+        );
       })}
     </ul>
+  ) : (
+    <div>
+      {
+        <ul className="absolute top-[67px] left-0 lg:w-[760px] sm:w-[500px] w-[300px] bg-white max-h-[350px] overflow-auto z-50 shadow-[0px_4px_10px_rgba(0,0,0,0.2)]">
+          <li className="text-[#10091D] font-open_sans border px-[15px] py-[9px] flex justify-between items-cemter">
+            <p className="text-[16px] leading-[22px]">Type to search</p>
+          </li>
+        </ul>
+      }
+    </div>
   );
 };
 

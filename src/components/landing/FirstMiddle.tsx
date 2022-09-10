@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import f192Icon from "../../assets/img/landing/f192.png";
 import f0c8Icon from "../../assets/img/landing/f0c8.png";
-import FlightSchdule from "./FlightSchedule";
+import FlightSchedule from "./FlightSchedule";
 import ContactForm from "./ContactForm";
 import { FlightContext } from "../../App";
 
@@ -26,11 +26,17 @@ const MiddleCard: React.FC = (): JSX.Element => {
       <div className="grid xl:grid-cols-2 text-white flex items-center">
         <div className="mx-auto">
           {FlightSchedules.map((schedule, index) => (
-            <FlightSchdule schedule={schedule} key={index} />
+            <FlightSchedule schedule={schedule} key={index} />
           ))}
         </div>
         <div className="grid grid-cols-3 max-w-[450px] sm:gap-[30px] gap-[8px] mx-auto xl:mt-0 mt-[20px]">
-          <div className="bg-white/[.2] rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px]">
+          <div
+            className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
+              FlightSchedules[0].passengers === "bussiness"
+                ? "bg-white/[.2]"
+                : "bg-white/[.05] "
+            }`}
+          >
             <div className="flex justify-between">
               <p className="font-bold font-open_sans text-[20px] leading-[27px]">
                 ${getPriceForBussiness}
@@ -52,7 +58,13 @@ const MiddleCard: React.FC = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="bg-white/[.05] rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px]">
+          <div
+            className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
+              FlightSchedules[0].passengers === "first"
+                ? "bg-white/[.2]"
+                : "bg-white/[.05] "
+            }`}
+          >
             <div className="flex justify-between">
               <p className="font-bold font-open_sans text-[20px] leading-[27px]">
                 ${getPriceForFirst}
@@ -74,7 +86,13 @@ const MiddleCard: React.FC = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="bg-white/[.05] rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px]">
+          <div
+            className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
+              FlightSchedules[0].passengers === ("economy" || "p.economy")
+                ? "bg-white/[.2]"
+                : "bg-white/[.05] "
+            }`}
+          >
             <div className="flex justify-between">
               <p className="font-bold font-open_sans text-[20px] leading-[27px]">
                 ${getPriceForEconomy}

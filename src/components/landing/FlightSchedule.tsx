@@ -12,7 +12,7 @@ interface IFlightScheduleProps {
   };
 }
 
-const FlightSchdule: React.FC<IFlightScheduleProps> = ({
+const FlightSchedule: React.FC<IFlightScheduleProps> = ({
   schedule,
 }): JSX.Element => {
   return (
@@ -52,4 +52,4 @@ const FlightSchdule: React.FC<IFlightScheduleProps> = ({
   );
 };
 
-export default FlightSchdule;
+export default FlightSchedule;

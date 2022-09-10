@@ -158,7 +158,7 @@ const PassengerSelect: React.FC<IPassengerProps> = ({
   };
 
   return (
-    <div className="absolute top-[67px] left-0 py-[15px] px-[30px] bg-white w-[330px]">
+    <div className="absolute top-[67px] left-0 py-[15px] px-[30px] bg-white sm:w-[330px] w-[300px]">
       <div className="grid grid-cols-2 gap-[10px]">
         <button
           className={buttonClass}

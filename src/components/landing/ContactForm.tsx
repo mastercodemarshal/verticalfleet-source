@@ -8,7 +8,7 @@ const ContactForm: React.FC = (): JSX.Element => {
   const [state, setState] = useState({
     name: "",
     email: "",
-    preNumber: "",
+    preNumber: "1",
     phonenumber: "",
   });
 
