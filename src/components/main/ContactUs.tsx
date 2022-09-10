@@ -125,7 +125,7 @@ const ContactUs: React.FC = (): JSX.Element => {
           submit
         </button>
       </div>
-      <p className="container mx-auto mt-[152px] pb-[40px] text-[#10091D]/[.5] font-hind font-light text-[14px] leading-[19px] px-5">
+      <p className="container mx-auto mt-[152px] pb-[40px] text-[#10091D]/[.5] font-hind font-light text-[14px] leading-[19px] px-5 text-justify">
         * Price displayed is estimated and fluctuates based on route and
         destination, date and time of travel as well as how far ahead you’re
         booking. The fares will also vary based on class of travel availability.

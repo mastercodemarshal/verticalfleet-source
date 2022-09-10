@@ -11,7 +11,7 @@ const WhatWeDo: React.FC = (): JSX.Element => {
           what we do
         </h2>
         <div className="w-[200px] h-[3px] bg-[#F3E351] mb-[30px]"></div>
-        <p className="font-open_sans text-[16px] leading-[22px] text-[#6B6772]">
+        <p className="font-open_sans text-[16px] leading-[22px] text-[#6B6772] text-justify">
           <span className="font-bold">Vertical Fleet</span> is a full-service
           provider having expertise in traveling and smooth mobility services.
           It has been a known name in carrying forward the travel legacy and

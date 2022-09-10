@@ -125,7 +125,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
         By submitting my contact information I agree to discuss my travel
         arrangements.{" "}
       </p>
-      <p className="font-open_sans font-normal text-[12px] leading-[14px] text-white/[.5] mt-[40px]">
+      <p className="font-open_sans font-normal text-[12px] leading-[14px] text-white/[.5] mt-[40px] text-justify">
         *Price displayed is estimated and fluctuates based on route and
         destination, date and time of travel as well as how far ahead you’re
         booking. The fares will also vary based on class of travel availability.
