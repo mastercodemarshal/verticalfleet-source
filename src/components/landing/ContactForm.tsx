@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useState } from "react";
+import React, { BaseSyntheticEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -8,11 +8,23 @@ const ContactForm: React.FC = (): JSX.Element => {
   const [state, setState] = useState({
     name: "",
     email: "",
-    preNumber: "1",
+    countryCode: "93",
     phonenumber: "",
   });
 
   const [showValidationError, setShowValidationError] = useState(false);
+  const [showCountryCode, setShowCountryCode] = useState(false);
+  const [filteredCountryCode, setFilteredCountryCode] = useState(
+    [] as string[]
+  );
+
+  useEffect(() => {
+    const numbers: string[] = forePhoneNumbers.filter((item, index) =>
+      item.toString().includes(state.countryCode)
+    );
+
+    setFilteredCountryCode(numbers);
+  }, [state.countryCode]);
 
   const navigate = useNavigate();
 
@@ -40,9 +52,9 @@ const ContactForm: React.FC = (): JSX.Element => {
   };
 
   const checkValidation = () => {
-    const { name, email, preNumber, phonenumber } = state;
+    const { name, email, countryCode, phonenumber } = state;
 
-    return name && email && preNumber && phonenumber;
+    return name && email && countryCode && phonenumber;
   };
 
   return (
@@ -56,6 +68,7 @@ const ContactForm: React.FC = (): JSX.Element => {
             className="peer font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9]"
             placeholder="Your name"
             required
+            autoComplete="off"
           />
           {showValidationError && (
             <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] absolute -top-[10px] bg-white right-[10px]">
@@ -71,6 +84,7 @@ const ContactForm: React.FC = (): JSX.Element => {
             className="peer font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9]"
             placeholder="E-mail"
             required
+            autoComplete="off"
           />
           {showValidationError && (
             <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] absolute -top-[10px] bg-white right-[10px]">
@@ -79,19 +93,47 @@ const ContactForm: React.FC = (): JSX.Element => {
           )}
         </div>
         <div className="flex md:w-1/3 min-w-[220px] w-full relative">
-          <select
-            name="preNumber"
-            id="phonenumber"
+          <input
+            type="number"
+            name="countryCode"
+            onFocus={() => setShowCountryCode(true)}
             onChange={handleChange}
-            defaultValue="1"
-            className="px-[15px] w-1/3 px-[5px] py-[14px] font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9] bg-white md:rounded-none rounded-l-[4px]"
-          >
-            {forePhoneNumbers.map((phone, index) => (
-              <option value={phone} key={index}>
-                +{phone}
-              </option>
-            ))}
-          </select>
+            onBlur={() =>
+              setTimeout(() => {
+                setShowCountryCode(false);
+              }, 200)
+            }
+            onKeyUp={(e) => {
+              if (e.key === "Enter" && filteredCountryCode.length) {
+                setState({ ...state, countryCode: filteredCountryCode[0] });
+                setShowCountryCode(false);
+              }
+            }}
+            value={state.countryCode}
+            className="w-1/3 px-[15px] py-[14px] font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9] bg-white md:rounded-none rounded-l-[4px]"
+          />
+          {showCountryCode && (
+            <div className="max-h-[150px] overflow-auto w-1/3 border bg-white absolute top-[52px] left-0">
+              {filteredCountryCode.length ? (
+                filteredCountryCode.map((phone, index) => (
+                  <div
+                    key={index}
+                    className="cursor-pointer hover:bg-gray-300 px-[5px]"
+                    onClick={() => {
+                      setState({ ...state, countryCode: `${phone}` });
+                      setShowCountryCode(false);
+                    }}
+                  >
+                    {phone}
+                  </div>
+                ))
+              ) : (
+                <div className="cursor-pointer hover:bg-gray-300 px-[5px]">
+                  No result
+                </div>
+              )}
+            </div>
+          )}
           <input
             type="number"
             name="phonenumber"
@@ -99,6 +141,7 @@ const ContactForm: React.FC = (): JSX.Element => {
             className="peer px-[15px] w-2/3 py-[14px] font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9] bg-white rounded-r-[4px]"
             placeholder="Phone number"
             required
+            autoComplete="off"
           />
           {showValidationError && (
             <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] absolute -top-[10px] bg-white right-[10px]">

@@ -386,6 +386,14 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                   }, 200)
                 }
                 tabIndex={1}
+                onClick={() =>
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateFrom: false,
+                    });
+                  }, 200)
+                }
                 className="relative xl:w-[100%] md:w-[100%] bg-white flex items-center w-[100%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer justify-center"
               >
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
@@ -403,7 +411,7 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                   </p>
                 </div>
                 <Calendar
-                  className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[400px] min-w-[299px] z-50"
+                  className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[320px] min-w-[299px] z-50"
                   onChange={(e: React.SetStateAction<Date>) => {
                     onChangeDateFrom(e);
                     setState({
@@ -511,7 +519,7 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
 
           <div
             onClick={handleSubmit}
-            className="xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
+            className="cursor-pointer xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
           >
             Get a quote
           </div>

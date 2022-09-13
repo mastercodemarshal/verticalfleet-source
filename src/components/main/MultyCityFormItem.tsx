@@ -417,6 +417,14 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   }, 200)
                 }
                 tabIndex={1}
+                onClick={() =>
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateFrom: false,
+                    });
+                  }, 200)
+                }
                 className="relative xl:w-[100%] md:w-[100%] bg-white flex items-center w-[100%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer justify-center"
               >
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
@@ -434,7 +442,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   </p>
                 </div>
                 <Calendar
-                  className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[400px] min-w-[299px] z-50"
+                  className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[320px] min-w-[299px] z-50"
                   onChange={(e: React.SetStateAction<Date>) => {
                     onChangeDateFrom(e);
                     setState({
@@ -466,7 +474,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   setOpenCurrentSelect(false);
                   setOpenDestinationSelect(false);
                 }}
-                className="xl:w-[50%] md:w-[100%] w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 cursor-pointer xl:rounded-none rounded-[4px] border-t flex items-center justify-center"
+                className="xl:w-[100%] md:w-[100%] w-[100%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 cursor-pointer xl:rounded-none rounded-[4px] border-t flex items-center justify-center"
               >
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
                   {dateFrom.getDate()}
@@ -489,7 +497,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
           {Number(idx) === length - 1 && (
             <div
               onClick={handleItemSubmit}
-              className="xl:hidden inline w-[150px] text-center underline bg-[#10091D]/[.5] text-white mt-[7px] px-[10px] py-[3px] font-open_sans font-bold text-[16px] leading-[22px]"
+              className="cursor-pointer xl:hidden inline w-[150px] text-center underline bg-[#10091D]/[.5] text-white mt-[7px] px-[10px] py-[3px] font-open_sans font-bold text-[16px] leading-[22px]"
             >
               +Add flight
             </div>
@@ -560,7 +568,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
           {idx === "0" && (
             <div
               onClick={handleSubmit}
-              className="xl:inline-flex hidden xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
+              className="cursor-pointer xl:inline-flex hidden xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
             >
               Get a quote
             </div>
@@ -631,7 +639,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
           {Number(idx) === length - 1 && (
             <div
               onClick={handleSubmit}
-              className="xl:hidden inline-flex xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
+              className="cursor-pointer xl:hidden inline-flex xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
             >
               Get a quote
             </div>
@@ -641,7 +649,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
         {Number(idx) === length - 1 && (
           <div
             onClick={handleItemSubmit}
-            className="xl:inline-flex hidden underline bg-[#10091D]/[.5] text-white mt-[7px] px-[10px] py-[3px] font-open_sans font-bold text-[16px] leading-[22px]"
+            className="cursor-pointer xl:inline-flex hidden underline bg-[#10091D]/[.5] text-white mt-[7px] px-[10px] py-[3px] font-open_sans font-bold text-[16px] leading-[22px]"
           >
             +Add flight
           </div>

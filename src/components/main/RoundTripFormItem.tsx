@@ -378,7 +378,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
           <div className="xl:col-span-3 md:col-span-3 col-span-12 xl:flex md:block flex h-[67px] xl:rounded-none rounded-[4px] border-r border-[#D7D7D7] bg-white items-center justify-center">
             {state.editingDateFrom ? (
               <div
-                onBlur={() =>
+                onClick={() =>
                   setTimeout(() => {
                     setState({
                       ...state,
@@ -404,7 +404,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                   </p>
                 </div>
                 <Calendar
-                  className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[400px] min-w-[299px] z-50"
+                  className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[320px] min-w-[299px] z-50"
                   onChange={(e: React.SetStateAction<Date>) => {
                     onChangeDateFrom(e);
                     setState({
@@ -417,15 +417,15 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
               </div>
             ) : (
               <div
-                onBlur={() =>
-                  setTimeout(() => {
-                    setState({
-                      ...state,
-                      editingDateFrom: false,
-                    });
-                  }, 200)
-                }
-                tabIndex={2}
+                // onBlur={() =>
+                //   setTimeout(() => {
+                //     setState({
+                //       ...state,
+                //       editingDateFrom: false,
+                //     });
+                //   }, 200)
+                // }
+                // tabIndex={2}
                 onClick={() => {
                   setState({
                     ...state,
@@ -459,14 +459,14 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
 
             {state.editingDateTo ? (
               <div
-                // onBlur={() =>
-                //   setTimeout(() => {
-                //     setState({
-                //       ...state,
-                //       editingDateTo: false,
-                //     });
-                //   }, 200)
-                // }
+                onClick={() =>
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateTo: false,
+                    });
+                  }, 200)
+                }
                 tabIndex={3}
                 className="relative justify-center xl:w-[50%] bg-white md:w-[100%] flex items-center w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer text-center"
               >
@@ -485,7 +485,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                   </p>
                 </div>
                 <Calendar
-                  className="absolute top-[65px] xl:left-0 -right-[2px] md:min-w-[400px] min-w-[299px] z-50"
+                  className="absolute top-[65px] xl:left-0 -right-[2px] md:min-w-[320px] min-w-[299px] z-50"
                   onChange={(e: React.SetStateAction<Date>) => {
                     onChangeDateTo(e);
                     setState({
@@ -498,15 +498,15 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
               </div>
             ) : (
               <div
-                onBlur={() =>
-                  setTimeout(() => {
-                    setState({
-                      ...state,
-                      editingDateTo: false,
-                    });
-                  }, 200)
-                }
-                tabIndex={4}
+                // onBlur={() =>
+                //   setTimeout(() => {
+                //     setState({
+                //       ...state,
+                //       editingDateTo: false,
+                //     });
+                //   }, 200)
+                // }
+                // tabIndex={4}
                 onClick={() => {
                   setState({
                     ...state,
@@ -593,7 +593,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
 
           <div
             onClick={handleSubmit}
-            className="xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
+            className="cursor-pointer xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
           >
             Get a quote
           </div>
