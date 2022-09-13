@@ -29,6 +29,7 @@ type AirPort = {
   country: string;
   city: string;
   city_code: string;
+  iata_code: string;
 };
 
 const OneWayFormItem: React.FC = (): JSX.Element => {
@@ -100,8 +101,17 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
       return [];
     }
 
-    const filteredData = airportsData?.filter((airport) =>
-      airport.airport.toLowerCase().includes(flightState.current.toLowerCase())
+    const filteredData = airportsData?.filter(
+      (airport) =>
+        airport.city
+          .toLowerCase()
+          .includes(flightState.current.toLowerCase()) ||
+        airport.city_code
+          .toLowerCase()
+          .includes(flightState.current.toLowerCase()) ||
+        airport.iata_code
+          .toLowerCase()
+          .includes(flightState.current.toLowerCase())
     );
 
     return filteredData;
@@ -112,10 +122,17 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
       return [];
     }
 
-    const filteredData = airportsData?.filter((airport) =>
-      airport.airport
-        .toLowerCase()
-        .includes(flightState.destination.toLowerCase())
+    const filteredData = airportsData?.filter(
+      (airport) =>
+        airport.city
+          .toLowerCase()
+          .includes(flightState.destination.toLowerCase()) ||
+        airport.city_code
+          .toLowerCase()
+          .includes(flightState.destination.toLowerCase()) ||
+        airport.iata_code
+          .toLowerCase()
+          .includes(flightState.destination.toLowerCase())
     );
 
     return filteredData;
@@ -238,7 +255,6 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                       }
                     }}
                     className="focus:outline-none w-full peer"
-                    autoFocus
                     required
                     autoComplete="off"
                   />
@@ -327,7 +343,6 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                     }
                   }}
                   className="focus:outline-none w-full peer"
-                  autoFocus
                   required
                   autoComplete="off"
                 />
@@ -476,7 +491,6 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                 onChange={handleChange}
                 placeholder="Passengers"
                 className="focus:outline-none w-full"
-                autoFocus
                 autoComplete="off"
               />
               {openUserSelect && (

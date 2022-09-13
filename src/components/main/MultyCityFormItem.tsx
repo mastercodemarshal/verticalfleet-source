@@ -29,6 +29,7 @@ type AirPort = {
   country: string;
   city: string;
   city_code: string;
+  iata_code: string;
 };
 
 const SearchFormItem: React.FC<ISearchFormProps> = ({
@@ -104,8 +105,17 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       return [];
     }
 
-    const filteredData = airportsData?.filter((airport) =>
-      airport.airport.toLowerCase().includes(flightState.current.toLowerCase())
+    const filteredData = airportsData?.filter(
+      (airport) =>
+        airport.city
+          .toLowerCase()
+          .includes(flightState.current.toLowerCase()) ||
+        airport.city_code
+          .toLowerCase()
+          .includes(flightState.current.toLowerCase()) ||
+        airport.iata_code
+          .toLowerCase()
+          .includes(flightState.current.toLowerCase())
     );
 
     return filteredData;
@@ -116,10 +126,17 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       return [];
     }
 
-    const filteredData = airportsData?.filter((airport) =>
-      airport.airport
-        .toLowerCase()
-        .includes(flightState.destination.toLowerCase())
+    const filteredData = airportsData?.filter(
+      (airport) =>
+        airport.city
+          .toLowerCase()
+          .includes(flightState.destination.toLowerCase()) ||
+        airport.city_code
+          .toLowerCase()
+          .includes(flightState.destination.toLowerCase()) ||
+        airport.iata_code
+          .toLowerCase()
+          .includes(flightState.destination.toLowerCase())
     );
 
     return filteredData;

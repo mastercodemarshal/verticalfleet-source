@@ -8,7 +8,7 @@ const ContactUs: React.FC = (): JSX.Element => {
     firstName: "",
     lastName: "",
     email: "",
-    countryCode: "93",
+    countryCode: "1",
     phoneNumber: "",
     description: "",
   });
@@ -48,7 +48,7 @@ const ContactUs: React.FC = (): JSX.Element => {
         firstName: "",
         lastName: "",
         email: "",
-        countryCode: "93",
+        countryCode: "1",
         description: "",
         phoneNumber: "",
       });
@@ -153,7 +153,7 @@ const ContactUs: React.FC = (): JSX.Element => {
               className="xl:w-[100px] h-[40px] xl:max-w-[100px] max-w-[92px] w-full py-[9px] px-[15px] mr-[10px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[5px] placeholder:text-[#494949] text-[16px] leading-[22px] font-open_sans font-normal"
             />
             {showCountryCode && (
-              <div className="max-h-[150px] overflow-auto xl:w-[100px] w-[92px] border bg-white absolute top-[40px] left-[10px]">
+              <div className="max-h-[150px] overflow-auto xl:w-[100px] w-[92px] border bg-white absolute top-[40px] left-[10px] z-10">
                 {filteredCountryCode.length ? (
                   filteredCountryCode.map((phone, index) => (
                     <div

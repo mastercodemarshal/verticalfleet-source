@@ -17,7 +17,7 @@ const AirportList: React.FC<IAirportListProps> = ({
   onSelect,
 }): JSX.Element => {
   return (
-    <ul className="absolute top-[67px] left-0 lg:w-[760px] sm:w-[500px] bg-white max-h-[350px] overflow-auto z-50">
+    <ul className="absolute top-[67px] left-0 lg:w-[760px] sm:w-[500px] bg-white max-h-[350px] overflow-auto shadow-[0px_4px_10px_rgba(0,0,0,0.2)] z-50">
       {airportList?.map((data, index) => {
         return (
           <li

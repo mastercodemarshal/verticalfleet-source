@@ -248,69 +248,6 @@ export const forePhoneNumbers = [
   "263",
 ];
 
-export const FlightSchedules = [
-  {
-    from: {
-      ground: "JFK",
-      date: "Aug 18",
-      destination: "New-York, NY",
-    },
-    to: {
-      ground: "SLC",
-      date: "Aug 22",
-      destination: "Salt-Lake City, UT",
-    },
-  },
-  {
-    from: {
-      ground: "JFK",
-      date: "Aug 18",
-      destination: "New-York, NY",
-    },
-    to: {
-      ground: "SLC",
-      date: "Aug 22",
-      destination: "Salt-Lake City, UT",
-    },
-  },
-  {
-    from: {
-      ground: "JFK",
-      date: "Aug 18",
-      destination: "New-York, NY",
-    },
-    to: {
-      ground: "SLC",
-      date: "Aug 22",
-      destination: "Salt-Lake City, UT",
-    },
-  },
-  {
-    from: {
-      ground: "JFK",
-      date: "Aug 18",
-      destination: "New-York, NY",
-    },
-    to: {
-      ground: "SLC",
-      date: "Aug 22",
-      destination: "Salt-Lake City, UT",
-    },
-  },
-  {
-    from: {
-      ground: "JFK",
-      date: "Aug 18",
-      destination: "New-York, NY",
-    },
-    to: {
-      ground: "SLC",
-      date: "Aug 22",
-      destination: "Salt-Lake City, UT",
-    },
-  },
-];
-
 export const DetailCardsData = [
   {
     imgURL: "/assets/img/main/dubai.png",
@@ -351,7 +288,7 @@ export const DetailCardsData = [
   {
     imgURL: "/assets/img/main/rome.png",
     city: "Rome",
-    price: "$2,499178",
+    price: "$2,178",
     from: "ITALY",
   },
 ];
