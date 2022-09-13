@@ -113,7 +113,7 @@ const ContactUs: React.FC = (): JSX.Element => {
 
           <div className="flex items-center h-[40px] relative">
             +
-            <select className="xl:w-[100px] xl:max-w-[100px] max-w-[92px] w-full py-[9px] px-[15px] mr-[10px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[5px] placeholder:text-[#494949] text-[16px] leading-[22px] font-open_sans font-normal">
+            <select className="xl:w-[100px] max-h-[50px] h-[40px] xl:max-w-[100px] max-w-[92px] w-full py-[9px] px-[15px] mr-[10px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[5px] placeholder:text-[#494949] text-[16px] leading-[22px] font-open_sans font-normal">
               {forePhoneNumbers.map((phone, index) => (
                 <option value={phone} key={index}>
                   {phone}
@@ -125,7 +125,7 @@ const ContactUs: React.FC = (): JSX.Element => {
               name="phoneNumber"
               value={state.phoneNumber}
               onChange={handleChange}
-              className="py-[9px] peer rounded-[5px] px-[15px] xl:w-[198px] xl:max-w-[198px] max-w-[182px] w-full bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
+              className="py-[9px] h-[40px] peer rounded-[5px] px-[15px] xl:w-[198px] xl:max-w-[198px] max-w-[182px] w-full bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
               placeholder="Phone number*"
               required
             />
@@ -140,7 +140,7 @@ const ContactUs: React.FC = (): JSX.Element => {
               name="description"
               value={state.description}
               onChange={handleChange}
-              className="peer py-[9px] px-[15px] xl:w-[320px] xl:max-w-[320px] max-w-[296px] w-full bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[5px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
+              className="peer py-[9px] h-full px-[15px] xl:w-[320px] xl:max-w-[320px] max-w-[296px] w-full bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[5px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
               placeholder="Please describe what are you inquiring about"
               required
             ></textarea>

@@ -241,6 +241,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                     className="focus:outline-none w-full peer"
                     autoFocus
                     required
+                    autoComplete="off"
                   />
                   {showValidationError && (
                     <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
@@ -329,6 +330,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                   className="focus:outline-none w-full peer"
                   autoFocus
                   required
+                  autoComplete="off"
                 />
                 {showValidationError && (
                   <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
@@ -457,15 +459,15 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
 
             {state.editingDateTo ? (
               <div
-                onBlur={() =>
-                  setTimeout(() => {
-                    setState({
-                      ...state,
-                      editingDateTo: false,
-                    });
-                  }, 200)
-                }
-                tabIndex={1}
+                // onBlur={() =>
+                //   setTimeout(() => {
+                //     setState({
+                //       ...state,
+                //       editingDateTo: false,
+                //     });
+                //   }, 200)
+                // }
+                tabIndex={3}
                 className="relative justify-center xl:w-[50%] bg-white md:w-[100%] flex items-center w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer text-center"
               >
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
@@ -504,7 +506,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                     });
                   }, 200)
                 }
-                tabIndex={2}
+                tabIndex={4}
                 onClick={() => {
                   setState({
                     ...state,
@@ -549,6 +551,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                 placeholder="Passengers"
                 className="focus:outline-none w-full"
                 autoFocus
+                autoComplete="off"
               />
               {openUserSelect && (
                 <PassengerSelect

@@ -271,6 +271,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                     className="focus:outline-none w-full peer"
                     autoFocus
                     required
+                    autoComplete="off"
                   />
                   {showValidationError && (
                     <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
@@ -359,6 +360,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   className="focus:outline-none w-full peer"
                   autoFocus
                   required
+                  autoComplete="off"
                 />
                 {showValidationError && (
                   <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
@@ -510,6 +512,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                       placeholder="Passengers"
                       className="focus:outline-none w-full"
                       autoFocus
+                      autoComplete="off"
                     />
                     {openUserSelect && (
                       <PassengerSelect
@@ -580,6 +583,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                       placeholder="Passengers"
                       className="focus:outline-none w-full"
                       autoFocus
+                      autoComplete="off"
                     />
                     {openUserSelect && (
                       <PassengerSelect

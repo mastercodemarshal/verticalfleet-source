@@ -24,7 +24,7 @@ const BestDetails: React.FC = (): JSX.Element => {
   return (
     <div className="bg-[#F3E351] pt-[70px] pl-[50px] pr-[50px] pb-[100px]">
       <h2 className="uppercase font-hind font-bold md:text-[80px] leading-[100px] text-[44px] text-white">
-        best details
+        best deals
       </h2>
       <div className="w-[200px] h-[3px] bg-white"></div>
       <div className="md:mt-[107px] mt-[57px] grid md:grid-cols-2 gap-x-[40px]">

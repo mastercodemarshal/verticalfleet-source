@@ -7,7 +7,7 @@ const Header: React.FC = (): JSX.Element => {
   return (
     <div className="top-0 bg-[#10091D]/[.3] absolute w-full z-50">
       <div className="container mx-auto flex h-[80px] items-center px-[10px]">
-        <Link className="mr-auto w-[165px] h-[15px]" to="/">
+        <Link className="mr-auto w-[165px] h-[15px]" to="/round-trip">
           <img src={Logo} alt="" />
         </Link>
         <div className="flex items-center text-[14px] text-white font-light font-open_sans leading-[19.07px]">
