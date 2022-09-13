@@ -13,7 +13,7 @@ import "react-calendar/dist/Calendar.css";
 import locationIcon from "../../assets/img/main/location.png";
 import calendarIcon from "../../assets/img/main/calendar.png";
 import usersIcon from "../../assets/img/main/users.png";
-// import reloadIcon from "../../assets/img/main/reload.png";
+import reloadIcon from "../../assets/img/main/reload.png";
 import AirportList from "./AirportList";
 import PassengerSelect from "./PassengerSelect";
 import { FlightContext } from "../../App";
@@ -316,7 +316,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
               )}
             </>
 
-            {/* <div className="bg-white w-[16px] relative flex items-center xl:inline hidden">
+            <div className="bg-white w-[16px] border-t border-[#D7D7D7] relative flex items-center xl:inline hidden">
               <img
                 src={reloadIcon}
                 width="16px"
@@ -324,7 +324,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                 className="absolute -left-[8px] bg-white top-[26px]"
                 alt=""
               />
-            </div> */}
+            </div>
 
             {state.editingDestination ? (
               <div className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center">
