@@ -48,12 +48,12 @@ const ContactForm: React.FC = (): JSX.Element => {
   return (
     <>
       <form className="md:flex text-[#494949] md:space-y-0 space-y-[20px]">
-        <div className="relative">
+        <div className="relative px-[15px] py-[14px] md:w-1/3 w-full bg-white border-r border-[#D7D7D7] md:rounded-l-[4px] md:rounded-r-none rounded-[4px] box-border">
           <input
             type="text"
             name="name"
             onChange={handleChange}
-            className="peer px-[15px] py-[14px] md:w-1/3 w-full font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9] bg-white border-r border-[#D7D7D7] md:rounded-l-[4px] md:rounded-r-none rounded-[4px] box-border"
+            className="peer font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9]"
             placeholder="Your name"
             required
           />
@@ -63,12 +63,12 @@ const ContactForm: React.FC = (): JSX.Element => {
             </div>
           )}
         </div>
-        <div className="relative">
+        <div className="relative px-[15px] py-[14px] md:w-1/3 w-full bg-white border-r border-[#D7D7D7] md:rounded-none rounded-[4px] box-border">
           <input
             type="text"
             name="email"
             onChange={handleChange}
-            className="peer px-[15px] py-[14px] md:w-1/3 w-full font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9] bg-white border-r border-[#D7D7D7] md:rounded-none rounded-[4px] box-border"
+            className="peer font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9]"
             placeholder="E-mail"
             required
           />

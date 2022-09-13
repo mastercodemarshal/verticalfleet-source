@@ -115,7 +115,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
           </div>
         </div>
       </div>
-      <p className="mt-[37px] font-open_sans font-bold text-[16px] leading-[22px] text-white">
+      <p className="mt-[37px] font-open_sans font-bold text-[16px] leading-[22px] text-white mb-[20px]">
         Submit contact details or call us at 1-888-883-4146 to secure best price
       </p>
       <div className="md:flex my-[10px] justify-between md:space-y-0 space-y-[20px]">
