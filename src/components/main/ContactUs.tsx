@@ -158,7 +158,7 @@ const ContactUs: React.FC = (): JSX.Element => {
                       className="cursor-pointer hover:bg-gray-300 px-[5px]"
                       onClick={() => {
                         setState({ ...state, countryCode: `${phone}` });
-                        setShowCountryCode(false);
+                        // setShowCountryCode(false);
                       }}
                     >
                       {phone}

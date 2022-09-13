@@ -430,11 +430,11 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                   setState({
                     ...state,
                     editingDateTo: false,
-                    editingUsers: false,
                     editingDateFrom: true,
                   });
                   setOpenCurrentSelect(false);
                   setOpenDestinationSelect(false);
+                  setOpenUserSelect(false);
                 }}
                 className="xl:w-[50%] md:w-[100%] w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 cursor-pointer xl:rounded-none rounded-[4px] border-t flex items-center justify-center"
               >
@@ -511,11 +511,11 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                   setState({
                     ...state,
                     editingDateFrom: false,
-                    editingUsers: false,
                     editingDateTo: true,
                   });
                   setOpenCurrentSelect(false);
                   setOpenDestinationSelect(false);
+                  setOpenUserSelect(false);
                 }}
                 className="xl:w-[50%] md:w-[100%] w-[50%] h-[67px] cursor-pointer bg-white flex xl:rounded-none rounded-[4px] border-t items-center justify-center"
               >
@@ -546,7 +546,14 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                 type="text"
                 name="passengers"
                 // value={flightState.passengers}
-                onClick={() => setOpenUserSelect(!openUserSelect)}
+                onClick={() => {
+                  setOpenUserSelect(!openUserSelect);
+                  setState({
+                    ...state,
+                    editingDateFrom: false,
+                    editingDateTo: false,
+                  });
+                }}
                 onChange={handleChange}
                 placeholder="Passengers"
                 className="focus:outline-none w-full"

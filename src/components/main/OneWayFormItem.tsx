@@ -437,11 +437,11 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                   setState({
                     ...state,
                     editingDateTo: false,
-                    editingUsers: false,
                     editingDateFrom: true,
                   });
                   setOpenCurrentSelect(false);
                   setOpenDestinationSelect(false);
+                  setOpenUserSelect(false);
                 }}
                 className="xl:w-[50%] md:w-[100%] w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 cursor-pointer xl:rounded-none rounded-[4px] border-t flex items-center justify-center"
               >
