@@ -97,7 +97,10 @@ const ContactForm: React.FC = (): JSX.Element => {
             type="number"
             name="countryCode"
             onFocus={() => setShowCountryCode(true)}
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              setShowCountryCode(true);
+            }}
             onBlur={() =>
               setTimeout(() => {
                 setShowCountryCode(false);

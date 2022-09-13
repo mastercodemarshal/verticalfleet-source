@@ -134,7 +134,10 @@ const ContactUs: React.FC = (): JSX.Element => {
               type="number"
               name="countryCode"
               onFocus={() => setShowCountryCode(true)}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange(e);
+                setShowCountryCode(true);
+              }}
               onBlur={() =>
                 setTimeout(() => {
                   setShowCountryCode(false);
@@ -158,7 +161,7 @@ const ContactUs: React.FC = (): JSX.Element => {
                       className="cursor-pointer hover:bg-gray-300 px-[5px]"
                       onClick={() => {
                         setState({ ...state, countryCode: `${phone}` });
-                        // setShowCountryCode(false);
+                        setShowCountryCode(false);
                       }}
                     >
                       {phone}
