@@ -24,7 +24,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
   return (
     <div className="max-w-[952px] mx-auto bg-[#10091D]/[.7] rounded-[10px] backdrop-blur-[5px] sm:px-[30px] px-[10px] pt-[30px] pb-[40px]">
       <div className="grid xl:grid-cols-2 text-white flex items-center">
-        <div className="mx-auto">
+        <div className="mx-auto w-full">
           {FlightSchedules.map((schedule, index) => (
             <FlightSchedule schedule={schedule} key={index} />
           ))}

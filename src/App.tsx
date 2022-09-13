@@ -30,10 +30,12 @@ const App: React.FC = (): JSX.Element => {
       <Router>
         <Layout>
           <Routes>
-            <Route path="/landing" element={<LandingPage />} />
-            <Route path="/result" element={<ResultPage />} />
+            <Route path="/landing/" element={<LandingPage />} />
+            <Route path="/result/" element={<ResultPage />} />
             <Route path="/" element={<MainPage />} />
-            <Route path="/:id" element={<MainPage />} />
+            <Route path="/round-trip/" element={<MainPage />} />
+            <Route path="/one-way/" element={<MainPage />} />
+            <Route path="/multy-city/" element={<MainPage />} />
           </Routes>
         </Layout>
         <ToastContainer />

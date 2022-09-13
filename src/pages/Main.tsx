@@ -11,7 +11,9 @@ const MainPage: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate("/round-trip");
+    if (window.location.pathname === "/") {
+      navigate("/round-trip/");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

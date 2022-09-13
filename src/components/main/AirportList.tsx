@@ -17,7 +17,7 @@ const AirportList: React.FC<IAirportListProps> = ({
   onSelect,
 }): JSX.Element => {
   return airportList?.length ? (
-    <ul className="absolute top-[67px] left-0 lg:w-[760px] sm:w-[500px] w-[300px] bg-white max-h-[350px] overflow-auto z-50">
+    <ul className="absolute top-[67px] left-0 lg:w-[760px] sm:w-[500px] bg-white max-h-[350px] overflow-auto z-50">
       {airportList?.map((data, index) => {
         return (
           <li
@@ -39,7 +39,7 @@ const AirportList: React.FC<IAirportListProps> = ({
   ) : (
     <div>
       {
-        <ul className="absolute top-[67px] left-0 lg:w-[760px] sm:w-[500px] w-[300px] bg-white max-h-[350px] overflow-auto z-50 shadow-[0px_4px_10px_rgba(0,0,0,0.2)]">
+        <ul className="absolute top-[67px] left-0 lg:w-[760px] sm:w-[500px] w-full bg-white max-h-[350px] overflow-auto z-50 shadow-[0px_4px_10px_rgba(0,0,0,0.2)]">
           <li className="text-[#10091D] font-open_sans border px-[15px] py-[9px] flex justify-between items-cemter">
             <p className="text-[16px] leading-[22px]">Type to search</p>
           </li>

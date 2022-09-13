@@ -5,7 +5,7 @@ import React, {
   useContext,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import Papa, { ParseResult } from "papaparse";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -47,6 +47,8 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
     editingDateTo: false,
     editingUsers: true,
   });
+
+  const [showValidationError, setShowValidationError] = useState(false);
 
   const [openUserSelect, setOpenUserSelect] = useState(false);
   const [openCurrentSelect, setOpenCurrentSelect] = useState(false);
@@ -127,28 +129,23 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
     e.preventDefault();
 
     if (checkValidation()) {
-      if (flightState.passengers[1]?.split(":")[0] === "0") {
-        toast("Please select passengers", {
-          type: "error",
-        });
-      } else {
-        flightContext.setFlightState([
-          ...flightContext.flightState,
-          {
-            current: flightState.current,
-            destination: flightState.destination,
-            dateFrom: dateFrom,
-            dateTo: dateFrom,
-            passengers: flightState.passengers[0],
-            type: window.location.pathname,
-          },
-        ]);
-        navigate("/landing");
-      }
+      flightContext.setFlightState([
+        ...flightContext.flightState,
+        {
+          current: flightState.current,
+          destination: flightState.destination,
+          dateFrom: dateFrom,
+          dateTo: dateFrom,
+          passengers: flightState.passengers[0],
+          type: window.location.pathname,
+        },
+      ]);
+      navigate("/landing");
     } else {
-      toast("Please fill all inputs", {
-        type: "error",
-      });
+      // toast("Please fill all inputs", {
+      //   type: "error",
+      // });
+      setShowValidationError(true);
     }
   };
 
@@ -181,18 +178,19 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
 
       handleAddFlight();
     } else {
-      toast("Please fill all inputs", {
-        type: "error",
-      });
+      // toast("Please fill all inputs", {
+      //   type: "error",
+      // });
+      setShowValidationError(true);
     }
 
     return;
   };
 
   const checkValidation = () => {
-    const { current, destination, passengers } = flightState;
+    const { current, destination } = flightState;
 
-    return current && destination && dateFrom && passengers;
+    return current && destination && dateFrom;
   };
 
   const handleCurrentSelect = (data: AirPort): void => {
@@ -235,7 +233,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
 
   return (
     <div className="xl:mt-0 mt-[15px]">
-      <form id={idx} onSubmit={handleItemSubmit} className="main-search-form">
+      <form id={idx} className="main-search-form">
         <div className="grid grid-cols-12 xl:gap-0 md:gap-[15px]">
           <div className="xl:col-span-5 xl:flex md:col-span-9 col-span-12">
             <>
@@ -249,20 +247,36 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                     name="current"
                     placeholder="From"
                     // value={flightState.current}
+                    onBlur={() =>
+                      setTimeout(() => {
+                        setOpenCurrentSelect(false);
+                      }, 200)
+                    }
                     onChange={handleChange}
                     onFocus={() => {
                       setOpenCurrentSelect(true);
                       setOpenDestinationSelect(false);
+                      setOpenUserSelect(false);
                       setState({
                         ...state,
                         editingDateFrom: false,
                         editingDateTo: false,
-                        editingUsers: false,
                       });
                     }}
-                    className="focus:outline-none w-full"
-                    // autoFocus
+                    onKeyUp={(e) => {
+                      if (e.key === "Enter" && currentFilteredList?.length) {
+                        handleCurrentSelect(currentFilteredList[0]);
+                      }
+                    }}
+                    className="focus:outline-none w-full peer"
+                    autoFocus
+                    required
                   />
+                  {showValidationError && (
+                    <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
+                      Please enter a valid depart city or airport
+                    </div>
+                  )}
                   {openCurrentSelect && (
                     <AirportList
                       airportList={currentFilteredList}
@@ -272,15 +286,15 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                 </div>
               ) : (
                 <div
-                  onClick={() =>
+                  onClick={() => {
+                    setOpenUserSelect(false);
                     setState({
                       ...state,
                       editingDateFrom: false,
                       editingDateTo: false,
-                      editingUsers: false,
                       editingCurrent: true,
-                    })
-                  }
+                    });
+                  }}
                   className="h-[67px] cursor-pointer pl-[30px] xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
                 >
                   <div className="flex">
@@ -322,19 +336,35 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   name="destination"
                   // value={flightState.destination}
                   onChange={handleChange}
+                  onBlur={() =>
+                    setTimeout(() => {
+                      setOpenDestinationSelect(false);
+                    }, 200)
+                  }
                   onFocus={() => {
                     setOpenDestinationSelect(true);
                     setOpenCurrentSelect(false);
+                    setOpenUserSelect(false);
                     setState({
                       ...state,
                       editingDateFrom: false,
                       editingDateTo: false,
-                      editingUsers: false,
                     });
                   }}
-                  className="focus:outline-none w-full"
-                  // autoFocus
+                  onKeyUp={(e) => {
+                    if (e.key === "Enter" && destinationFilteredList?.length) {
+                      handleDestinationSelect(destinationFilteredList[0]);
+                    }
+                  }}
+                  className="focus:outline-none w-full peer"
+                  autoFocus
+                  required
                 />
+                {showValidationError && (
+                  <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
+                    Please enter a valid arrival city or airport
+                  </div>
+                )}
                 {openDestinationSelect && (
                   <AirportList
                     airportList={destinationFilteredList}
@@ -344,15 +374,15 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
               </div>
             ) : (
               <div
-                onClick={() =>
+                onClick={() => {
+                  setOpenUserSelect(false);
                   setState({
                     ...state,
                     editingDateFrom: false,
                     editingDateTo: false,
-                    editingUsers: false,
                     editingDestination: true,
-                  })
-                }
+                  });
+                }}
                 className="h-[67px] cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
               >
                 <div className="flex">
@@ -375,7 +405,18 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
 
           <div className="xl:col-span-3 md:col-span-3 col-span-12 xl:flex md:block flex h-[67px] xl:rounded-none rounded-[4px] border-r border-[#D7D7D7] bg-white items-center justify-center">
             {state.editingDateFrom ? (
-              <div className="relative xl:w-[100%] md:w-[100%] bg-white flex items-center w-[100%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer justify-center">
+              <div
+                onBlur={() =>
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateFrom: false,
+                    });
+                  }, 200)
+                }
+                tabIndex={1}
+                className="relative xl:w-[100%] md:w-[100%] bg-white flex items-center w-[100%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer justify-center"
+              >
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
                   {dateFrom.getDate()}
                 </p>
@@ -404,6 +445,15 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
               </div>
             ) : (
               <div
+                onBlur={() =>
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateFrom: false,
+                    });
+                  }, 200)
+                }
+                tabIndex={2}
                 onClick={() => {
                   setState({
                     ...state,
@@ -435,12 +485,12 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
           </div>
 
           {Number(idx) === length - 1 && (
-            <button
-              type="submit"
+            <div
+              onClick={handleItemSubmit}
               className="xl:hidden inline w-[150px] text-center underline bg-[#10091D]/[.5] text-white mt-[7px] px-[10px] py-[3px] font-open_sans font-bold text-[16px] leading-[22px]"
             >
               +Add flight
-            </button>
+            </div>
           )}
 
           <>
@@ -454,15 +504,18 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                     <input
                       type="text"
                       name="passengers"
-                      value={flightState.passengers}
-                      onFocus={() => setOpenUserSelect(true)}
+                      // value={flightState.passengers}
+                      onClick={() => setOpenUserSelect(!openUserSelect)}
                       onChange={handleChange}
                       placeholder="Passengers"
                       className="focus:outline-none w-full"
-                      // autoFocus
+                      autoFocus
                     />
                     {openUserSelect && (
-                      <PassengerSelect onSelect={handlePassengerSelect} />
+                      <PassengerSelect
+                        onSelect={handlePassengerSelect}
+                        onCancel={() => setOpenUserSelect(false)}
+                      />
                     )}
                   </div>
                 ) : (
@@ -502,12 +555,12 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
           </>
 
           {idx === "0" && (
-            <button
+            <div
               onClick={handleSubmit}
               className="xl:inline-flex hidden xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
             >
               Get a quote
-            </button>
+            </div>
           )}
 
           <>
@@ -521,15 +574,18 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                     <input
                       type="text"
                       name="passengers"
-                      value={flightState.passengers}
-                      onFocus={() => setOpenUserSelect(true)}
+                      // value={flightState.passengers}
+                      onClick={() => setOpenUserSelect(!openUserSelect)}
                       onChange={handleChange}
                       placeholder="Passengers"
                       className="focus:outline-none w-full"
-                      // autoFocus
+                      autoFocus
                     />
                     {openUserSelect && (
-                      <PassengerSelect onSelect={handlePassengerSelect} />
+                      <PassengerSelect
+                        onSelect={handlePassengerSelect}
+                        onCancel={() => setOpenCurrentSelect(false)}
+                      />
                     )}
                   </div>
                 ) : (
@@ -569,22 +625,22 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
           </>
 
           {Number(idx) === length - 1 && (
-            <button
+            <div
               onClick={handleSubmit}
               className="xl:hidden inline-flex xl:col-span-2 col-span-12 h-[67px] bg-[#F3E351] hover:bg-[#F3E351]/[.8] active:bg-[#F3E351]/[.6] xl:rounded-r-[4px] xl:rounded-l-none rounded-[4px] flex items-center justify-center text-[#10091D] font-open_sans font-bold text-[18px] leading-[25px]"
             >
               Get a quote
-            </button>
+            </div>
           )}
         </div>
 
         {Number(idx) === length - 1 && (
-          <button
-            type="submit"
+          <div
+            onClick={handleItemSubmit}
             className="xl:inline-flex hidden underline bg-[#10091D]/[.5] text-white mt-[7px] px-[10px] py-[3px] font-open_sans font-bold text-[16px] leading-[22px]"
           >
             +Add flight
-          </button>
+          </div>
         )}
       </form>
     </div>

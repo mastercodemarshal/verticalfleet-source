@@ -16,37 +16,43 @@ const FlightSchedule: React.FC<IFlightScheduleProps> = ({
   schedule,
 }): JSX.Element => {
   return (
-    <div className="flex items-center cursor-pointer">
-      <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
-        {schedule.current.split(", ")[0]}
-      </p>
-      <div className="ml-[10px]">
-        <p className="font-bold text-[12px] font-open_sans leading-[17px]">
-          {`${schedule.dateFrom.toLocaleDateString("en-US", {
-            month: "short",
-          })} ${schedule.dateFrom.getDate()}`}
+    <div className="flex items-center justify-center cursor-pointer">
+      <div className="flex items-center lg:w-[45%] md:w-[30%] w-[45%]">
+        <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
+          {schedule.current.split(", ")[0]}
         </p>
-        <p className="font-bold text-[10px] font-open_sans leading-[14px]">
-          {`${schedule.current.split(", ")[3]}, ${
-            schedule.current.split(", ")[2]
-          }`}
-        </p>
+        <div className="ml-[10px]">
+          <p className="font-bold text-[12px] font-open_sans leading-[17px]">
+            {`${schedule.dateFrom.toLocaleDateString("en-US", {
+              month: "short",
+            })} ${schedule.dateFrom.getDate()}`}
+          </p>
+          <p className="font-bold text-[10px] font-open_sans leading-[14px]">
+            {`${schedule.current.split(", ")[3]}, ${
+              schedule.current.split(", ")[2]
+            }`}
+          </p>
+        </div>
       </div>
-      <img src={arrow} className="mx-[20px]" alt="arrow" />
-      <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
-        {schedule.destination.split(",")[0]}
-      </p>
-      <div className="ml-[10px]">
-        <p className="font-bold text-[12px] font-open_sans leading-[17px]">
-          {`${schedule.dateTo.toLocaleDateString("en-US", {
-            month: "short",
-          })} ${schedule.dateTo.getDate()}`}
+      <div className="w-[10%] flex justify-center xl:mr-[10px] sm:mr-[30px] mr-[5px]">
+        <img src={arrow} alt="arrow" />
+      </div>
+      <div className="flex items-center lg:w-[45%] md:w-[30%] w-[45%] ">
+        <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
+          {schedule.destination.split(",")[0]}
         </p>
-        <p className="font-bold text-[10px] font-open_sans leading-[14px]">
-          {`${schedule.destination.split(", ")[3]}, ${
-            schedule.destination.split(", ")[2]
-          }`}
-        </p>
+        <div className="ml-[10px]">
+          <p className="font-bold text-[12px] font-open_sans leading-[17px]">
+            {`${schedule.dateTo.toLocaleDateString("en-US", {
+              month: "short",
+            })} ${schedule.dateTo.getDate()}`}
+          </p>
+          <p className="font-bold text-[10px] font-open_sans leading-[14px]">
+            {`${schedule.destination.split(", ")[3]}, ${
+              schedule.destination.split(", ")[2]
+            }`}
+          </p>
+        </div>
       </div>
     </div>
   );

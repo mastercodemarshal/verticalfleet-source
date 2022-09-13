@@ -5,6 +5,7 @@ import minusIcon from "../../assets/img/main/minus.png";
 
 interface IPassengerProps {
   onSelect(arg: string[]): void;
+  onCancel(): void;
 }
 
 const buttonClass = `h-[40px] hover:bg-[#F3E351] bg-white hover:border-none border border-[#A9A9A9] rounded-[2px]  py-[9px] text-[#10091D] font-open_sans text-[16px] leading-[22px] text-center`;
@@ -19,6 +20,7 @@ const passengersMock = [
 
 const PassengerSelect: React.FC<IPassengerProps> = ({
   onSelect,
+  onCancel,
 }): JSX.Element => {
   const [passengerCount, setPassengerCount] = useState({
     adult: 0,
@@ -133,23 +135,23 @@ const PassengerSelect: React.FC<IPassengerProps> = ({
     }
 
     if (passengerCount.senior > 0) {
-      str += `, senior ${passengerCount.senior}`;
+      str += `  senior ${passengerCount.senior}`;
     }
 
     if (passengerCount.youth > 0) {
-      str += `, youth ${passengerCount.youth}`;
+      str += `  youth ${passengerCount.youth}`;
     }
 
     if (passengerCount.child > 0) {
-      str += `, child ${passengerCount.child}`;
+      str += `  child ${passengerCount.child}`;
     }
 
     if (passengerCount.seat > 0) {
-      str += `, seat ${passengerCount.seat}`;
+      str += `  seat ${passengerCount.seat}`;
     }
 
     if (passengerCount.lap > 0) {
-      str += `, lap ${passengerCount.lap}`;
+      str += `  lap ${passengerCount.lap}`;
     }
 
     const { adult, senior, youth, child, seat, lap } = passengerCount;
@@ -202,6 +204,12 @@ const PassengerSelect: React.FC<IPassengerProps> = ({
             </div>
           </div>
         ))}
+        <div
+          className="bg-gray-700 hover:bg-gray-700 border border-black text-white text-center py-2 cursor-pointer"
+          onClick={() => onCancel()}
+        >
+          Cancel
+        </div>
       </div>
     </div>
   );
