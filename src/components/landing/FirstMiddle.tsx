@@ -9,7 +9,7 @@ import { FlightContext } from "../../App";
 const MiddleCard: React.FC = (): JSX.Element => {
   const { flightState: FlightSchedules } = useContext(FlightContext);
 
-  const getPriceForBussiness = FlightSchedules[0].type.includes("one-way")
+  const getPriceForBusiness = FlightSchedules[0].type.includes("one-way")
     ? Math.floor(Math.random() * (1500 - 1200) + 1200)
     : Math.floor(Math.random() * (2600 - 2200) + 2200);
 
@@ -32,14 +32,14 @@ const MiddleCard: React.FC = (): JSX.Element => {
         <div className="grid grid-cols-3 max-w-[450px] sm:gap-[30px] gap-[8px] mx-auto xl:mt-0 mt-[20px]">
           <div
             className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
-              FlightSchedules[0].passengers === "bussiness"
+              FlightSchedules[0].passengers === "business"
                 ? "bg-white/[.2]"
                 : "bg-white/[.05] "
             }`}
           >
             <div className="flex justify-between">
               <p className="font-bold font-open_sans text-[20px] leading-[27px]">
-                ${getPriceForBussiness}
+                ${getPriceForBusiness}
               </p>
               <p className="font-bold font-open_sans text-[16px] leading-[22px]">
                 *

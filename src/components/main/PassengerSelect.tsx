@@ -5,10 +5,9 @@ import minusIcon from "../../assets/img/main/minus.png";
 
 interface IPassengerProps {
   onSelect(arg: string[]): void;
-  onCancel(): void;
 }
 
-const buttonClass = `h-[40px] hover:bg-[#F3E351] bg-white hover:border-none border border-[#A9A9A9] rounded-[2px]  py-[9px] text-[#10091D] font-open_sans text-[16px] leading-[22px] text-center`;
+const buttonClass = `h-[40px] hover:bg-[#F3E351] active:opacity-[0.7] bg-white hover:border-none border border-[#A9A9A9] rounded-[2px] py-[9px] text-[#10091D] font-open_sans text-[16px] leading-[22px] text-center`;
 const passengersMock = [
   ["Adult", "18-64"],
   ["Senior", "65+"],
@@ -20,7 +19,6 @@ const passengersMock = [
 
 const PassengerSelect: React.FC<IPassengerProps> = ({
   onSelect,
-  onCancel,
 }): JSX.Element => {
   const [passengerCount, setPassengerCount] = useState({
     adult: 0,
@@ -30,6 +28,8 @@ const PassengerSelect: React.FC<IPassengerProps> = ({
     seat: 0,
     lap: 0,
   });
+
+  const [selectedService, setSelectedService] = useState("");
 
   const plusCount = (index) => {
     switch (index) {
@@ -156,38 +156,62 @@ const PassengerSelect: React.FC<IPassengerProps> = ({
 
     const { adult, senior, youth, child, seat, lap } = passengerCount;
 
-    return `${adult + senior + youth + child + seat + lap}:${str}`;
+    return `${
+      adult + senior + youth + child + seat + lap === 0
+        ? 1
+        : adult + senior + youth + child + seat + lap
+    }:${str}`;
   };
 
   return (
-    <div className="absolute top-[67px] left-0 py-[15px] px-[30px] bg-white sm:w-[330px] w-[300px]">
+    <div
+      onBlur={() => onSelect([selectedService, totalCount()])}
+      tabIndex={5}
+      className="absolute top-[67px] left-0 py-[15px] px-[30px] bg-white sm:w-[330px] w-[300px]"
+    >
       <div className="grid grid-cols-2 gap-[10px]">
-        <button
-          className={buttonClass}
-          onClick={() => onSelect(["economy", totalCount()])}
+        <div
+          className={`${buttonClass} ${
+            selectedService === "economy" ? "bg-[#F3E351] border-none" : ""
+          }`}
+          onClick={() => {
+            setSelectedService("economy");
+          }}
         >
           Economy
-        </button>
-        <button
-          className={buttonClass}
-          onClick={() => onSelect(["p.economy", totalCount()])}
+        </div>
+        <div
+          className={`${buttonClass} ${
+            selectedService === "p.economy" ? "bg-[#F3E351] border-none" : ""
+          }`}
+          onClick={() => {
+            setSelectedService("p.economy");
+          }}
         >
           P. Economy
-        </button>
-        <button
-          className={buttonClass}
-          onClick={() => onSelect(["bussiness", totalCount()])}
+        </div>
+        <div
+          className={`${buttonClass} ${
+            selectedService === "business" ? "bg-[#F3E351] border-none" : ""
+          }`}
+          onClick={() => {
+            setSelectedService("business");
+          }}
         >
           Business
-        </button>
-        <button
-          className={buttonClass}
-          onClick={() => onSelect(["first", totalCount()])}
+        </div>
+        <div
+          className={`${buttonClass} ${
+            selectedService === "first" ? "bg-[#F3E351] border-none" : ""
+          }`}
+          onClick={() => {
+            setSelectedService("first");
+          }}
         >
           First
-        </button>
+        </div>
       </div>
-      <div className="my-[15px] w-[330px] h-[1px] bg-[#D7D7D7]"></div>
+      <div className="my-[15px] h-[1px] bg-[#D7D7D7]"></div>
       <div className="space-y-[18px]">
         {passengersMock.map((data, index) => (
           <div className="flex justify-between" key={index}>
@@ -204,12 +228,6 @@ const PassengerSelect: React.FC<IPassengerProps> = ({
             </div>
           </div>
         ))}
-        <div
-          className="bg-gray-700 hover:bg-gray-700 border border-black text-white text-center py-2 cursor-pointer"
-          onClick={() => onCancel()}
-        >
-          Cancel
-        </div>
       </div>
     </div>
   );

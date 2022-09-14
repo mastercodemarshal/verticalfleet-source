@@ -83,7 +83,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
   const [flightState, setFlightState] = useState({
     current: "",
     destination: "",
-    passengers: [] as string[],
+    passengers: ["business", "1:1 traveler"] as string[],
   });
 
   useEffect(() => {
@@ -239,10 +239,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       ...flightState,
       passengers: data,
     });
-    setState({
-      ...state,
-      editingUsers: false,
-    });
+    setOpenUserSelect(false);
   };
 
   const currentArray = flightState.current.split(", ");
@@ -250,12 +247,23 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
 
   return (
     <div className="xl:mt-0 mt-[15px]">
-      <form id={idx} className="main-search-form">
+      <div id={idx} className="main-search-form">
         <div className="grid grid-cols-12 xl:gap-0 md:gap-[15px]">
           <div className="xl:col-span-5 xl:flex md:col-span-9 col-span-12">
             <>
               {state.editingCurrent ? (
-                <div className="h-[67px] cursor-pointer pl-[30px] relative xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center">
+                <div
+                  onBlur={() => {
+                    setTimeout(() => {
+                      setOpenCurrentSelect(false);
+                      flightState.current &&
+                        setState({ ...state, editingCurrent: false });
+                      currentFilteredList?.length &&
+                        handleCurrentSelect(currentFilteredList[0]);
+                    }, 200);
+                  }}
+                  className="h-[67px] cursor-pointer pl-[30px] relative xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
+                >
                   <div className="mr-[9px]">
                     <img src={locationIcon} alt="from" />
                   </div>
@@ -286,7 +294,6 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                       }
                     }}
                     className="focus:outline-none w-full peer"
-                    autoFocus
                     required
                     autoComplete="off"
                   />
@@ -344,7 +351,18 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
             </div>
 
             {state.editingDestination ? (
-              <div className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center">
+              <div
+                onBlur={() => {
+                  setTimeout(() => {
+                    setOpenDestinationSelect(false);
+                    flightState.destination &&
+                      setState({ ...state, editingDestination: false });
+                    destinationFilteredList?.length &&
+                      handleDestinationSelect(destinationFilteredList[0]);
+                  }, 200);
+                }}
+                className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
+              >
                 <div className="mr-[9px]">
                   <img src={locationIcon} alt="from" />
                 </div>
@@ -375,7 +393,6 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                     }
                   }}
                   className="focus:outline-none w-full peer"
-                  autoFocus
                   required
                   autoComplete="off"
                 />
@@ -523,61 +540,44 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
           <>
             {idx === "0" && (
               <>
-                {state.editingUsers ? (
-                  <div className="xl:inline-flex hidden xl:col-span-2 relative col-span-12 cursor-pointer h-[67px] px-[30px] md:my-0 my-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center focus:outline-none">
-                    <div className="mr-[5px]">
-                      <img src={usersIcon} alt="" />
-                    </div>
-                    <input
-                      type="text"
-                      name="passengers"
-                      // value={flightState.passengers}
-                      onClick={() => setOpenUserSelect(!openUserSelect)}
-                      onChange={handleChange}
-                      placeholder="Passengers"
-                      className="focus:outline-none w-full"
-                      autoFocus
-                      autoComplete="off"
-                    />
-                    {openUserSelect && (
-                      <PassengerSelect
-                        onSelect={handlePassengerSelect}
-                        onCancel={() => setOpenUserSelect(false)}
-                      />
-                    )}
-                  </div>
-                ) : (
+                <div className="xl:inline-flex hidden xl:col-span-2 relative col-span-12 cursor-pointer h-[67px] px-[30px] border-r border-t md:my-0 my-[15px] xl:rounded-none rounded-[4px] border-[#D7D7D7] bg-white flex items-center">
                   <div
                     onClick={() => {
+                      setOpenUserSelect(!openUserSelect);
                       setState({
                         ...state,
                         editingDateFrom: false,
                         editingDateTo: false,
-                        editingUsers: true,
                       });
-                      setOpenCurrentSelect(false);
-                      setOpenDestinationSelect(false);
                     }}
-                    className="xl:inline-flex hidden xl:col-span-2 col-span-12 cursor-pointer h-[67px] px-[30px] border-r border-t md:my-0 my-[15px] xl:rounded-none rounded-[4px] border-[#D7D7D7] bg-white flex items-center"
                   >
-                    <div>
-                      <p className="font-hind font-bold text-[16px] leading-[18px] text-[#494949]">
-                        {flightState.passengers[1]?.split(":")[0]} Passengers,{" "}
-                        <span className="uppercase">
-                          {flightState.passengers[0]}
-                        </span>
-                      </p>
-                      <div className="flex">
-                        <div className="mr-[5px]">
-                          <img src={usersIcon} alt="users-icon" />
-                        </div>
-                        <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
-                          {flightState.passengers[1]?.split(":")[1]}
-                        </p>
+                    <p className="font-hind font-bold text-[16px] leading-[18px] text-[#494949]">
+                      {flightState.passengers[1]?.split(":")[0]}{" "}
+                      {flightState.passengers[1]?.split(":")[0] === "1"
+                        ? "Passenger"
+                        : "Passengers"}
+                      ,{" "}
+                      <span className="uppercase">
+                        {flightState.passengers[0]
+                          ? flightState.passengers[0]
+                          : "business"}
+                      </span>
+                    </p>
+                    <div className="flex">
+                      <div className="mr-[5px]">
+                        <img src={usersIcon} alt="users-icon" />
                       </div>
+                      <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
+                        {flightState.passengers[1]?.split(":")[1]
+                          ? flightState.passengers[1]?.split(":")[1]
+                          : "1 traveler"}
+                      </p>
                     </div>
                   </div>
-                )}
+                  {openUserSelect && (
+                    <PassengerSelect onSelect={handlePassengerSelect} />
+                  )}
+                </div>
               </>
             )}
           </>
@@ -594,61 +594,44 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
           <>
             {Number(idx) === length - 1 && (
               <>
-                {state.editingUsers ? (
-                  <div className="xl:hidden inline-flex xl:col-span-2 relative col-span-12 cursor-pointer h-[67px] px-[30px] md:my-0 my-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center focus:outline-none">
-                    <div className="mr-[5px]">
-                      <img src={usersIcon} alt="" />
-                    </div>
-                    <input
-                      type="text"
-                      name="passengers"
-                      // value={flightState.passengers}
-                      onClick={() => setOpenUserSelect(!openUserSelect)}
-                      onChange={handleChange}
-                      placeholder="Passengers"
-                      className="focus:outline-none w-full"
-                      autoFocus
-                      autoComplete="off"
-                    />
-                    {openUserSelect && (
-                      <PassengerSelect
-                        onSelect={handlePassengerSelect}
-                        onCancel={() => setOpenCurrentSelect(false)}
-                      />
-                    )}
-                  </div>
-                ) : (
+                <div className="xl:hidden inline-flex xl:col-span-2 relative col-span-12 cursor-pointer h-[67px] px-[30px] border-r border-t md:my-0 my-[15px] xl:rounded-none rounded-[4px] border-[#D7D7D7] bg-white flex items-center">
                   <div
                     onClick={() => {
+                      setOpenUserSelect(!openUserSelect);
                       setState({
                         ...state,
                         editingDateFrom: false,
                         editingDateTo: false,
-                        editingUsers: true,
                       });
-                      setOpenCurrentSelect(false);
-                      setOpenDestinationSelect(false);
                     }}
-                    className="xl:hidden inline-flex xl:col-span-2 col-span-12 cursor-pointer h-[67px] px-[30px] border-r border-t md:my-0 my-[15px] xl:rounded-none rounded-[4px] border-[#D7D7D7] bg-white flex items-center"
                   >
-                    <div>
-                      <p className="font-hind font-bold text-[16px] leading-[18px] text-[#494949]">
-                        {flightState.passengers[1]?.split(":")[0]} Passengers,{" "}
-                        <span className="uppercase">
-                          {flightState.passengers[0]}
-                        </span>
-                      </p>
-                      <div className="flex">
-                        <div className="mr-[5px]">
-                          <img src={usersIcon} alt="users-icon" />
-                        </div>
-                        <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
-                          {flightState.passengers[1]?.split(":")[1]}
-                        </p>
+                    <p className="font-hind font-bold text-[16px] leading-[18px] text-[#494949]">
+                      {flightState.passengers[1]?.split(":")[0]}{" "}
+                      {flightState.passengers[1]?.split(":")[0] === "1"
+                        ? "Passenger"
+                        : "Passengers"}
+                      ,{" "}
+                      <span className="uppercase">
+                        {flightState.passengers[0]
+                          ? flightState.passengers[0]
+                          : "business"}
+                      </span>
+                    </p>
+                    <div className="flex">
+                      <div className="mr-[5px]">
+                        <img src={usersIcon} alt="users-icon" />
                       </div>
+                      <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
+                        {flightState.passengers[1]?.split(":")[1]
+                          ? flightState.passengers[1]?.split(":")[1]
+                          : "1 traveler"}
+                      </p>
                     </div>
                   </div>
-                )}
+                  {openUserSelect && (
+                    <PassengerSelect onSelect={handlePassengerSelect} />
+                  )}
+                </div>
               </>
             )}
           </>
@@ -671,7 +654,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
             +Add flight
           </div>
         )}
-      </form>
+      </div>
     </div>
   );
 };
