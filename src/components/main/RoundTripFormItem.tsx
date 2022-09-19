@@ -47,7 +47,9 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
 
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  const [dateFrom, onChangeDateFrom] = useState(new Date());
+  const startDay = new Date();
+  startDay.setHours(0, 0, 0, 0);
+  const [dateFrom, onChangeDateFrom] = useState(startDay);
   const [dateTo, onChangeDateTo] = useState(tomorrow);
 
   const [currentFilteredList, setCurrentFilteredList] = useState<
