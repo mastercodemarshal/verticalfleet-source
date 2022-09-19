@@ -85,7 +85,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
   const [flightState, setFlightState] = useState({
     current: "",
     destination: "",
-    passengers: ["business", "1:1 traveler"] as string[],
+    passengers: ["business", "1:1 traveler", "0,0,0,0,0,0"] as string[],
   });
 
   useEffect(() => {
@@ -475,8 +475,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                 <Calendar
                   className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[320px] min-w-[299px] z-50"
                   tileDisabled={({ date }) =>
-                    date.getDate() <
-                    (lastDate ? lastDate.getDate() : new Date().getDate())
+                    date <
+                    (lastDate
+                      ? lastDate
+                      : new Date().setDate(new Date().getDate() - 1))
                   }
                   onChange={(e: React.SetStateAction<Date>) => {
                     onChangeDateFrom(e);
@@ -550,6 +552,9 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                         editingDateFrom: false,
                         editingDateTo: false,
                       });
+                      setTimeout(() => {
+                        document.getElementById("selectUsers")?.focus();
+                      }, 200);
                     }}
                   >
                     <p className="font-hind font-bold text-[16px] leading-[18px] text-[#494949]">
@@ -576,7 +581,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                     </div>
                   </div>
                   {openUserSelect && (
-                    <PassengerSelect onSelect={handlePassengerSelect} />
+                    <PassengerSelect
+                      onSelect={handlePassengerSelect}
+                      preData={flightState.passengers}
+                    />
                   )}
                 </div>
               </>
@@ -604,6 +612,9 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                         editingDateFrom: false,
                         editingDateTo: false,
                       });
+                      setTimeout(() => {
+                        document.getElementById("selectUsers")?.focus();
+                      }, 200);
                     }}
                   >
                     <p className="font-hind font-bold text-[16px] leading-[18px] text-[#494949]">
@@ -630,7 +641,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                     </div>
                   </div>
                   {openUserSelect && (
-                    <PassengerSelect onSelect={handlePassengerSelect} />
+                    <PassengerSelect
+                      onSelect={handlePassengerSelect}
+                      preData={flightState.passengers}
+                    />
                   )}
                 </div>
               </>

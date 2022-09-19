@@ -28,19 +28,13 @@ const MiddleCard: React.FC = (): JSX.Element => {
 
   return (
     <div className="max-w-[952px] mx-auto bg-[#10091D]/[.7] rounded-[10px] backdrop-blur-[5px] sm:px-[30px] px-[10px] pt-[30px] pb-[40px]">
-      <div className="grid xl:grid-cols-2 gap-[10px] text-white flex items-center">
-        <div
-          className={`mx-auto ${
-            !FlightSchedules[0].type.includes("multy-city")
-              ? "w-full"
-              : "md:w-[50%] col-span-2"
-          }`}
-        >
-          {FlightSchedules.map((schedule, index) => (
-            <FlightSchedule schedule={schedule} key={index} />
-          ))}
-        </div>
-        {!FlightSchedules[0].type.includes("multy-city") && (
+      {!FlightSchedules[0].type.includes("multy-city") && (
+        <div className="grid xl:grid-cols-2 gap-[10px] text-white flex items-center">
+          <div className="mx-auto w-full">
+            {FlightSchedules.map((schedule, index) => (
+              <FlightSchedule schedule={schedule} key={index} />
+            ))}
+          </div>
           <div className="grid grid-cols-3 max-w-[450px] sm:gap-[30px] gap-[8px] mx-auto xl:mt-0 mt-[20px]">
             <div
               className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
@@ -126,8 +120,9 @@ const MiddleCard: React.FC = (): JSX.Element => {
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
       <p className="mt-[37px] font-open_sans font-bold text-[16px] leading-[22px] text-white mb-[20px]">
         Submit contact details or call us at 1-888-883-4146 to secure best price
       </p>

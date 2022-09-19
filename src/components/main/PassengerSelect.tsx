@@ -5,6 +5,7 @@ import minusIcon from "../../assets/img/main/minus.png";
 
 interface IPassengerProps {
   onSelect(arg: string[]): void;
+  preData: string[];
 }
 
 const buttonClass = `h-[40px] hover:bg-[#F3E351] active:opacity-[0.7] bg-white hover:border-none border border-[#A9A9A9] rounded-[2px] py-[9px] text-[#10091D] font-open_sans text-[16px] leading-[22px] text-center`;
@@ -19,17 +20,19 @@ const passengersMock = [
 
 const PassengerSelect: React.FC<IPassengerProps> = ({
   onSelect,
+  preData,
 }): JSX.Element => {
+  const preCounts = preData[2]?.split(",");
   const [passengerCount, setPassengerCount] = useState({
-    adult: 0,
-    senior: 0,
-    youth: 0,
-    child: 0,
-    seat: 0,
-    lap: 0,
+    adult: Number(preCounts[0]),
+    senior: Number(preCounts[1]),
+    youth: Number(preCounts[2]),
+    child: Number(preCounts[3]),
+    seat: Number(preCounts[4]),
+    lap: Number(preCounts[5]),
   });
 
-  const [selectedService, setSelectedService] = useState("");
+  const [selectedService, setSelectedService] = useState(preData[0]);
 
   const plusCount = (index) => {
     switch (index) {
@@ -163,10 +166,13 @@ const PassengerSelect: React.FC<IPassengerProps> = ({
     }:${str}`;
   };
 
+  const selectedCounts = `${passengerCount.adult},${passengerCount.senior},${passengerCount.youth},${passengerCount.child},${passengerCount.seat},${passengerCount.lap}`;
+
   return (
     <div
-      onBlur={() => onSelect([selectedService, totalCount()])}
-      tabIndex={5}
+      onBlur={() => onSelect([selectedService, totalCount(), selectedCounts])}
+      tabIndex={-1}
+      id="selectUsers"
       className="absolute top-[67px] left-0 py-[15px] px-[30px] bg-white sm:w-[330px] w-[300px]"
     >
       <div className="grid grid-cols-2 gap-[10px]">
