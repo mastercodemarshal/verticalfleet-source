@@ -36,6 +36,12 @@ const ContactUs: React.FC = (): JSX.Element => {
     });
   };
 
+  const handleChangePhoneNumber = (e: BaseSyntheticEvent) => {
+    if (!isNaN(e.target.value)) {
+      setState({ ...state, phoneNumber: e.target.value });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -175,10 +181,10 @@ const ContactUs: React.FC = (): JSX.Element => {
               </div>
             )}
             <input
-              type="number"
+              type="text"
               name="phoneNumber"
               value={state.phoneNumber}
-              onChange={handleChange}
+              onChange={handleChangePhoneNumber}
               className="py-[9px] h-[40px] peer rounded-[5px] px-[15px] xl:w-[198px] xl:max-w-[198px] max-w-[182px] w-full bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px] placeholder:text-[#A9A9A9] text-[16px] leading-[22px] font-open_sans font-normal"
               placeholder="Phone number*"
               required
@@ -209,10 +215,6 @@ const ContactUs: React.FC = (): JSX.Element => {
       </div>
       <div className="xl:flex justify-between mt-[31px] mx-auto xl:w-[1040px]">
         <div className="flex xl:justify-start justify-center xl:ml-0 mx-auto items-center xl:w-[550px] xl:max-w-[550px] max-w-[285px] w-full">
-          <input
-            type="checkbox"
-            className="w-[14px] h-[16px] bg-white border border-[#D7D7D7] focus:border-2 focus:border-[#86CEEB] focus:outline-none rounded-[2px]"
-          />
           <p className="text-[12px] leading-[14px] font-open_sans font-normal text-[#A9A9A9] ml-[5px]">
             By submitting my contact information I agree to discuss my travel
             arrangements.{" "}

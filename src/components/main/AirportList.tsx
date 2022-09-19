@@ -9,7 +9,7 @@ type AirPort = {
   airport: string;
   country: string;
   city: string;
-  city_code: string;
+  iata_code: string;
 };
 
 const AirportList: React.FC<IAirportListProps> = ({
@@ -26,7 +26,7 @@ const AirportList: React.FC<IAirportListProps> = ({
             className="text-[#10091D] font-open_sans border-b hover:bg-[#F3E351] active:bg-[#F3E351]/[.7] px-[15px] py-[9px] flex justify-between items-cemter"
           >
             <p className="sm:text-[16px] text-[14px] leading-[22px]">
-              ({data.city_code}) <span>{data.city}</span> {data.country} -{" "}
+              ({data.iata_code}) <span>{data.city}</span> {data.country} -{" "}
               {data.airport}
             </p>
             <p className="text-[14px] leading-[19px] xl:inline hidden">

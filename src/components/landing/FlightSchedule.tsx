@@ -23,9 +23,9 @@ const FlightSchedule: React.FC<IFlightScheduleProps> = ({
         </p>
         <div className="ml-[10px]">
           <p className="font-bold text-[12px] font-open_sans leading-[17px]">
-            {`${schedule.dateFrom.toLocaleDateString("en-US", {
+            {`${new Date(schedule.dateFrom).toLocaleDateString("en-US", {
               month: "short",
-            })} ${schedule.dateFrom.getDate()}`}
+            })} ${new Date(schedule.dateFrom).getDate()}`}
           </p>
           <p className="font-bold text-[10px] font-open_sans leading-[14px]">
             {`${schedule.current.split(", ")[3]}, ${
@@ -43,9 +43,9 @@ const FlightSchedule: React.FC<IFlightScheduleProps> = ({
         </p>
         <div className="ml-[10px]">
           <p className="font-bold text-[12px] font-open_sans leading-[17px]">
-            {`${schedule.dateTo.toLocaleDateString("en-US", {
+            {`${new Date(schedule.dateTo).toLocaleDateString("en-US", {
               month: "short",
-            })} ${schedule.dateTo.getDate()}`}
+            })} ${new Date(schedule.dateTo).getDate()}`}
           </p>
           <p className="font-bold text-[10px] font-open_sans leading-[14px]">
             {`${schedule.destination.split(", ")[3]}, ${

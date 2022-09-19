@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Services from "../components/common/Services";
@@ -6,14 +6,19 @@ import SearchPanel from "../components/main/SearchPanel";
 import MainContent from "../components/main/MainContent";
 import ContactUs from "../components/main/ContactUs";
 import Footer from "../layouts/Footer";
+import { FlightContext } from "../App";
 
 const MainPage: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
+  const flightContext = useContext(FlightContext);
 
   useEffect(() => {
     if (window.location.pathname === "/") {
       navigate("/round-trip/");
     }
+
+    flightContext.setFlightState([]);
+    localStorage.setItem("data", JSON.stringify([]));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

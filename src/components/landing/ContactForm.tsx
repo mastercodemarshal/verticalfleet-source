@@ -37,6 +37,12 @@ const ContactForm: React.FC = (): JSX.Element => {
     });
   };
 
+  const handleChangePhoneNumber = (e: BaseSyntheticEvent) => {
+    if (!isNaN(e.target.value)) {
+      setState({ ...state, phonenumber: e.target.value });
+    }
+  };
+
   const handleSubmit = () => {
     if (checkValidation()) {
       toast("Submitted successfully!", {
@@ -138,9 +144,10 @@ const ContactForm: React.FC = (): JSX.Element => {
             </div>
           )}
           <input
-            type="number"
+            type="text"
             name="phonenumber"
-            onChange={handleChange}
+            value={state.phonenumber}
+            onChange={handleChangePhoneNumber}
             className="peer px-[15px] w-2/3 py-[14px] font-open_sans font-bold text-[16px] leading-[22px] focus:outline-none placeholder:text-[#A9A9A9] bg-white rounded-r-[4px]"
             placeholder="Phone number"
             required

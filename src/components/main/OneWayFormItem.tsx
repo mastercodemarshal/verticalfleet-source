@@ -18,12 +18,6 @@ import AirportList from "./AirportList";
 import PassengerSelect from "./PassengerSelect";
 import { FlightContext } from "../../App";
 
-// interface ISearchFormProps {
-//   idx: string;
-//   handleAddFlight: Function;
-//   length: number;
-// }
-
 type AirPort = {
   airport: string;
   country: string;
@@ -106,7 +100,7 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
         airport.city
           .toLowerCase()
           .includes(flightState.current.toLowerCase()) ||
-        airport.city_code
+        airport.airport
           .toLowerCase()
           .includes(flightState.current.toLowerCase()) ||
         airport.iata_code
@@ -127,7 +121,7 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
         airport.city
           .toLowerCase()
           .includes(flightState.destination.toLowerCase()) ||
-        airport.city_code
+        airport.airport
           .toLowerCase()
           .includes(flightState.destination.toLowerCase()) ||
         airport.iata_code
@@ -187,7 +181,7 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
 
     setFlightState({
       ...flightState,
-      current: `${data.city_code}, ${data.airport}, ${data.country}, ${data.city}`,
+      current: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
   };
 
@@ -199,7 +193,7 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
 
     setFlightState({
       ...flightState,
-      destination: `${data.city_code}, ${data.airport}, ${data.country}, ${data.city}`,
+      destination: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
   };
 
@@ -225,10 +219,10 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                   onBlur={() => {
                     setTimeout(() => {
                       setOpenCurrentSelect(false);
-                      flightState.current &&
-                        setState({ ...state, editingCurrent: false });
-                      currentFilteredList?.length &&
-                        handleCurrentSelect(currentFilteredList[0]);
+                      // flightState.current &&
+                      //   setState({ ...state, editingCurrent: false });
+                      // currentFilteredList?.length &&
+                      //   handleCurrentSelect(currentFilteredList[0]);
                     }, 200);
                   }}
                   className="h-[67px] cursor-pointer pl-[30px] relative xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
@@ -319,10 +313,10 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                 onBlur={() => {
                   setTimeout(() => {
                     setOpenDestinationSelect(false);
-                    flightState.destination &&
-                      setState({ ...state, editingDestination: false });
-                    destinationFilteredList?.length &&
-                      handleDestinationSelect(destinationFilteredList[0]);
+                    // flightState.destination &&
+                    //   setState({ ...state, editingDestination: false });
+                    // destinationFilteredList?.length &&
+                    //   handleDestinationSelect(destinationFilteredList[0]);
                   }, 200);
                 }}
                 className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
@@ -336,11 +330,6 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                   name="destination"
                   // value={flightState.destination}
                   onChange={handleChange}
-                  onBlur={() =>
-                    setTimeout(() => {
-                      setOpenDestinationSelect(false);
-                    }, 200)
-                  }
                   onFocus={() => {
                     setOpenDestinationSelect(true);
                     setOpenCurrentSelect(false);
@@ -441,6 +430,9 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                 </div>
                 <Calendar
                   className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[320px] min-w-[299px] z-50"
+                  tileDisabled={({ date }) =>
+                    date.getDate() < new Date().getDate()
+                  }
                   onChange={(e: React.SetStateAction<Date>) => {
                     onChangeDateFrom(e);
                     setState({

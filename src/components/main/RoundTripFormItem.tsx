@@ -18,12 +18,6 @@ import AirportList from "./AirportList";
 import PassengerSelect from "./PassengerSelect";
 import { FlightContext } from "../../App";
 
-// interface ISearchFormProps {
-//   idx: string;
-//   handleAddFlight: Function;
-//   length: number;
-// }
-
 type AirPort = {
   airport: string;
   country: string;
@@ -107,7 +101,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
         airport.city
           .toLowerCase()
           .includes(flightState.current.toLowerCase()) ||
-        airport.city_code
+        airport.airport
           .toLowerCase()
           .includes(flightState.current.toLowerCase()) ||
         airport.iata_code
@@ -128,7 +122,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
         airport.city
           .toLowerCase()
           .includes(flightState.destination.toLowerCase()) ||
-        airport.city_code
+        airport.airport
           .toLowerCase()
           .includes(flightState.destination.toLowerCase()) ||
         airport.iata_code
@@ -189,7 +183,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
 
     setFlightState({
       ...flightState,
-      current: `${data.city_code}, ${data.airport}, ${data.country}, ${data.city}`,
+      current: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
   };
 
@@ -201,7 +195,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
 
     setFlightState({
       ...flightState,
-      destination: `${data.city_code}, ${data.airport}, ${data.country}, ${data.city}`,
+      destination: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
   };
 
@@ -227,10 +221,6 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                   onBlur={() => {
                     setTimeout(() => {
                       setOpenCurrentSelect(false);
-                      flightState.current &&
-                        setState({ ...state, editingCurrent: false });
-                      currentFilteredList?.length &&
-                        handleCurrentSelect(currentFilteredList[0]);
                     }, 200);
                   }}
                   onChange={handleChange}
@@ -321,10 +311,10 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                 onBlur={() => {
                   setTimeout(() => {
                     setOpenDestinationSelect(false);
-                    flightState.destination &&
-                      setState({ ...state, editingDestination: false });
-                    destinationFilteredList?.length &&
-                      handleDestinationSelect(destinationFilteredList[0]);
+                    // flightState.destination &&
+                    //   setState({ ...state, editingDestination: false });
+                    // destinationFilteredList?.length &&
+                    //   handleDestinationSelect(destinationFilteredList[0]);
                   }, 200);
                 }}
                 className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
@@ -403,6 +393,14 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
           <div className="xl:col-span-3 md:col-span-3 col-span-12 xl:flex md:block flex h-[67px] xl:rounded-none rounded-[4px] border-r border-[#D7D7D7] bg-white items-center justify-center">
             {state.editingDateFrom ? (
               <div
+                onBlur={() =>
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateFrom: false,
+                    });
+                  }, 200)
+                }
                 onClick={() =>
                   setTimeout(() => {
                     setState({
@@ -430,8 +428,15 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                 </div>
                 <Calendar
                   className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[320px] min-w-[299px] z-50"
-                  onChange={(e: React.SetStateAction<Date>) => {
+                  tileDisabled={({ date }) =>
+                    date.getDate() < new Date().getDate()
+                  }
+                  onChange={(e: any) => {
                     onChangeDateFrom(e);
+                    const tomorrow = new Date();
+                    tomorrow.setDate(e.getDate() + 1);
+
+                    onChangeDateTo(tomorrow);
                     setState({
                       ...state,
                       editingDateFrom: false,
@@ -442,15 +447,26 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
               </div>
             ) : (
               <div
+                onBlur={() =>
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateFrom: false,
+                    });
+                  }, 200)
+                }
+                tabIndex={2}
                 onClick={() => {
-                  setState({
-                    ...state,
-                    editingDateTo: false,
-                    editingDateFrom: true,
-                  });
-                  setOpenCurrentSelect(false);
-                  setOpenDestinationSelect(false);
-                  setOpenUserSelect(false);
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateTo: false,
+                      editingDateFrom: true,
+                    });
+                    setOpenCurrentSelect(false);
+                    setOpenDestinationSelect(false);
+                    setOpenUserSelect(false);
+                  }, 300);
                 }}
                 className="xl:w-[50%] md:w-[100%] w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 cursor-pointer xl:rounded-none rounded-[4px] border-t flex items-center justify-center"
               >
@@ -475,6 +491,14 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
 
             {state.editingDateTo ? (
               <div
+                onBlur={() =>
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateTo: false,
+                    });
+                  }, 200)
+                }
                 onClick={() =>
                   setTimeout(() => {
                     setState({
@@ -502,27 +526,42 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                 </div>
                 <Calendar
                   className="absolute top-[65px] xl:left-0 -right-[2px] md:min-w-[320px] min-w-[299px] z-50"
-                  onChange={(e: React.SetStateAction<Date>) => {
+                  tileDisabled={({ date }) =>
+                    date.getDate() < dateFrom.getDate()
+                  }
+                  activeStartDate={dateFrom}
+                  onChange={(e: any) => {
                     onChangeDateTo(e);
                     setState({
                       ...state,
                       editingDateTo: false,
                     });
                   }}
-                  value={dateTo}
+                  value={[dateFrom, dateTo]}
                 />
               </div>
             ) : (
               <div
+                onBlur={() =>
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateTo: false,
+                    });
+                  }, 200)
+                }
+                tabIndex={4}
                 onClick={() => {
-                  setState({
-                    ...state,
-                    editingDateFrom: false,
-                    editingDateTo: true,
-                  });
-                  setOpenCurrentSelect(false);
-                  setOpenDestinationSelect(false);
-                  setOpenUserSelect(false);
+                  setTimeout(() => {
+                    setState({
+                      ...state,
+                      editingDateFrom: false,
+                      editingDateTo: true,
+                    });
+                    setOpenCurrentSelect(false);
+                    setOpenDestinationSelect(false);
+                    setOpenUserSelect(false);
+                  }, 300);
                 }}
                 className="xl:w-[50%] md:w-[100%] w-[50%] h-[67px] cursor-pointer bg-white flex xl:rounded-none rounded-[4px] border-t items-center justify-center"
               >

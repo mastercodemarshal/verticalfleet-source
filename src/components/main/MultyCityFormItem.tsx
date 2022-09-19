@@ -22,6 +22,7 @@ interface ISearchFormProps {
   idx: string;
   handleAddFlight: Function;
   length: number;
+  lastDate: Date | undefined;
 }
 
 type AirPort = {
@@ -36,6 +37,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
   idx,
   length,
   handleAddFlight,
+  lastDate,
 }): JSX.Element => {
   const flightContext = useContext(FlightContext);
 
@@ -55,9 +57,9 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
   const [openCurrentSelect, setOpenCurrentSelect] = useState(false);
   const [openDestinationSelect, setOpenDestinationSelect] = useState(false);
 
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const [dateFrom, onChangeDateFrom] = useState(new Date());
+  const [dateFrom, onChangeDateFrom] = useState(
+    lastDate ? lastDate : new Date()
+  );
 
   const [currentFilteredList, setCurrentFilteredList] = useState<
     AirPort[] | undefined
@@ -110,7 +112,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
         airport.city
           .toLowerCase()
           .includes(flightState.current.toLowerCase()) ||
-        airport.city_code
+        airport.airport
           .toLowerCase()
           .includes(flightState.current.toLowerCase()) ||
         airport.iata_code
@@ -131,7 +133,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
         airport.city
           .toLowerCase()
           .includes(flightState.destination.toLowerCase()) ||
-        airport.city_code
+        airport.airport
           .toLowerCase()
           .includes(flightState.destination.toLowerCase()) ||
         airport.iata_code
@@ -218,7 +220,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
 
     setFlightState({
       ...flightState,
-      current: `${data.city_code}, ${data.airport}, ${data.country}, ${data.city}`,
+      current: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
   };
 
@@ -230,7 +232,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
 
     setFlightState({
       ...flightState,
-      destination: `${data.city_code}, ${data.airport}, ${data.country}, ${data.city}`,
+      destination: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
   };
 
@@ -256,10 +258,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   onBlur={() => {
                     setTimeout(() => {
                       setOpenCurrentSelect(false);
-                      flightState.current &&
-                        setState({ ...state, editingCurrent: false });
-                      currentFilteredList?.length &&
-                        handleCurrentSelect(currentFilteredList[0]);
+                      // flightState.current &&
+                      //   setState({ ...state, editingCurrent: false });
+                      // currentFilteredList?.length &&
+                      //   handleCurrentSelect(currentFilteredList[0]);
                     }, 200);
                   }}
                   className="h-[67px] cursor-pointer pl-[30px] relative xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
@@ -355,10 +357,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                 onBlur={() => {
                   setTimeout(() => {
                     setOpenDestinationSelect(false);
-                    flightState.destination &&
-                      setState({ ...state, editingDestination: false });
-                    destinationFilteredList?.length &&
-                      handleDestinationSelect(destinationFilteredList[0]);
+                    // flightState.destination &&
+                    //   setState({ ...state, editingDestination: false });
+                    // destinationFilteredList?.length &&
+                    //   handleDestinationSelect(destinationFilteredList[0]);
                   }, 200);
                 }}
                 className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
@@ -372,11 +374,6 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   name="destination"
                   // value={flightState.destination}
                   onChange={handleChange}
-                  onBlur={() =>
-                    setTimeout(() => {
-                      setOpenDestinationSelect(false);
-                    }, 200)
-                  }
                   onFocus={() => {
                     setOpenDestinationSelect(true);
                     setOpenCurrentSelect(false);
@@ -477,6 +474,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                 </div>
                 <Calendar
                   className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[320px] min-w-[299px] z-50"
+                  tileDisabled={({ date }) =>
+                    date.getDate() <
+                    (lastDate ? lastDate.getDate() : new Date().getDate())
+                  }
                   onChange={(e: React.SetStateAction<Date>) => {
                     onChangeDateFrom(e);
                     setState({

@@ -72,7 +72,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
       <p className="text-center mt-[30px] text-white font-open_sans font-bold text-[16px] leading-[22px]">
         THANK YOU FOR YOUR REQUEST
         <br />
-        We will send you a detailed quote in the next 5 minutes or less!
+        We will send you a detailed quote shortly!
       </p>
       <p className="text-justify font-open_sans font-normal text-[12px] leading-[14px] text-white/[.5] mt-[100px]">
         *Price displayed is estimated and fluctuates based on route and
