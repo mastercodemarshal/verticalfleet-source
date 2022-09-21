@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect, useState } from "react";
 
 import f192Icon from "../../assets/img/landing/f192.png";
 import f0c8Icon from "../../assets/img/landing/f0c8.png";
@@ -12,19 +13,51 @@ const MiddleCard: React.FC = (): JSX.Element => {
   if (!JSON.parse(localStorage.getItem("data") || "[]").length) {
     localStorage.setItem("data", JSON.stringify(flightState));
   }
+
   const FlightSchedules: any = JSON.parse(localStorage.getItem("data") || "[]");
+  const [selectedClass, setSelectedClass] = useState(
+    FlightSchedules[0].passengers.split(":")[0]
+  );
 
-  const getPriceForBusiness = FlightSchedules[0].type.includes("one-way")
-    ? Math.floor(Math.random() * (1500 - 1200) + 1200)
-    : Math.floor(Math.random() * (2600 - 2200) + 2200);
+  // const priceForBusiness = () => {
 
-  const getPriceForEconomy = FlightSchedules[0].type.includes("one-way")
-    ? Math.floor(Math.random() * (425 - 350) + 350)
-    : Math.floor(Math.random() * (715 - 490) + 1200);
+  // };
 
-  const getPriceForFirst = FlightSchedules[0].type.includes("one-way")
-    ? Math.floor(Math.random() * (2900 - 2500) + 2500)
-    : Math.floor(Math.random() * (4900 - 4500) + 4500);
+  // const priceForEconomy = () => {
+  //   FlightSchedules[0].type.includes("one-way")
+  //     ? Math.floor(Math.random() * (425 - 350) + 350)
+  //     : Math.floor(Math.random() * (715 - 490) + 1200);
+  // };
+
+  // const priceForFirst = () => {
+  //   FlightSchedules[0].type.includes("one-way")
+  //     ? Math.floor(Math.random() * (2900 - 2500) + 2500)
+  //     : Math.floor(Math.random() * (4900 - 4500) + 4500);
+  // };
+
+  const [priceForBusiness, setPriceForBusiness] = useState(0);
+  const [priceForEconomy, setPriceForEconomy] = useState(0);
+  const [priceForFirst, setPriceForFirst] = useState(0);
+
+  useEffect(() => {
+    setPriceForBusiness(
+      FlightSchedules[0].type.includes("one-way")
+        ? Math.floor(Math.random() * (1500 - 1200) + 1200)
+        : Math.floor(Math.random() * (2600 - 2200) + 2200)
+    );
+
+    setPriceForEconomy(
+      FlightSchedules[0].type.includes("one-way")
+        ? Math.floor(Math.random() * (425 - 350) + 350)
+        : Math.floor(Math.random() * (715 - 490) + 1200)
+    );
+
+    setPriceForFirst(
+      FlightSchedules[0].type.includes("one-way")
+        ? Math.floor(Math.random() * (2900 - 2500) + 2500)
+        : Math.floor(Math.random() * (4900 - 4500) + 4500)
+    );
+  }, []);
 
   return (
     <div className="max-w-[952px] mx-auto bg-[#10091D]/[.7] rounded-[10px] backdrop-blur-[5px] sm:px-[30px] px-[10px] pt-[30px] pb-[40px]">
@@ -37,15 +70,16 @@ const MiddleCard: React.FC = (): JSX.Element => {
           </div>
           <div className="grid grid-cols-3 max-w-[450px] sm:gap-[30px] gap-[8px] mx-auto xl:mt-0 mt-[20px]">
             <div
+              onClick={() => setSelectedClass("Business")}
               className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
-                FlightSchedules[0].passengers === "business"
+                selectedClass === "Business"
                   ? "bg-white/[.2]"
-                  : "bg-white/[.05] "
+                  : "bg-white/[.05]"
               }`}
             >
               <div className="flex justify-between">
                 <p className="font-bold font-open_sans text-[20px] leading-[27px]">
-                  ${getPriceForBusiness}
+                  ${priceForBusiness}
                 </p>
                 <p className="font-bold font-open_sans text-[16px] leading-[22px]">
                   *
@@ -65,15 +99,14 @@ const MiddleCard: React.FC = (): JSX.Element => {
             </div>
 
             <div
+              onClick={() => setSelectedClass("First")}
               className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
-                FlightSchedules[0].passengers === "first"
-                  ? "bg-white/[.2]"
-                  : "bg-white/[.05] "
+                selectedClass === "First" ? "bg-white/[.2]" : "bg-white/[.05]"
               }`}
             >
               <div className="flex justify-between">
                 <p className="font-bold font-open_sans text-[20px] leading-[27px]">
-                  ${getPriceForFirst}
+                  ${priceForFirst}
                 </p>
                 <p className="font-bold font-open_sans text-[16px] leading-[22px]">
                   *
@@ -93,15 +126,16 @@ const MiddleCard: React.FC = (): JSX.Element => {
             </div>
 
             <div
+              onClick={() => setSelectedClass("Economy")}
               className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
-                FlightSchedules[0].passengers === ("economy" || "p.economy")
-                  ? "bg-white/[.2]"
-                  : "bg-white/[.05] "
+                selectedClass === ("Economy" || "P.Economy")
+                  ? "bg-white/[.2] border border-yellow-300 border-dashed"
+                  : "bg-white/[.05] border border-yellow-300 border-dashed"
               }`}
             >
               <div className="flex justify-between">
                 <p className="font-bold font-open_sans text-[20px] leading-[27px]">
-                  ${getPriceForEconomy}
+                  ${priceForEconomy}
                 </p>
                 <p className="font-bold font-open_sans text-[16px] leading-[22px]">
                   *
@@ -115,7 +149,9 @@ const MiddleCard: React.FC = (): JSX.Element => {
               <div className="mt-[19px] flex items-center">
                 <img src={f0c8Icon} width="14px" height="14px" alt="icon" />
                 <p className="md:ml-[6px] ml-[3px] font-hind font-bold uppercase text-[12px] ">
-                  p.economy
+                  {FlightSchedules[0].passengers.split(":")[0] === "Economy"
+                    ? "Economy"
+                    : "P.Economy"}
                 </p>
               </div>
             </div>
@@ -127,7 +163,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
         Submit contact details or call us at 1-888-883-4146 to secure best price
       </p>
       <div className="md:flex my-[10px] justify-between md:space-y-0 space-y-[20px]">
-        <ContactForm />
+        <ContactForm flightStates={FlightSchedules} />
       </div>
       <p className="font-open_sans font-normal text-[12px] leading-[14px] text-white">
         By submitting my contact information I agree to discuss my travel

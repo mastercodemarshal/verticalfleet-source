@@ -76,7 +76,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
   const [flightState, setFlightState] = useState({
     current: "",
     destination: "",
-    passengers: ["business", "1:1 traveler", "1,0,0,0,0,0"] as string[],
+    passengers: ["Business", "1:1 traveler", "1,0,0,0,0,0"] as string[],
   });
 
   useEffect(() => {
@@ -175,7 +175,9 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
           destination: flightState.destination,
           dateFrom: dateFrom,
           dateTo: dateTo,
-          passengers: flightState.passengers[0],
+          passengers: `${flightState.passengers[0]}:${
+            flightState.passengers[1].split(":")[0]
+          }`,
           type: window.location.pathname,
         },
       ]);

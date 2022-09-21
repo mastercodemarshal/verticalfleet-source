@@ -181,40 +181,40 @@ const PassengerSelect: React.FC<IPassengerProps> = ({
       <div className="grid grid-cols-2 gap-[10px]">
         <div
           className={`${buttonClass} ${
-            selectedService === "economy" ? "bg-[#F3E351] border-none" : ""
+            selectedService === "Economy" ? "bg-[#F3E351] border-none" : ""
           }`}
           onClick={() => {
-            setSelectedService("economy");
+            setSelectedService("Economy");
           }}
         >
           Economy
         </div>
         <div
           className={`${buttonClass} ${
-            selectedService === "p.economy" ? "bg-[#F3E351] border-none" : ""
+            selectedService === "P.Economy" ? "bg-[#F3E351] border-none" : ""
           }`}
           onClick={() => {
-            setSelectedService("p.economy");
+            setSelectedService("P.Economy");
           }}
         >
           P. Economy
         </div>
         <div
           className={`${buttonClass} ${
-            selectedService === "business" ? "bg-[#F3E351] border-none" : ""
+            selectedService === "Business" ? "bg-[#F3E351] border-none" : ""
           }`}
           onClick={() => {
-            setSelectedService("business");
+            setSelectedService("Business");
           }}
         >
           Business
         </div>
         <div
           className={`${buttonClass} ${
-            selectedService === "first" ? "bg-[#F3E351] border-none" : ""
+            selectedService === "First" ? "bg-[#F3E351] border-none" : ""
           }`}
           onClick={() => {
-            setSelectedService("first");
+            setSelectedService("First");
           }}
         >
           First

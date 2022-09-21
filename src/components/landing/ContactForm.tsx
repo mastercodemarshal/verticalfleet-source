@@ -1,10 +1,15 @@
 import React, { BaseSyntheticEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import emailjs from "emailjs-com";
 
 import { forePhoneNumbers } from "../../constants";
 
-const ContactForm: React.FC = (): JSX.Element => {
+interface IFlightProps {
+  flightStates: any;
+}
+
+const ContactForm: React.FC<IFlightProps> = ({ flightStates }): JSX.Element => {
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -49,6 +54,23 @@ const ContactForm: React.FC = (): JSX.Element => {
         type: "success",
       });
       navigate("/result");
+
+      emailjs.send(
+        "service_qgxwut5",
+        "template_9r50pbw",
+        {
+          name: `${state.name}`,
+          email: state.email,
+          mobile: `+${state.countryCode} ${state.phonenumber}`,
+          departure_city: flightStates[0].current,
+          departure_date: flightStates[0].dateFrom,
+          arrival_city: flightStates[0].destination,
+          arrival_date: flightStates[0].dateTo,
+          person: flightStates[0].passengers.split(":")[1],
+          class: flightStates[0].passengers.split(":")[0],
+        },
+        "4eY4rhuUqS2MvMcSS"
+      );
     } else {
       // toast("Please fill all inputs", {
       //   type: "error",

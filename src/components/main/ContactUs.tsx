@@ -52,12 +52,15 @@ const ContactUs: React.FC = (): JSX.Element => {
       });
 
       emailjs.send(
-        "service_a2mtun1",
-        "template_cyl6vsb",
+        "service_ianvuaa",
+        "template_p07dede",
         {
-          name: "ghfshjdwyd0216@gmail.com",
+          name: `${state.firstName} ${state.lastName}`,
+          email: state.email,
+          mobile: `+${state.countryCode} ${state.phoneNumber}`,
+          message: state.description,
         },
-        "P-VrlHHoELeNIHsxR"
+        "4eY4rhuUqS2MvMcSS"
       );
 
       setState({
