@@ -9,6 +9,7 @@ interface IFlightScheduleProps {
     dateFrom: Date;
     dateTo: Date;
     passengers: string;
+    type: string;
   };
 }
 
@@ -34,8 +35,11 @@ const FlightSchedule: React.FC<IFlightScheduleProps> = ({
           </p>
         </div>
       </div>
-      <div className="w-[10%] flex justify-center xl:mr-[10px] sm:mr-[30px] mr-[5px]">
+      <div className="w-[10%] xl:mr-[10px] sm:mr-[30px] mr-[5px]">
         <img src={arrow} alt="arrow" />
+        {schedule.type.includes("round-trip") ? (
+          <img src={arrow} alt="arrow" className="rotate-[180deg] mt-[5px]" />
+        ) : null}
       </div>
       <div className="flex items-center lg:w-[45%] md:w-[30%] w-[45%] ">
         <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">

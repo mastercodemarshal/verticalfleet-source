@@ -19,22 +19,6 @@ const MiddleCard: React.FC = (): JSX.Element => {
     FlightSchedules[0].passengers.split(":")[0]
   );
 
-  // const priceForBusiness = () => {
-
-  // };
-
-  // const priceForEconomy = () => {
-  //   FlightSchedules[0].type.includes("one-way")
-  //     ? Math.floor(Math.random() * (425 - 350) + 350)
-  //     : Math.floor(Math.random() * (715 - 490) + 1200);
-  // };
-
-  // const priceForFirst = () => {
-  //   FlightSchedules[0].type.includes("one-way")
-  //     ? Math.floor(Math.random() * (2900 - 2500) + 2500)
-  //     : Math.floor(Math.random() * (4900 - 4500) + 4500);
-  // };
-
   const [priceForBusiness, setPriceForBusiness] = useState(0);
   const [priceForEconomy, setPriceForEconomy] = useState(0);
   const [priceForFirst, setPriceForFirst] = useState(0);

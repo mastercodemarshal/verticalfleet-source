@@ -2,6 +2,7 @@ import React, { BaseSyntheticEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import emailjs from "emailjs-com";
+import moment from "moment";
 
 import { forePhoneNumbers } from "../../constants";
 
@@ -62,19 +63,16 @@ const ContactForm: React.FC<IFlightProps> = ({ flightStates }): JSX.Element => {
           name: `${state.name}`,
           email: state.email,
           mobile: `+${state.countryCode} ${state.phonenumber}`,
-          departure_city: flightStates[0].current,
-          departure_date: flightStates[0].dateFrom,
-          arrival_city: flightStates[0].destination,
-          arrival_date: flightStates[0].dateTo,
+          departure_city: `${flightStates[0].current.split(", ")[3]}`,
+          departure_date: moment(flightStates[0].dateFrom).format("MM/DD/YYYY"),
+          arrival_city: `${flightStates[0].destination.split(", ")[3]}`,
+          arrival_date: moment(flightStates[0].dateTo).format("MM/DD/YYYY"),
           person: flightStates[0].passengers.split(":")[1],
           class: flightStates[0].passengers.split(":")[0],
         },
         "4eY4rhuUqS2MvMcSS"
       );
     } else {
-      // toast("Please fill all inputs", {
-      //   type: "error",
-      // });
       setShowValidationError(true);
     }
   };
