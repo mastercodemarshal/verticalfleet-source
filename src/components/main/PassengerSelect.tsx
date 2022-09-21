@@ -159,6 +159,9 @@ const PassengerSelect: React.FC<IPassengerProps> = ({
 
     const { adult, senior, youth, child, seat, lap } = passengerCount;
 
+    if (adult + senior + youth + child + seat + lap === 0)
+      setPassengerCount({ ...passengerCount, adult: 1 });
+
     return `${
       adult + senior + youth + child + seat + lap === 0
         ? 1

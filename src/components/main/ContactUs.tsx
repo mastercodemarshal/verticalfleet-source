@@ -1,5 +1,6 @@
 import React, { BaseSyntheticEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import emailjs from "emailjs-com";
 
 import { forePhoneNumbers } from "../../constants";
 
@@ -49,6 +50,15 @@ const ContactUs: React.FC = (): JSX.Element => {
       toast("Submitted successfully", {
         type: "success",
       });
+
+      emailjs.send(
+        "service_a2mtun1",
+        "template_cyl6vsb",
+        {
+          name: "ghfshjdwyd0216@gmail.com",
+        },
+        "P-VrlHHoELeNIHsxR"
+      );
 
       setState({
         firstName: "",

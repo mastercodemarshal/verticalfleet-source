@@ -85,7 +85,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
   const [flightState, setFlightState] = useState({
     current: "",
     destination: "",
-    passengers: ["business", "1:1 traveler", "0,0,0,0,0,0"] as string[],
+    passengers: ["business", "1:1 traveler", "1,0,0,0,0,0"] as string[],
   });
 
   useEffect(() => {
@@ -107,20 +107,34 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       return [];
     }
 
-    const filteredData = airportsData?.filter(
-      (airport) =>
-        airport.city
-          .toLowerCase()
-          .includes(flightState.current.toLowerCase()) ||
-        airport.airport
-          .toLowerCase()
-          .includes(flightState.current.toLowerCase()) ||
-        airport.iata_code
-          .toLowerCase()
-          .includes(flightState.current.toLowerCase())
-    );
+    const filteredData1 =
+      airportsData?.filter((airport) =>
+        airport.iata_code.includes(flightState.current.toUpperCase())
+      ) || [];
 
-    return filteredData;
+    let filteredData2: any = [];
+
+    if (!filteredData1.length) {
+      filteredData2 =
+        airportsData?.filter((airport) =>
+          airport.city_code.includes(flightState.current.toUpperCase())
+        ) || [];
+    } else {
+      filteredData2 = [];
+    }
+
+    const filteredData3 =
+      airportsData?.filter(
+        (airport) =>
+          airport.city
+            .toLowerCase()
+            .includes(flightState.current.toLowerCase()) ||
+          airport.airport
+            .toLowerCase()
+            .includes(flightState.current.toLowerCase())
+      ) || [];
+
+    return [...filteredData1, ...filteredData2, ...filteredData3];
   };
 
   const filterByDestination = () => {
@@ -128,20 +142,34 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       return [];
     }
 
-    const filteredData = airportsData?.filter(
-      (airport) =>
-        airport.city
-          .toLowerCase()
-          .includes(flightState.destination.toLowerCase()) ||
-        airport.airport
-          .toLowerCase()
-          .includes(flightState.destination.toLowerCase()) ||
-        airport.iata_code
-          .toLowerCase()
-          .includes(flightState.destination.toLowerCase())
-    );
+    const filteredData1 =
+      airportsData?.filter((airport) =>
+        airport.iata_code.includes(flightState.destination.toUpperCase())
+      ) || [];
 
-    return filteredData;
+    let filteredData2: any = [];
+
+    if (!filteredData1.length) {
+      filteredData2 =
+        airportsData?.filter((airport) =>
+          airport.city_code.includes(flightState.destination.toUpperCase())
+        ) || [];
+    } else {
+      filteredData2 = [];
+    }
+
+    const filteredData3 =
+      airportsData?.filter(
+        (airport) =>
+          airport.city
+            .toLowerCase()
+            .includes(flightState.destination.toLowerCase()) ||
+          airport.airport
+            .toLowerCase()
+            .includes(flightState.destination.toLowerCase())
+      ) || [];
+
+    return [...filteredData1, ...filteredData2, ...filteredData3];
   };
 
   const handleSubmit = (e: BaseSyntheticEvent) => {
