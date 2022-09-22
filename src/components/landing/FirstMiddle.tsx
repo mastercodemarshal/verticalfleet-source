@@ -21,6 +21,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
 
   const [priceForBusiness, setPriceForBusiness] = useState(0);
   const [priceForEconomy, setPriceForEconomy] = useState(0);
+  const [priceForPEconomy, setPriceForPEconomy] = useState(0);
   const [priceForFirst, setPriceForFirst] = useState(0);
 
   useEffect(() => {
@@ -33,6 +34,12 @@ const MiddleCard: React.FC = (): JSX.Element => {
     setPriceForEconomy(
       FlightSchedules[0].type.includes("one-way")
         ? Math.floor(Math.random() * (425 - 350) + 350)
+        : Math.floor(Math.random() * (715 - 490) + 490)
+    );
+
+    setPriceForPEconomy(
+      FlightSchedules[0].type.includes("one-way")
+        ? Math.floor(Math.random() * (425 - 350) + 1200)
         : Math.floor(Math.random() * (715 - 490) + 1200)
     );
 
@@ -57,7 +64,7 @@ const MiddleCard: React.FC = (): JSX.Element => {
               onClick={() => setSelectedClass("Business")}
               className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
                 selectedClass === "Business"
-                  ? "bg-white/[.2]"
+                  ? "bg-white/[.2] border border-yellow-300 border-dashed"
                   : "bg-white/[.05]"
               }`}
             >
@@ -85,7 +92,9 @@ const MiddleCard: React.FC = (): JSX.Element => {
             <div
               onClick={() => setSelectedClass("First")}
               className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
-                selectedClass === "First" ? "bg-white/[.2]" : "bg-white/[.05]"
+                selectedClass === "First"
+                  ? "bg-white/[.2] border border-yellow-300 border-dashed"
+                  : "bg-white/[.05]"
               }`}
             >
               <div className="flex justify-between">
@@ -114,12 +123,15 @@ const MiddleCard: React.FC = (): JSX.Element => {
               className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
                 selectedClass === ("Economy" || "P.Economy")
                   ? "bg-white/[.2] border border-yellow-300 border-dashed"
-                  : "bg-white/[.05] border border-yellow-300 border-dashed"
+                  : "bg-white/[.05]"
               }`}
             >
               <div className="flex justify-between">
                 <p className="font-bold font-open_sans text-[20px] leading-[27px]">
-                  ${priceForEconomy}
+                  $
+                  {FlightSchedules[0].passengers.split(":")[0] === "Economy"
+                    ? priceForEconomy
+                    : priceForPEconomy}
                 </p>
                 <p className="font-bold font-open_sans text-[16px] leading-[22px]">
                   *

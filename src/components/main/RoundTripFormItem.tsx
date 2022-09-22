@@ -110,6 +110,18 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
         airportsData?.filter((airport) =>
           airport.city_code.includes(flightState.current.toUpperCase())
         ) || [];
+
+      if (filteredData2.length) {
+        filteredData2 = [
+          {
+            iata_code: filteredData2[0].city_code,
+            city: filteredData2[0].city,
+            country: filteredData2[0].country,
+            airport: "All Airports",
+          },
+          ...filteredData2,
+        ];
+      }
     } else {
       filteredData2 = [];
     }
@@ -145,6 +157,18 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
         airportsData?.filter((airport) =>
           airport.city_code.includes(flightState.destination.toUpperCase())
         ) || [];
+
+      if (filteredData2.length) {
+        filteredData2 = [
+          {
+            iata_code: filteredData2[0].city_code,
+            city: filteredData2[0].city,
+            country: filteredData2[0].country,
+            airport: "All Airports",
+          },
+          ...filteredData2,
+        ];
+      }
     } else {
       filteredData2 = [];
     }
@@ -253,6 +277,10 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                   onBlur={() => {
                     setTimeout(() => {
                       setOpenCurrentSelect(false);
+                      flightState.current &&
+                        setState({ ...state, editingCurrent: false });
+                      currentFilteredList?.length &&
+                        handleCurrentSelect(currentFilteredList[0]);
                     }, 200);
                   }}
                   onChange={handleChange}
@@ -343,10 +371,10 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                 onBlur={() => {
                   setTimeout(() => {
                     setOpenDestinationSelect(false);
-                    // flightState.destination &&
-                    //   setState({ ...state, editingDestination: false });
-                    // destinationFilteredList?.length &&
-                    //   handleDestinationSelect(destinationFilteredList[0]);
+                    flightState.destination &&
+                      setState({ ...state, editingDestination: false });
+                    destinationFilteredList?.length &&
+                      handleDestinationSelect(destinationFilteredList[0]);
                   }, 200);
                 }}
                 className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
@@ -358,7 +386,6 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                   type="text"
                   placeholder="To"
                   name="destination"
-                  // value={flightState.destination}
                   onChange={handleChange}
                   onFocus={() => {
                     setOpenDestinationSelect(true);

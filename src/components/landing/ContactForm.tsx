@@ -63,9 +63,13 @@ const ContactForm: React.FC<IFlightProps> = ({ flightStates }): JSX.Element => {
           name: `${state.name}`,
           email: state.email,
           mobile: `+${state.countryCode} ${state.phonenumber}`,
-          departure_city: `${flightStates[0].current.split(", ")[3]}`,
+          departure_city: `(${flightStates[0].current.split(", ")[0]}) ${
+            flightStates[0].current.split(", ")[3]
+          }`,
           departure_date: moment(flightStates[0].dateFrom).format("MM/DD/YYYY"),
-          arrival_city: `${flightStates[0].destination.split(", ")[3]}`,
+          arrival_city: `(${flightStates[0].destination.split(", ")[3]}) ${
+            flightStates[0].destination.split(", ")[3]
+          }`,
           arrival_date: moment(flightStates[0].dateTo).format("MM/DD/YYYY"),
           person: flightStates[0].passengers.split(":")[1],
           class: flightStates[0].passengers.split(":")[0],

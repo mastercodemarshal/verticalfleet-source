@@ -6,6 +6,7 @@ interface IAirportListProps {
 }
 
 type AirPort = {
+  [x: string]: any;
   airport: string;
   country: string;
   city: string;
@@ -16,9 +17,14 @@ const AirportList: React.FC<IAirportListProps> = ({
   airportList,
   onSelect,
 }): JSX.Element => {
+  const unique = airportList?.filter(
+    (item, index, array) =>
+      array.findIndex((t) => t.iata_code === item.iata_code) === index
+  );
+
   return (
     <ul className="absolute top-[67px] left-0 lg:w-[760px] sm:w-[500px] bg-white max-h-[350px] overflow-auto shadow-[0px_4px_10px_rgba(0,0,0,0.2)] z-50">
-      {airportList?.map((data, index) => {
+      {unique?.map((data, index) => {
         return (
           <li
             key={index}

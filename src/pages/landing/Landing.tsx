@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Services from "../../components/common/Services";
 import MiddleCard from "../../components/landing/FirstMiddle";
 
 const LandingPage: React.FC = (): JSX.Element => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="relative">
       <div className="bg-[url('assets/img/landing/background.png')] bg-cover bg-center xl:h-[1000px] md:h-[1200px] h-[1450px]"></div>
