@@ -452,7 +452,8 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
           <div className="xl:col-span-3 md:col-span-3 col-span-12 xl:flex md:block flex h-[67px] xl:rounded-none rounded-[4px] border-r border-[#D7D7D7] bg-white items-center justify-center">
             {state.editingDateFrom ? (
               <div
-                onBlur={() =>
+                onBlur={(e) =>
+                  !e.relatedTarget &&
                   setTimeout(() => {
                     setState({
                       ...state,
@@ -460,14 +461,14 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                     });
                   }, 200)
                 }
-                onClick={() =>
-                  setTimeout(() => {
-                    setState({
-                      ...state,
-                      editingDateFrom: false,
-                    });
-                  }, 200)
-                }
+                // onClick={() =>
+                //   setTimeout(() => {
+                //     setState({
+                //       ...state,
+                //       editingDateFrom: false,
+                //     });
+                //   }, 200)
+                // }
                 tabIndex={1}
                 className="relative xl:w-[50%] md:w-[100%] bg-white flex items-center w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer justify-center"
               >
@@ -550,7 +551,8 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
 
             {state.editingDateTo ? (
               <div
-                onBlur={() =>
+                onBlur={(e) =>
+                  !e.relatedTarget &&
                   setTimeout(() => {
                     setState({
                       ...state,
@@ -558,14 +560,14 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                     });
                   }, 200)
                 }
-                onClick={() =>
-                  setTimeout(() => {
-                    setState({
-                      ...state,
-                      editingDateTo: false,
-                    });
-                  }, 200)
-                }
+                // onClick={() =>
+                //   setTimeout(() => {
+                //     setState({
+                //       ...state,
+                //       editingDateTo: false,
+                //     });
+                //   }, 200)
+                // }
                 tabIndex={3}
                 className="relative justify-center xl:w-[50%] bg-white md:w-[100%] flex items-center w-[50%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer text-center"
               >
@@ -586,7 +588,6 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                 <Calendar
                   className="absolute top-[65px] xl:left-0 -right-[2px] md:min-w-[320px] min-w-[299px] z-50"
                   tileDisabled={({ date }) => date < dateFrom}
-                  activeStartDate={dateFrom}
                   onChange={(e: any) => {
                     onChangeDateTo(e);
                     setState({

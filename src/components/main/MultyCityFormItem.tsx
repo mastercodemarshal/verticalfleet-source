@@ -493,7 +493,8 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
           <div className="xl:col-span-3 md:col-span-3 col-span-12 xl:flex md:block flex h-[67px] xl:rounded-none rounded-[4px] border-r border-[#D7D7D7] bg-white items-center justify-center">
             {state.editingDateFrom ? (
               <div
-                onBlur={() =>
+                onBlur={(e) =>
+                  !e.relatedTarget &&
                   setTimeout(() => {
                     setState({
                       ...state,
@@ -502,14 +503,14 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   }, 200)
                 }
                 tabIndex={1}
-                onClick={() =>
-                  setTimeout(() => {
-                    setState({
-                      ...state,
-                      editingDateFrom: false,
-                    });
-                  }, 200)
-                }
+                // onClick={() =>
+                //   setTimeout(() => {
+                //     setState({
+                //       ...state,
+                //       editingDateFrom: false,
+                //     });
+                //   }, 200)
+                // }
                 className="relative xl:w-[100%] md:w-[100%] bg-white flex items-center w-[100%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer justify-center"
               >
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
