@@ -32,8 +32,14 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
 
   const [state, setState] = useState({
-    editingCurrent: true,
-    editingDestination: true,
+    editingCurrent:
+      flightContext.flightState[0] && flightContext.flightState[0].current
+        ? false
+        : true,
+    editingDestination:
+      flightContext.flightState[0] && flightContext.flightState[0].destination
+        ? false
+        : true,
     editingDateFrom: false,
     editingDateTo: false,
     editingUsers: true,
@@ -47,7 +53,12 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
 
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  const [dateFrom, onChangeDateFrom] = useState(new Date());
+
+  const [dateFrom, setDateFrom] = useState(
+    flightContext.flightState[0] && flightContext.flightState[0].dateFrom
+      ? new Date(flightContext.flightState[0].dateFrom)
+      : new Date()
+  );
 
   const [currentFilteredList, setCurrentFilteredList] = useState<
     AirPort[] | undefined
@@ -71,8 +82,12 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
   }, []);
 
   const [flightState, setFlightState] = useState({
-    current: "",
-    destination: "",
+    current: flightContext.flightState[0]
+      ? flightContext.flightState[0].current
+      : "",
+    destination: flightContext.flightState[0]
+      ? flightContext.flightState[0].destination
+      : "",
     passengers: ["Business", "1:1 traveler", "1,0,0,0,0,0"] as string[],
   });
 
@@ -183,17 +198,17 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
 
     return [...filteredData1, ...filteredData2, ...filteredData3];
   };
+
   const handleSubmit = (e: BaseSyntheticEvent) => {
     e.preventDefault();
 
     if (checkValidation()) {
       flightContext.setFlightState([
-        ...flightContext.flightState,
         {
+          ...flightContext.flightState[0],
           current: flightState.current,
           destination: flightState.destination,
           dateFrom: dateFrom,
-          dateTo: dateFrom,
           passengers: `${flightState.passengers[0]}:${
             flightState.passengers[1].split(":")[0]
           }`,
@@ -217,6 +232,15 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
     });
   };
 
+  const onChangeDateFrom = (e) => {
+    setDateFrom(e);
+
+    flightContext.flightState[0].dateFrom = e;
+    const nextDay = new Date();
+    nextDay.setDate(e.getDate() + 1);
+    flightContext.flightState[0].dateTo = nextDay;
+  };
+
   const checkValidation = () => {
     const { current, destination } = flightState;
 
@@ -233,6 +257,8 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
       ...flightState,
       current: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
+
+    flightContext.flightState[0].current = `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`;
   };
 
   const handleDestinationSelect = (data: AirPort): void => {
@@ -245,6 +271,8 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
       ...flightState,
       destination: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
+
+    flightContext.flightState[0].destination = `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`;
   };
 
   const handlePassengerSelect = (data) => {
@@ -253,10 +281,15 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
       passengers: data,
     });
     setOpenUserSelect(false);
+
+    flightContext.flightState[0].passengers = `${data[0]}:${
+      data[1].split(":")[0]
+    }`;
   };
 
-  const currentArray = flightState.current.split(", ");
-  const destinationArray = flightState.destination.split(", ");
+  const currentArray = flightState.current && flightState.current.split(", ");
+  const destinationArray =
+    flightState.destination && flightState.destination.split(", ");
 
   return (
     <div>
@@ -269,10 +302,10 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                   onBlur={() => {
                     setTimeout(() => {
                       setOpenCurrentSelect(false);
-                      flightState.current &&
-                        setState({ ...state, editingCurrent: false });
-                      currentFilteredList?.length &&
-                        handleCurrentSelect(currentFilteredList[0]);
+                      // flightState.current &&
+                      //   setState({ ...state, editingCurrent: false });
+                      // currentFilteredList?.length &&
+                      //   handleCurrentSelect(currentFilteredList[0]);
                     }, 200);
                   }}
                   className="h-[67px] cursor-pointer pl-[30px] relative xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
@@ -363,10 +396,10 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                 onBlur={() => {
                   setTimeout(() => {
                     setOpenDestinationSelect(false);
-                    flightState.destination &&
-                      setState({ ...state, editingDestination: false });
-                    destinationFilteredList?.length &&
-                      handleDestinationSelect(destinationFilteredList[0]);
+                    // flightState.destination &&
+                    //   setState({ ...state, editingDestination: false });
+                    // destinationFilteredList?.length &&
+                    //   handleDestinationSelect(destinationFilteredList[0]);
                   }, 200);
                 }}
                 className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"

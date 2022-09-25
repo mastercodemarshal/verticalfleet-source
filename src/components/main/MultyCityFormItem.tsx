@@ -44,8 +44,16 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
   const navigate = useNavigate();
 
   const [state, setState] = useState({
-    editingCurrent: true,
-    editingDestination: true,
+    editingCurrent:
+      flightContext.flightState[Number(idx)] &&
+      flightContext.flightState[Number(idx)].current
+        ? false
+        : true,
+    editingDestination:
+      flightContext.flightState[Number(idx)] &&
+      flightContext.flightState[Number(idx)].destination
+        ? false
+        : true,
     editingDateFrom: false,
     editingDateTo: false,
     editingUsers: true,
@@ -57,9 +65,13 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
   const [openCurrentSelect, setOpenCurrentSelect] = useState(false);
   const [openDestinationSelect, setOpenDestinationSelect] = useState(false);
 
-  const [dateFrom, onChangeDateFrom] = useState(
-    lastDate ? lastDate : new Date()
-  );
+  const thisDateFrom = flightContext.flightState[Number(idx) - 1]
+    ? flightContext.flightState[Number(idx) - 1].dateFrom
+    : flightContext.flightState[0]
+    ? flightContext.flightState[0].dateFrom
+    : new Date();
+
+  const [dateFrom, setDateFrom] = useState(thisDateFrom);
 
   const [currentFilteredList, setCurrentFilteredList] = useState<
     AirPort[] | undefined
@@ -83,8 +95,12 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
   }, []);
 
   const [flightState, setFlightState] = useState({
-    current: "",
-    destination: "",
+    current: flightContext.flightState[Number(idx)]
+      ? flightContext.flightState[Number(idx)].current
+      : "",
+    destination: flightContext.flightState[Number(idx)]
+      ? flightContext.flightState[Number(idx)].destination
+      : "",
     passengers: ["Business", "1:1 traveler", "1,0,0,0,0,0"] as string[],
   });
 
@@ -200,19 +216,9 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
     e.preventDefault();
 
     if (checkValidation()) {
-      flightContext.setFlightState([
-        ...flightContext.flightState,
-        {
-          current: flightState.current,
-          destination: flightState.destination,
-          dateFrom: dateFrom,
-          dateTo: dateFrom,
-          passengers: `${flightState.passengers[0]}:${
-            flightState.passengers[1].split(":")[0]
-          }`,
-          type: window.location.pathname,
-        },
-      ]);
+      flightContext.flightState[0].type = "/multy-city";
+
+      flightContext.setFlightState([...flightContext.flightState]);
       navigate("/landing");
     } else {
       // toast("Please fill all inputs", {
@@ -240,10 +246,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       flightContext.setFlightState([
         ...flightContext.flightState,
         {
+          ...flightContext.flightState[0],
           current: flightState.current,
           destination: flightState.destination,
           dateFrom: dateFrom,
-          dateTo: dateFrom,
           passengers: flightState.passengers[0],
           type: window.location.pathname,
         },
@@ -258,6 +264,16 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
     }
 
     return;
+  };
+
+  const onChangeDateFrom = (e) => {
+    setDateFrom(e);
+
+    flightContext.flightState[idx].dateFrom = e;
+
+    const nextDay = new Date();
+    nextDay.setDate(e.getDate() + 1);
+    flightContext.flightState[idx].dateTo = nextDay;
   };
 
   const checkValidation = () => {
@@ -276,6 +292,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       ...flightState,
       current: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
+
+    flightContext.flightState[
+      idx
+    ].current = `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`;
   };
 
   const handleDestinationSelect = (data: AirPort): void => {
@@ -288,6 +308,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       ...flightState,
       destination: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
+
+    flightContext.flightState[
+      idx
+    ].destination = `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`;
   };
 
   const handlePassengerSelect = (data) => {
@@ -296,10 +320,15 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       passengers: data,
     });
     setOpenUserSelect(false);
+
+    flightContext.flightState[idx].passengers = `${data[0]}:${
+      data[1].split(":")[0]
+    }`;
   };
 
-  const currentArray = flightState.current.split(", ");
-  const destinationArray = flightState.destination.split(", ");
+  const currentArray = flightState.current && flightState.current.split(", ");
+  const destinationArray =
+    flightState.destination && flightState.destination.split(", ");
 
   return (
     <div className="xl:mt-0 mt-[15px]">
@@ -312,10 +341,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   onBlur={() => {
                     setTimeout(() => {
                       setOpenCurrentSelect(false);
-                      flightState.current &&
-                        setState({ ...state, editingCurrent: false });
-                      currentFilteredList?.length &&
-                        handleCurrentSelect(currentFilteredList[0]);
+                      // flightState.current &&
+                      //   setState({ ...state, editingCurrent: false });
+                      // currentFilteredList?.length &&
+                      //   handleCurrentSelect(currentFilteredList[0]);
                     }, 200);
                   }}
                   className="h-[67px] cursor-pointer pl-[30px] relative xl:w-[50%] w-[100%] xl:mb-0 mb-[15px] xl:rounded-l-[4px] xl:rounded-r-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
@@ -411,10 +440,10 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                 onBlur={() => {
                   setTimeout(() => {
                     setOpenDestinationSelect(false);
-                    flightState.destination &&
-                      setState({ ...state, editingDestination: false });
-                    destinationFilteredList?.length &&
-                      handleDestinationSelect(destinationFilteredList[0]);
+                    // flightState.destination &&
+                    //   setState({ ...state, editingDestination: false });
+                    // destinationFilteredList?.length &&
+                    //   handleDestinationSelect(destinationFilteredList[0]);
                   }, 200);
                 }}
                 className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
@@ -514,25 +543,29 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                 className="relative xl:w-[100%] md:w-[100%] bg-white flex items-center w-[100%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 px-[20px] xl:rounded-none rounded-[4px] border-t focus:outline-none cursor-pointer justify-center"
               >
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
-                  {dateFrom.getDate()}
+                  {new Date(dateFrom).getDate()}
                 </p>
                 <div>
                   <div className="flex items-center font-open_sans font-normal text-[16px] leading-[22px] text-[#494949]">
-                    {dateFrom.toLocaleDateString("en-US", { month: "short" })}{" "}
+                    {new Date(dateFrom).toLocaleDateString("en-US", {
+                      month: "short",
+                    })}{" "}
                     <div className="ml-[8px]">
                       <img src={calendarIcon} alt="" />
                     </div>
                   </div>
                   <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
-                    {dateFrom.toLocaleDateString("en-US", { weekday: "long" })}
+                    {new Date(dateFrom).toLocaleDateString("en-US", {
+                      weekday: "long",
+                    })}
                   </p>
                 </div>
                 <Calendar
                   className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[320px] min-w-[299px] z-50"
                   tileDisabled={({ date }) =>
                     date <
-                    (lastDate
-                      ? lastDate
+                    (thisDateFrom.getDate() !== new Date().getDate()
+                      ? thisDateFrom
                       : new Date().setDate(new Date().getDate() - 1))
                   }
                   onChange={(e: React.SetStateAction<Date>) => {
@@ -542,7 +575,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                       editingDateFrom: false,
                     });
                   }}
-                  value={dateFrom}
+                  value={new Date(dateFrom)}
                 />
               </div>
             ) : (
@@ -569,17 +602,21 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                 className="xl:w-[100%] md:w-[100%] w-[100%] h-[67px] xl:mb-0 md:mb-[15px] mb-0 cursor-pointer xl:rounded-none rounded-[4px] border-t flex items-center justify-center"
               >
                 <p className="font-hind font-normal text-[38px] leading-[38px] text-[#494949] mr-[5px] pt-[6px]">
-                  {dateFrom.getDate()}
+                  {new Date(dateFrom).getDate()}
                 </p>
                 <div>
                   <div className="flex items-center font-open_sans font-normal text-[16px] leading-[22px] text-[#494949]">
-                    {dateFrom.toLocaleDateString("en-US", { month: "short" })}{" "}
+                    {new Date(dateFrom).toLocaleDateString("en-US", {
+                      month: "short",
+                    })}{" "}
                     <div className="ml-[8px]">
                       <img src={calendarIcon} alt="" />
                     </div>
                   </div>
                   <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
-                    {dateFrom.toLocaleDateString("en-US", { weekday: "long" })}
+                    {new Date(dateFrom).toLocaleDateString("en-US", {
+                      weekday: "long",
+                    })}
                   </p>
                 </div>
               </div>

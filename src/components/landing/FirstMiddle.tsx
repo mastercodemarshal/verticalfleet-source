@@ -8,13 +8,19 @@ import ContactForm from "./ContactForm";
 import { FlightContext } from "../../App";
 
 const MiddleCard: React.FC = (): JSX.Element => {
-  const { flightState } = useContext(FlightContext);
+  const { flightState, setFlightState } = useContext(FlightContext);
 
-  if (!JSON.parse(localStorage.getItem("data") || "[]").length) {
+  // if (!JSON.parse(localStorage.getItem("data") || "[]").length) {
+  flightState.length &&
     localStorage.setItem("data", JSON.stringify(flightState));
-  }
+  // }
 
   const FlightSchedules: any = JSON.parse(localStorage.getItem("data") || "[]");
+
+  useEffect(() => {
+    setFlightState(JSON.parse(localStorage.getItem("data") || "[]"));
+  }, []);
+
   const [selectedClass, setSelectedClass] = useState(
     FlightSchedules[0].passengers.split(":")[0]
   );
@@ -62,9 +68,9 @@ const MiddleCard: React.FC = (): JSX.Element => {
           <div className="grid grid-cols-3 max-w-[450px] sm:gap-[30px] gap-[8px] mx-auto xl:mt-0 mt-[20px]">
             <div
               onClick={() => setSelectedClass("Business")}
-              className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
+              className={`rounded-[10px] cursor-pointer sm:px-[10px] px-[5px] py-[20px] ${
                 selectedClass === "Business"
-                  ? "bg-white/[.2] border border-yellow-300 border-dashed"
+                  ? "bg-white/[.2]"
                   : "bg-white/[.05]"
               }`}
             >
@@ -76,14 +82,24 @@ const MiddleCard: React.FC = (): JSX.Element => {
                   *
                 </p>
               </div>
-              <div className="font-open_sans text-center font-bold text-[12px] leading-none tracking-[0.42em] opacity-[0.5] uppercase border-t">
+              <div className="font-open_sans text-center font-bold text-[12px] leading-none tracking-[0.4em] opacity-[0.5] uppercase border-t">
                 {FlightSchedules[0].type.includes("one-way")
                   ? "one way"
                   : "round trip"}
               </div>
-              <div className="mt-[19px] flex items-center">
-                <img src={f192Icon} width="16px" height="20px" alt="icon" />
-                <p className="md:ml-[6px] ml-[3px] font-hind font-bold uppercase text-[12px] leading-[12px]">
+              <div
+                className={`mt-[19px] flex p-[3px] items-center ${
+                  selectedClass === "Business" &&
+                  "border border-yellow-300 border-dashed rounded-[5px]"
+                }`}
+              >
+                <img
+                  src={selectedClass === "Business" ? f192Icon : f0c8Icon}
+                  width="16px"
+                  height="20px"
+                  alt="icon"
+                />
+                <p className="md:ml-[6px] ml-[3px] font-hind font-bold uppercase text-[12px]">
                   business
                 </p>
               </div>
@@ -91,10 +107,8 @@ const MiddleCard: React.FC = (): JSX.Element => {
 
             <div
               onClick={() => setSelectedClass("First")}
-              className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
-                selectedClass === "First"
-                  ? "bg-white/[.2] border border-yellow-300 border-dashed"
-                  : "bg-white/[.05]"
+              className={`rounded-[10px] cursor-pointer sm:px-[10px] px-[5px]  py-[20px] ${
+                selectedClass === "First" ? "bg-white/[.2]" : "bg-white/[.05]"
               }`}
             >
               <div className="flex justify-between">
@@ -105,14 +119,24 @@ const MiddleCard: React.FC = (): JSX.Element => {
                   *
                 </p>
               </div>
-              <div className="font-open_sans text-center font-bold text-[12px] leading-none tracking-[0.42em] opacity-[0.5] uppercase border-t">
+              <div className="font-open_sans text-center font-bold text-[12px] leading-none tracking-[0.4em] opacity-[0.5] uppercase border-t">
                 {FlightSchedules[0].type.includes("one-way")
                   ? "one way"
                   : "round trip"}
               </div>
-              <div className="mt-[19px] flex items-center">
-                <img src={f0c8Icon} width="14px" height="14px" alt="icon" />
-                <p className="md:ml-[6px] ml-[3px] font-hind font-bold uppercase text-[12px] leading-[12px]">
+              <div
+                className={`mt-[19px] flex p-[3px] items-center ${
+                  selectedClass === "First" &&
+                  "border border-yellow-300 border-dashed rounded-[5px]"
+                }`}
+              >
+                <img
+                  src={selectedClass === "First" ? f192Icon : f0c8Icon}
+                  width="16px"
+                  height="20px"
+                  alt="icon"
+                />
+                <p className="md:ml-[6px] ml-[3px] font-hind font-bold uppercase text-[12px]">
                   first class
                 </p>
               </div>
@@ -120,9 +144,9 @@ const MiddleCard: React.FC = (): JSX.Element => {
 
             <div
               onClick={() => setSelectedClass("Economy")}
-              className={`rounded-[10px] cursor-pointer sm:px-[17px] px-[10px] py-[20px] ${
-                selectedClass === ("Economy" || "P.Economy")
-                  ? "bg-white/[.2] border border-yellow-300 border-dashed"
+              className={`rounded-[10px] cursor-pointer sm:px-[10px] px-[5px] py-[20px] ${
+                selectedClass === "Economy" || selectedClass === "P.Economy"
+                  ? "bg-white/[.2]"
                   : "bg-white/[.05]"
               }`}
             >
@@ -137,13 +161,28 @@ const MiddleCard: React.FC = (): JSX.Element => {
                   *
                 </p>
               </div>
-              <div className="font-open_sans text-center font-bold text-[12px] leading-none tracking-[0.42em] opacity-[0.5] uppercase border-t">
+              <div className="font-open_sans text-center font-bold text-[12px] leading-none tracking-[0.4em] opacity-[0.5] uppercase border-t">
                 {FlightSchedules[0].type.includes("one-way")
                   ? "one way"
                   : "round trip"}
               </div>
-              <div className="mt-[19px] flex items-center">
-                <img src={f0c8Icon} width="14px" height="14px" alt="icon" />
+              <div
+                className={`mt-[19px] flex p-[3px] items-center ${
+                  (selectedClass === "Economy" ||
+                    selectedClass === "P.Economy") &&
+                  "border border-yellow-300 border-dashed rounded-[5px]"
+                }`}
+              >
+                <img
+                  src={
+                    selectedClass === "P.Economy" || selectedClass === "Economy"
+                      ? f192Icon
+                      : f0c8Icon
+                  }
+                  width="16px"
+                  height="20px"
+                  alt="icon"
+                />
                 <p className="md:ml-[6px] ml-[3px] font-hind font-bold uppercase text-[12px] ">
                   {FlightSchedules[0].passengers.split(":")[0] === "Economy"
                     ? "Economy"

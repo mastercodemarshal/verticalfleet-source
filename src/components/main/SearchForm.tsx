@@ -28,7 +28,7 @@ const SearchForm: React.FC = (): JSX.Element => {
               idx={String(index)}
               length={flights.length}
               handleAddFlight={() => setFlights([...flights, 0])}
-              lastDate={flightContext.flightState[index - 1]?.dateTo}
+              lastDate={flightContext.flightState[index - 1]?.dateFrom}
             />
           ))}
         </div>

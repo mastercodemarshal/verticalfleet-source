@@ -23,7 +23,9 @@ export const FlightContext = createContext({
 });
 
 const App: React.FC = (): JSX.Element => {
-  const [flightState, setFlightState] = useState([] as IFlightState[]);
+  const [flightState, setFlightState] = useState(
+    JSON.parse(localStorage.getItem("data") || "[]") as IFlightState[]
+  );
 
   return (
     <FlightContext.Provider value={{ flightState, setFlightState }}>

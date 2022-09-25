@@ -12,13 +12,31 @@ const MainPage: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   const flightContext = useContext(FlightContext);
 
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  window.scrollTo(0, 0);
+
   useEffect(() => {
     if (window.location.pathname === "/") {
       navigate("/round-trip/");
     }
 
-    flightContext.setFlightState([]);
-    localStorage.setItem("data", JSON.stringify([]));
+    flightContext.setFlightState(
+      JSON.parse(localStorage.getItem("data") || "[]")
+    );
+
+    !flightContext.flightState.length &&
+      flightContext.setFlightState([
+        {
+          current: "",
+          destination: "",
+          dateFrom: new Date(),
+          dateTo: tomorrow,
+          passengers: "",
+          type: "",
+        },
+      ]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -32,8 +32,14 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
 
   const [state, setState] = useState({
-    editingCurrent: true,
-    editingDestination: true,
+    editingCurrent:
+      flightContext.flightState[0] && flightContext.flightState[0].current
+        ? false
+        : true,
+    editingDestination:
+      flightContext.flightState[0] && flightContext.flightState[0].destination
+        ? false
+        : true,
     editingDateFrom: false,
     editingDateTo: false,
     editingUsers: false,
@@ -49,8 +55,18 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
   tomorrow.setDate(tomorrow.getDate() + 1);
   const startDay = new Date();
   startDay.setHours(0, 0, 0, 0);
-  const [dateFrom, onChangeDateFrom] = useState(startDay);
-  const [dateTo, onChangeDateTo] = useState(tomorrow);
+
+  const [dateFrom, setDateFrom] = useState(
+    flightContext.flightState[0] && flightContext.flightState[0].dateFrom
+      ? new Date(flightContext.flightState[0].dateFrom)
+      : startDay
+  );
+
+  const [dateTo, setDateTo] = useState(
+    flightContext.flightState[0] && flightContext.flightState[0].dateTo
+      ? new Date(flightContext.flightState[0].dateTo)
+      : tomorrow
+  );
 
   const [currentFilteredList, setCurrentFilteredList] = useState<
     AirPort[] | undefined
@@ -74,8 +90,12 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
   }, []);
 
   const [flightState, setFlightState] = useState({
-    current: "",
-    destination: "",
+    current: flightContext.flightState[0]
+      ? flightContext.flightState[0].current
+      : "",
+    destination: flightContext.flightState[0]
+      ? flightContext.flightState[0].destination
+      : "",
     passengers: ["Business", "1:1 traveler", "1,0,0,0,0,0"] as string[],
   });
 
@@ -193,7 +213,6 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
 
     if (checkValidation()) {
       flightContext.setFlightState([
-        ...flightContext.flightState,
         {
           current: flightState.current,
           destination: flightState.destination,
@@ -225,6 +244,18 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
     });
   };
 
+  const onChangeDateFrom = (e) => {
+    setDateFrom(e);
+
+    flightContext.flightState[0].dateFrom = e;
+  };
+
+  const onChangeDateTo = (e) => {
+    setDateTo(e);
+
+    flightContext.flightState[0].dateTo = e;
+  };
+
   const checkValidation = () => {
     const { current, destination } = flightState;
 
@@ -241,6 +272,8 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
       ...flightState,
       current: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
+
+    flightContext.flightState[0].current = `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`;
   };
 
   const handleDestinationSelect = (data: AirPort): void => {
@@ -253,6 +286,8 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
       ...flightState,
       destination: `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`,
     });
+
+    flightContext.flightState[0].destination = `${data.iata_code}, ${data.airport}, ${data.country}, ${data.city}`;
   };
 
   const handlePassengerSelect = (data) => {
@@ -260,11 +295,16 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
       ...flightState,
       passengers: data,
     });
+
+    flightContext.flightState[0].passengers = `${data[0]}:${
+      data[1].split(":")[0]
+    }`;
     setOpenUserSelect(false);
   };
 
-  const currentArray = flightState.current.split(", ");
-  const destinationArray = flightState.destination.split(", ");
+  const currentArray = flightState.current && flightState.current.split(", ");
+  const destinationArray =
+    flightState.destination && flightState.destination.split(", ");
 
   return (
     <div>
@@ -277,10 +317,6 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                   onBlur={() => {
                     setTimeout(() => {
                       setOpenCurrentSelect(false);
-                      flightState.current &&
-                        setState({ ...state, editingCurrent: false });
-                      currentFilteredList?.length &&
-                        handleCurrentSelect(currentFilteredList[0]);
                     }, 200);
                   }}
                   onChange={handleChange}
@@ -371,10 +407,10 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                 onBlur={() => {
                   setTimeout(() => {
                     setOpenDestinationSelect(false);
-                    flightState.destination &&
-                      setState({ ...state, editingDestination: false });
-                    destinationFilteredList?.length &&
-                      handleDestinationSelect(destinationFilteredList[0]);
+                    // flightState.destination &&
+                    //   setState({ ...state, editingDestination: false });
+                    // destinationFilteredList?.length &&
+                    //   handleDestinationSelect(destinationFilteredList[0]);
                   }, 200);
                 }}
                 className="flex h-[67px] focus:outline-none relative cursor-pointer pl-[30px] xl:w-[50%] w-[100%] md:mb-0 mb-[15px] xl:rounded-none rounded-[4px] border-r border-t border-[#D7D7D7] bg-white flex items-center"
