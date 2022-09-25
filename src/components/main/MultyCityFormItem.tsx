@@ -564,8 +564,8 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   className="absolute top-[65px] xl:left-0 md:right-0 left-0 md:min-w-[320px] min-w-[299px] z-50"
                   tileDisabled={({ date }) =>
                     date <
-                    (thisDateFrom.getDate() !== new Date().getDate()
-                      ? thisDateFrom
+                    (new Date(dateFrom).getDate() !== new Date().getDate()
+                      ? new Date(dateFrom)
                       : new Date().setDate(new Date().getDate() - 1))
                   }
                   onChange={(e: React.SetStateAction<Date>) => {
