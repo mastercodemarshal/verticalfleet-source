@@ -17,7 +17,7 @@ const Footer: React.FC = (): JSX.Element => {
             States
             <br />
             <br />
-            +1-888-883-4146
+            +1-888-832-8777
             <br />
             info@verticalfleet.com
           </p>
