@@ -19,7 +19,7 @@ const FligthItem: FunctionComponent<IFlightScheduleProps> = ({
   return (
     <div className="text-white opacity-[.3] flex items-center justify-center">
       <div className="flex items-center md:w-[30%] w-[45%]">
-        <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
+        <p className="font-bold text-[33px] leading-[45.54px] uppercase">
           {schedule.current.split(", ")[0]}
         </p>
         <div className="ml-[10px]">
@@ -39,7 +39,7 @@ const FligthItem: FunctionComponent<IFlightScheduleProps> = ({
         <img src={arrow} className="mx-[20px]" alt="arrow" />
       </div>
       <div className="flex items-center md:w-[30%] w-[45%]">
-        <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
+        <p className="font-bold text-[33px] leading-[45.54px] uppercase">
           {schedule.destination.split(",")[0]}
         </p>
         <div className="ml-[10px]">

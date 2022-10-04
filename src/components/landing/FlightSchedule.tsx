@@ -19,7 +19,7 @@ const FlightSchedule: React.FC<IFlightScheduleProps> = ({
   return (
     <div className="flex items-center justify-center cursor-pointer">
       <div className="flex items-center lg:w-[45%] md:w-[30%] w-[45%]">
-        <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
+        <p className="font-bold text-[33px] leading-[45.54px] uppercase">
           {schedule.current.split(", ")[0]}
         </p>
         <div className="ml-[10px]">
@@ -42,7 +42,7 @@ const FlightSchedule: React.FC<IFlightScheduleProps> = ({
         ) : null}
       </div>
       <div className="flex items-center lg:w-[45%] md:w-[30%] w-[45%] ">
-        <p className="font-bold text-[33px] font-hind leading-[45.54px] uppercase">
+        <p className="font-bold text-[33px] leading-[45.54px] uppercase">
           {schedule.destination.split(",")[0]}
         </p>
         <div className="ml-[10px]">

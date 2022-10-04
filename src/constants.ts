@@ -292,3 +292,56 @@ export const DetailCardsData = [
     from: "ITALY",
   },
 ];
+
+export const QuickLandingData = {
+  france: {
+    title: "air france",
+    summary: `<b>Air France</b>, stylized as AIRFRANCE, is the flag carrier of France headquartered in Tremblay-en-France. It is a subsidiary of the Air France–KLM Group. It is a founding member
+    of the SkyTeam global airline alliance and has a network that spans five continents. Its cabins are a popular redemption for members of partner programs like Delta SkyMiles.`,
+    first: {
+      content: [
+        `The new first-class product is currently in the design phase and this confirms the carrier’s commitment to maintaining first class.`,
+        `As it’s described, this will be “the longest cabin” on the market, and there will be a seat, a sofa, and a full flatbed.`,
+        `<b>Air France</b> first class is currently available on select Boeing 777-300ERs. The current first class product, which was introduced back in 2014, features curtains that offer full privacy.`,
+        `It’s a phenomenal cabin, and personally I rank <b>Air France</b> as having the second best first class experience in the air, and the best first class experience on the ground.`,
+        `<b>La Première - Intercontinental flights:</b>`,
+      ],
+      list: [
+        `A customized service`,
+        `Simplified boarding`,
+        `A full team at your service`,
+        `Delectable cuisine`,
+        `A space devoted to your well-being`,
+        `Service on board`,
+        `Your own personalized living space`,
+        `Great entertainment, at your fingertips`,
+        `Your seat, your bed`,
+      ],
+    },
+    business: {
+      content: [
+        `The French carrier is currently updating its business class cabins to feature a 1-2-1 layout.`,
+        `The newest designs for the Boeing 777-300ER include more modern finishes and a sliding door on each seat to add privacy. There are still a few Boeing 777/777-300 planes that have a 2-3-2 layout with middle seats in business class, so you’ll want to avoid these.`,
+        `No matter which plane you fly, the typically French experience of fine dining and fashionable presentation remain highlights of flying <b>Air France</b> business class. And you can experience it by paying in cash or redeeming miles.`,
+        `<b>Air France</b> likes to highlight its “Frenchness:” fine dining with chef partnerships, Champagne, tasty French cheeses and amenity kits packed with Clarins products.`,
+        `On top of the French-inspired touches, <br />
+         <b>Air France</b> offers many of the perks you might expect from business class.`,
+        `<b>Here are some of the highlights:</b>`,
+      ],
+      list: [
+        `Extra Bag Allowance`,
+        `Priority Boarding`,
+        `Flatbed Seats`,
+        `Fine Dining`,
+        `Business Class Lounge access`,
+      ],
+    },
+    economy: {
+      content: [
+        `Premium Economy is sold on every <b>Air France</b> flight that is operated by wide-body aircraft, including the Boeing 777, Boeing 787, Airbus A330, and Airbus A350.`,
+        `Premium economy products among carriers can range from being more like the economy class to being much closer to business class. The <b>Air France</b> Premium Economy products is closer to economy class than it is to business—competitors on the same routes offer more spacious seating and more upgraded meals.`,
+        `<b>Air France</b> is one of the few carriers advertises the ability to purchase lounge access (subject to availability) for Premium Economy passengers. Premium Economy passengers also enjoy Sky Priority services like expedited check-in, boarding, and baggage delivery.`,
+      ],
+    },
+  },
+};

@@ -1,5 +1,5 @@
 import React from "react";
-import BestDetails from "./BestDetails";
+import BestDeals from "./BestDeals";
 import HowItWorks from "./HowItWorks";
 
 import WhatWeDo from "./WhatWeDo";
@@ -13,7 +13,7 @@ const MainContent: React.FC = (): JSX.Element => {
       <div className="pt-[57px] container mx-auto">
         <div className="grid xl:grid-cols-2 gap-0">
           <HowItWorks />
-          <BestDetails />
+          <BestDeals />
         </div>
       </div>
     </div>

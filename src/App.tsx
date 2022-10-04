@@ -7,6 +7,7 @@ import Layout from "./layouts";
 import LandingPage from "./pages/landing/Landing";
 import ResultPage from "./pages/landing/Result";
 import MainPage from "./pages/Main";
+import QuickLanding from "./pages/QuickLanding";
 
 interface IFlightState {
   current: string;
@@ -33,6 +34,7 @@ const App: React.FC = (): JSX.Element => {
         <Layout>
           <Routes>
             <Route path="/landing/" element={<LandingPage />} />
+            <Route path="/landing/:id" element={<QuickLanding />} />
             <Route path="/result/" element={<ResultPage />} />
             <Route path="/" element={<MainPage />} />
             <Route path="/round-trip/" element={<MainPage />} />

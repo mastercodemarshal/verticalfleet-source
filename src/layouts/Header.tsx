@@ -4,8 +4,16 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/img/main/logo.png";
 
 const Header: React.FC = (): JSX.Element => {
+  const path = window.location.pathname;
+
   return (
-    <div className="top-0 bg-[#10091D]/[.3] absolute w-full z-50">
+    <div
+      className={`top-0 absolute w-full z-50 ${
+        path.includes("/landing") && path.split("/").length > 2
+          ? "bg-[#10091D]"
+          : "bg-[#10091D]/[.3] "
+      }`}
+    >
       <div className="container mx-auto flex h-[80px] items-center px-[10px]">
         <Link className="mr-auto w-[165px] h-[15px]" to="/round-trip">
           <img src={Logo} alt="" />
