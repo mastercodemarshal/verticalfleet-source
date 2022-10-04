@@ -7,7 +7,9 @@ import Footer from "../layouts/Footer";
 import { QuickLandingData } from "../constants";
 
 const QuickLanding = () => {
-  const { id } = useParams();
+  let { id } = useParams();
+
+  id = "france";
 
   return (
     <>

@@ -12,7 +12,7 @@ const Footer: React.FC = (): JSX.Element => {
     <div className="bg-[#10091D]/[.95]">
       <div className="container mx-auto pt-[40px] pb-[20px] font-open_sans font-normal text-[12px] leading-[14px] text-white">
         <div className="flex md:flex-row flex-col-reverse md:justify-between">
-          <p className="w-[222px] md:mx-0 mx-auto md:text-left text-center">
+          <div className="w-[222px] md:mx-0 mx-auto md:text-left text-center">
             1810 E Sahara Ave Ste 212 #2180 Las Vegas, Nevada, 89104 United
             States
             <br />
@@ -20,29 +20,50 @@ const Footer: React.FC = (): JSX.Element => {
             +1-888-832-8777
             <br />
             info@verticalfleet.com
-          </p>
-          <div className="md:mx-0 mx-auto">
-            <img src={FooterLogo} alt="" className="md:mb-0 mb-[70px]" />
+            <p className="md:mt-[56px] mt-[16px] md:mx-0 mx-auto">
+              © 2022 Vertical Fleet | All rights reserved
+            </p>
           </div>
-        </div>
-        <div className="flex md:flex-row flex-col-reverse justify-between mt-[56px]">
-          <p className="md:mt-0 mt-[16px] md:mx-0 mx-auto">
-            © 2022 Vertical Fleet | All rights reserved
-          </p>
-          <p className="md:mx-0 mx-auto">
-            <span
-              className="mr-[20px] cursor-pointer"
-              onClick={() => setOpenPrivacyModal(true)}
-            >
-              Privacy Policy
-            </span>
-            <span
-              className="cursor-pointer"
-              onClick={() => setOpenTermsModal(true)}
-            >
-              Terms and Conditions
-            </span>
-          </p>
+          <div className="ml-auto md:mr-[100px] mr-auto md:text-left text-center mb-[30px]">
+            <p className="uppercase font-bold mb-[15px] text-[14px] border-b-2 pb-2">
+              quick links
+            </p>
+            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+              <a href="/landing/canada">Canada Airline</a>
+            </div>
+            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+              <a href="/landing/france">France Airline</a>
+            </div>
+            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+              <a href="/landing/alaska">Alaska Airline</a>
+            </div>
+            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+              <a href="/landing/jetblue">JetBlue Airlines</a>
+            </div>
+            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+              <a href="/landing/southwest">Southwest Airlines</a>
+            </div>
+            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+              <a href="/landing/southwest">Delta Airlines</a>
+            </div>
+          </div>
+          <div className="md:mx-0 mx-auto">
+            <img src={FooterLogo} alt="" className="md:mb-[110px] mb-[20px]" />
+            <p className="md:mx-0 mx-auto md:mb-0 mb-[30px]">
+              <span
+                className="mr-[20px] cursor-pointer hover:text-gray-400"
+                onClick={() => setOpenPrivacyModal(true)}
+              >
+                Privacy Policy
+              </span>
+              <span
+                className="cursor-pointer hover:text-gray-400"
+                onClick={() => setOpenTermsModal(true)}
+              >
+                Terms and Conditions
+              </span>
+            </p>
+          </div>
         </div>
       </div>
       {openPrivacyModal ? (
