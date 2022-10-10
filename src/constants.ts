@@ -344,4 +344,110 @@ export const QuickLandingData = {
       ],
     },
   },
+  british: {
+    title: "british airways",
+    summary: `<b>British Airways</b>is the flag carrier airline of the United Kingdom. It is headquartered in London, England, near its main hub at Heathrow Airport. It operates one of the largest and the most modern fleets of any airline in the world. It is also the second largest UK based carrier, based on fleet size and passengers carried, behind easyJet.`,
+    first: {
+      content: [
+        `<b>British Airways</b> First Class is the most luxurious way to experience flight. From your own stylish suite, to exclusive access to lounges, fast-track security, and excellent service, it’s the finest way to travel.`,
+        `Cross the world’s skies comfortably, calm, and entertained in your own spacious suite. It’s where British heritage meets contemporary design; letting you work in peace, watch a film, or stretch out and fall asleep.`,
+      ],
+      list: [
+        `Fine dining and delicious treats`,
+        `A specially designed cabin on 787-9 Dreamliner aircraft`,
+        `Free Wi-Fi now available`,
+        `Space to prepare and relax`,
+        `The Concorde Room – the most luxurious lounge`,
+        `The First Wing – express boarding`,
+        `Doorstep baggage pick-up & check-in`,
+        `Your seat, your bed`,
+      ],
+    },
+    business: {
+      content: [
+        `<b>British Airways</b> has several classes of travel designed for the comfort of business travelers.`,
+        `Travel within countries like the USA or short flights inside Europe, are generally not as luxurious as long-haul international flights.`,
+        `On international flights, however, the new club suites in the brand new business class Airbus A350 -1000 might just set a new industry standard.`,
+        `<b>British Airways Club World Suites:</b>`,
+      ],
+      list: [
+        `Lie-flat seat position`,
+        `Dedicated business class cabin`,
+        `40% more personal storage space`,
+        `A vanity area with a mirror`,
+        `Wi-Fi and PC/USB power`,
+        `High-definition 18.5in screen with entertainment options`,
+        `Luxury bedding`,
+        `Dedicated support team for all your travel needs`,
+        `Restore & Relax Spa collections amenity kit`,
+        `Gourmet menu options`,
+      ],
+    },
+    economy: {
+      content: [
+        `Enjoy an enhanced in-flight experience with World Traveller Plus.`,
+        `Flying World Traveller Plus is an exciting upgrade.`,
+        `With fewer rows, the cabin is quieter, more spacious, and more exclusive.`,
+      ],
+      list: [
+        "Wider seats and more legroom",
+        "A separate, smaller cabin with attentive service",
+        "Two delicious meals, complimentary bar service including signature cocktails (or mocktail)",
+        "A personal entertainment system with noise-cancelling headphones",
+        "Stylish amenity kit made from recycled material",
+        "More free baggage allowance",
+        "Priority boarding",
+      ],
+    },
+  },
+  lufthansa: {
+    title: "Lufthansa",
+    // summary: `<b>British Airways</b>is the flag carrier airline of the United Kingdom. It is headquartered in London, England, near its main hub at Heathrow Airport. It operates one of the largest and the most modern fleets of any airline in the world. It is also the second largest UK based carrier, based on fleet size and passengers carried, behind easyJet.`,
+    first: {
+      content: [
+        `In <b>Lufthansa</b>’s First Class cabin, you’ll get your own suite with a considerable degree of privacy, a 17” in-flight entertainment monitor, a dazzling selection of expensive wines and spirits, a consistently excellent onboard gastronomic experience including caviar, and one of the most comfortable beds in the sky.`,
+        `In addition, if you are departing or connecting in Frankfurt Airport, you have the opportunity to make use of the standalone <b>Lufthansa First Class Terminal</b>, where you can enjoy a relaxing bath with champagne on ice, a restaurant-quality dine-on-demand menu, and a well-stocked bar.`,
+        `Furthermore, you’ll be personally driven to your departing flight in either a Porsche or a Mercedes-Benz, casting aside the usual grievances associated with air travel.`,
+      ],
+      list: [
+        `Valet parking service`,
+        `Personal assistant`,
+        `First Class Terminal`,
+        `First Class Lounges`,
+        `Limousine service`,
+        `Comfort on board`,
+        `Culinary delights & fine wines`,
+        `Entertainment world`,
+      ],
+    },
+    business: {
+      content: [
+        `<b>Lufthansa</b> offers a business class product on most flights. As with many European carriers, the differences between intra-Europe Business and long haul Business are substantial – this review primarily addresses the intercontinental long haul business class experience.`,
+        `It’s notable that <b>Lufthansa</b> announced upgrades to the business class seating product several years ago, but the pandemic and production delays for some of the newer aircraft planned to join the fleet mean that the existing business class product will be the standard for a few more years to come.`,
+        `Passengers who prefer an open plan business class cabin instead of one with highly engineered seats with lots of plastic dividers will appreciate Lufthansa’s spacious, cushy seating.`,
+      ],
+      list: [
+        `More baggage`,
+        `More personal space`,
+        `Finest dining pleasure`,
+        `On-board entertainment`,
+        `Relax before your departure`,
+        `Lufthansa Business Lounges`,
+        `Priority check-in and deplane`,
+      ],
+    },
+    economy: {
+      content: [
+        `More space, more free baggage, more service – long-haul flights in Premium Economy Class offer plenty of comforts.`,
+        `Consequently, you’ll enjoy a relaxed flight to your destination and will be able to head off for some sightseeing or start your meeting as soon as you arrive.`,
+      ],
+      list: [
+        "Up to 50% more personal space",
+        "Two items of free baggage",
+        "Welcome drink",
+        "Practical travel kit",
+        "Entertainment",
+      ],
+    },
+  },
 };

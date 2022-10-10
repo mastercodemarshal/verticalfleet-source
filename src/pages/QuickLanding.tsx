@@ -9,7 +9,7 @@ import { QuickLandingData } from "../constants";
 const QuickLanding = () => {
   let { id } = useParams();
 
-  id = "france";
+  // id = "france";
 
   return (
     <>

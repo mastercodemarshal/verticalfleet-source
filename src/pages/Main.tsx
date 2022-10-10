@@ -47,6 +47,9 @@ const MainPage: React.FC = (): JSX.Element => {
         <div className="bg-[#10091D] opacity-[0.7] w-full h-[1000px] absolute top-0"></div>
         <div className="absolute xl:top-[260px] md:top-[200px] top-[120px] w-full px-[20px] z-10">
           <SearchPanel />
+          <div className="container text-center uppercase text-[32px] text-white mt-[20px]">
+            save up to 75% off your flight
+          </div>
         </div>
         <Services />
       </div>

@@ -99,6 +99,16 @@ const QuickSummary = ({ data }) => {
               <br />
             </div>
           ))}
+          {data.economy.list &&
+            data.economy.list.map((item, index) => (
+              <div
+                className="text-[16px] text-[#6B6772] leading-[30px] flex items-center"
+                key={`item_${index}`}
+              >
+                <img className="mr-[10px]" src={ListIcon} alt="icon" />
+                <span dangerouslySetInnerHTML={{ __html: item }}></span>
+              </div>
+            ))}
           <div className="w-[200px] h-[3px] bg-[#F3E351] mt-[20px]"></div>
           <div className="bg-[#F3E351] absolute w-full h-full top-0 right-[100%] mr-[50px]"></div>
         </div>

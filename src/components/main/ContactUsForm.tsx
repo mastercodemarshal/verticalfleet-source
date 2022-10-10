@@ -85,6 +85,14 @@ const ContactUsForm: React.FC = (): JSX.Element => {
 
   return (
     <form>
+      <p className="text-[#10091D]/[.5] text-center my-[30px]">
+        Our dedicated travel experts are ready to assist you with any of your
+        travel needs. Don't miss out on an opportunity to save up to 75% off
+        your flight.
+        <br />
+        Simply fill in the form below and one of our agents will get in touch
+        with you shortly.
+      </p>
       <div className="mt-[20px] flex justify-center">
         <div className="grid xl:grid-rows-2 grid-rows-6 grid-flow-col gap-x-[40px] gap-y-[20px]">
           <div className="relative">
@@ -234,6 +242,9 @@ const ContactUsForm: React.FC = (): JSX.Element => {
           submit
         </div>
       </div>
+      <p className="text-[#10091D]/[.5] uppercase text-center mt-[30px] text-[24px]">
+        save up to 75% off your flight
+      </p>
     </form>
   );
 };

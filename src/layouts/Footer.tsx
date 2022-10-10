@@ -29,22 +29,16 @@ const Footer: React.FC = (): JSX.Element => {
               quick links
             </p>
             <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/canada">Canada Airline</a>
+              <a href="/landing/canada">Air Canada</a>
             </div>
             <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/france">France Airline</a>
+              <a href="/landing/france">Air France</a>
             </div>
             <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/alaska">Alaska Airline</a>
+              <a href="/landing/british">British Airways</a>
             </div>
             <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/jetblue">JetBlue Airlines</a>
-            </div>
-            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/southwest">Southwest Airlines</a>
-            </div>
-            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/southwest">Delta Airlines</a>
+              <a href="/landing/lufthansa">Lufthansa</a>
             </div>
           </div>
           <div className="md:mx-0 mx-auto">
