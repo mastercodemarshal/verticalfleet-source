@@ -450,4 +450,167 @@ export const QuickLandingData = {
       ],
     },
   },
+
+  virgin: {
+    title: "Virgin Atlantic",
+    // summary: `<b>British Airways</b>is the flag carrier airline of the United Kingdom. It is headquartered in London, England, near its main hub at Heathrow Airport. It operates one of the largest and the most modern fleets of any airline in the world. It is also the second largest UK based carrier, based on fleet size and passengers carried, behind easyJet.`,
+    first: {
+      content: [
+        `When flying <b>Virgin Atlantic</b> first class, also known as upper class, you'll experience luxury every step of the way. Your experience starts with a chauffeured ride to the airport, and then continues with exclusive airport lounges — and that's all before your eventual departure.`,
+        `Travelers looking for a luxurious experience should consider booking a first class flight on Virgin Atlantic. They'll enjoy premium service from the moment they step into the chauffeured airport ride until takeoff, then can relax in lie-flat seats and onboard social areas.`,
+      ],
+      list: [
+        `More baggage`,
+        `Priority boarding and deplane`,
+        `Lie flat seats`,
+        `Onboard social areas`,
+        `First Class Lounges`,
+        `Food and drink service`,
+        `Chauffer service to and from airport`,
+      ],
+    },
+    business: {
+      content: [
+        `The <b>airline’s Business Class cabin</b> boasts a brand new seat, evolution of its iconic social space (The Loft) and the unveiling of The Retreat Suite, the most spacious suite in Virgin Atlantic’s history which feels more like First Class than Business Class.`,
+        `The Retreat Suite is a brand new innovation in <b>Virgin Atlantic’s Business</b> Class offering and consists of two exclusive suites at the front of the cabin. The airline’s most spacious suite yet, comprising a 6ft7” direct seat to a fully flat bed and a 27” touchscreen with Bluetooth connectivity and wireless charging. With each suite boasting an ottoman that doubles up as an extra seat, up to four people can comfortably dine, chat or play games in their own private social space.  Customers can enjoy an intimate dinner or settle in comfort to watch a film.`,
+        `The airline’s award-winning social space, The Loft, remains a focal point of the cabin design as customers board the aircraft and is a core part of the Upper Class experience. In an evolution of design, it consists of space for eight people, with four comfortable seats, allowing guests to sit and chat or enjoy refreshments from the new self-service fridge and drinks dispenser.  `,
+      ],
+      list: [
+        `More baggage`,
+        `Priority boarding and deplane`,
+        `Lie flat seats`,
+        `Onboard social areas`,
+        `First Class Lounges`,
+        `Food and drink service`,
+        `Chauffer service to and from airport`,
+      ],
+    },
+    economy: {
+      content: [
+        `Stylish touches make big differences in Premium Economy cabin.  Virgin Atlantic’s trademark burgundy Premium seats, with a 38” pitch remain, but they’re accompanied by calf rests in every seat and a 13.3” touchscreen with Bluetooth audio.  The airline is also offering its Premium customers an in-seat wireless charging pad.`,
+      ],
+      list: [
+        "Skip the lines",
+        "Premium comfort",
+        "Stay connected",
+        "Delicious dining",
+        "Entertainment",
+        "More baggage",
+      ],
+    },
+  },
+
+  jetblue: {
+    title: "Jetblue Airways",
+    summary: `<b>JetBlue Airways</b> (stylized as JetBlue) is a major American low-cost airline and also the seventh-largest airline in North America by passengers carried. 
+    <b>JetBlue Airways</b> is headquartered within the Long Island City neighborhood of the big apple City borough of Queens; it also maintains corporate offices in Utah and Florida.`,
+    first: {
+      content: [
+        `<b>JetBlue</b> - Vertical Fleet provides the most effective deals for brand spanking new bookings up to 30% off  domestic flights.<br /><br />
+        When making changes with <b>JetBlue</b> airline flights, we offer a waiver so you do not have to pay higher fee on change fees and fare differences.<br /><br />
+        When making cancellations with <b>JetBlue</b> Airlines we offer a waiver in order that most of the time you get a full refund and credit on a domestic flight.
+        `,
+        `<b>JetBlue</b> offers Core (Main Cabin) seating across its fleet. The Core cabin includes leather seats, complimentary Wi-Fi, complimentary entertainment screens with DirecTV, Sirius XM Radio, and movies, still as complimentary snacks and non-alcoholic drinks.`,
+      ],
+      list: [],
+    },
+    business: {
+      content: [
+        `Mint is JetBlue's business class product and was originally available only on transcontinental domestic routes. <br />
+        It includes fully lie-flat seats, a number of which have sliding panels for more privacy.<br /><br />
+        Mint was expanded to pick out Caribbean routes, and in 2021, an upgraded version of the service and seating was announced. In-flight entertainment. <br /><br />
+        The in-flight Wi-Fi under the "Fly-Fi" network is complimentary on all flights, at speeds of 12–15 megabits per second.
+        `,
+      ],
+      list: [],
+    },
+    economy: {
+      content: [
+        `JetBlue's frequent-flyer program is termed True-blue. <br /><br />
+        Under the initial True-blue program, flights worth two, four, or six points supported the distance of the flights and double points.`,
+      ],
+      list: [],
+    },
+  },
+
+  alaska: {
+    title: "Alaska Airlines",
+    summary: `<b>Alaska Airlines</b> is a major American airline headquartered in SeaTac, Washington, within the Seattle metropolitan area. it's the sixth-largest when measured by fleet size, scheduled passengers carried and also the number of destinations served. Alaska, along with its regional partners Horizon Air and SkyWest Airlines, operates an outsized domestic route network, primarily focused on connecting from the geographic region, West Coast and Alaska to over 100 destinations within the contiguous US, Hawaii, Belize, Canada, Costa Rica, and Mexico.`,
+    first: {
+      content: [
+        `<b>Alaska Airline</b> - Vertical Fleet provides the most effective deals for brand spanking new bookings up to twenty percent off market fares on flights. <br /><br />
+        When making changes with <b>Alaska Airline</b> flights are now much easier, we offer a waiver so you don’t pay higher change fees and fare differences.<br />
+        When cancelling with <b>Alaska Airline</b> we offer a waiver so most of the time you get a full refund and credit on a flight.
+        `,
+      ],
+      list: [],
+    },
+    second: {
+      content: [
+        `First Class is available on all mainline aircraft and jet regional aircraft. <br />
+        First-class features priority boarding and complimentary hot meals, alcoholic or non-alcoholic beverages, towel service, and snacks. <br />
+        Seating is during a 2-2 configuration featuring recliner-style seats.
+        `,
+      ],
+      list: [],
+    },
+    business: {
+      content: [
+        `Premium Class is accessible on all mainline aircraft and every one jet regional aircraft. <br />
+        It's located within the first few rows of the economy cabin and features 35" of seat pitch four more inches than in Alaska's Main Cabin. <br /><br />
+        Passengers receive priority boarding, complimentary alcoholic or non-alcoholic beverages, together with a complimentary snack. Additional food is purchased.
+        `,
+      ],
+      list: [],
+    },
+    economy: {
+      content: [
+        `Main Cabin is Alaska's economy class offering. <br /><br />
+        Main Cabin passengers receive a complimentary snack and a non-alcoholic drink. <br />
+        Fresh food, alcoholic beverages, and extra snacks are available for purchase. On mainline aircraft, every seat in Main Cabin offers USB and power outlets. <br />
+        On turboprop regional aircraft, passengers in main cabin receive a complimentary glass of wine or beer.
+        `,
+      ],
+      list: [],
+    },
+  },
+
+  southwest: {
+    title: "Southwest Airlines",
+    summary: `<b>Southwest Airlines</b> typically named as Southwest, is one of the key airlines within the US. It is the world's largest low-cost carrier that's headquartered in Dallas, Texas. Southwest has scheduled service to 121 destinations within the US and 10 additional countries. As of 2018, Southwest carried more domestic passengers than any other US airline.`,
+    first: {
+      content: [
+        `<b>Southwest Airline</b> - Vertical Fleet provides the most effective deals for brand-new bookings up to 20% off on market fares for domestic and flight. <br /><br />
+        When making changes with Southwest airline flights, we offer a waiver so you do not have to pay higher fee on change fees and fare differences. <br />
+        Cancellation with southwest we offer a waiver in order that most of the time you get a full refund and credit on a domestic flight.
+        `,
+      ],
+      list: [],
+    },
+    second: {
+      content: [
+        `As of 2021, Southwest scheduled flights to over 100 destinations in 42 states, Puerto Rico, Mexico, Central America and also the Caribbean. <br />
+        Southwest doesn't use the standard hub and spoke system of other major airlines, preferring a point-to-point system combined with a rolling hub model in its base cities. <br /><br />
+        `,
+      ],
+      list: [],
+    },
+    business: {
+      content: [
+        `Southwest first began to supply a frequent-flyer program on June 18, 1987, calling it the corporate Club. <br />
+        The program is credited for trips flown no matter distance. Southwest Airlines renamed its frequent flyer program Rapid Rewards.
+        `,
+      ],
+      list: [],
+    },
+    economy: {
+      content: [
+        `Southwest permits two free-of-charge checked bags per passenger, and passengers are permitted to alter their flight up to 10 minutes before their flights without extra charge. <br />
+        within the event of a cancellation, passengers are refunded a travel credit within the amount spent on their ticket, and therefore the credit is also used toward other Southwest Airlines or Southwest Vacations purchases within a year of the first ticket purchase. <br /><br />
+        Southwest offers free in-flight non-alcoholic beverages and offers alcoholic beverages purchasable for $6 to $7 per beverage. Free alcoholic drinks are offered on some holidays like Valentine Day and Halloween. <br /> They even have complimentary snacks on all flights.
+        `,
+      ],
+      list: [],
+    },
+  },
 };

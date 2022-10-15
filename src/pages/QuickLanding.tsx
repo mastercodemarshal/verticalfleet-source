@@ -5,11 +5,12 @@ import QuickSummary from "../components/common/QuickSummary";
 import ContactUsForm from "../components/main/ContactUsForm";
 import Footer from "../layouts/Footer";
 import { QuickLandingData } from "../constants";
+import QuickSummaryJetblue from "../components/common/QuickSummaryJetblue";
+import QuickSummaryAlaska from "../components/common/QuickSummaryAlaska";
+import QuickSummarySouthwest from "../components/common/QuickSummarySouthwest";
 
 const QuickLanding = () => {
   let { id } = useParams();
-
-  // id = "france";
 
   return (
     <>
@@ -25,7 +26,15 @@ const QuickLanding = () => {
             </div>
             <ContactUsForm />
           </div>
-          <QuickSummary data={QuickLandingData[id]} />
+          {id === "jetblue" ? (
+            <QuickSummaryJetblue data={QuickLandingData[id]} />
+          ) : id === "alaska" ? (
+            <QuickSummaryAlaska data={QuickLandingData[id]} />
+          ) : id === "southwest" ? (
+            <QuickSummarySouthwest data={QuickLandingData[id]} />
+          ) : (
+            <QuickSummary data={QuickLandingData[id]} />
+          )}
           <Footer />
         </>
       )}

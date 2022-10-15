@@ -37,6 +37,18 @@ const Footer: React.FC = (): JSX.Element => {
             <div className="text-[13px] hover:text-gray-400 mb-[5px]">
               <a href="/landing/lufthansa">Lufthansa</a>
             </div>
+            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+              <a href="/landing/virgin">Virgin Atlantic</a>
+            </div>
+            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+              <a href="/landing/alaska">Alaska Airlines</a>
+            </div>
+            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+              <a href="/landing/southwest">Southwest Airlines</a>
+            </div>
+            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+              <a href="/landing/jetblue">Jetblue Airways</a>
+            </div>
           </div>
           <div className="md:mx-0 mx-auto">
             <img src={FooterLogo} alt="" className="md:mb-[110px] mb-[20px]" />
