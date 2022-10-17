@@ -24,7 +24,9 @@ const Header: React.FC = (): JSX.Element => {
               <a href="mailto:info@verticalfleet.com">info@verticalfleet.com</a>
             </div>
             <div className="md:w-[1px] w-full md:h-[40px] h-[1px] bg-gray-600"></div>
-            <div className="ml-[30px] cursor-pointer">+1-888-832-8777</div>
+            <div className="ml-[30px] cursor-pointer">
+              <a href="tel:+1-888-832-8777">+1-888-832-8777</a>
+            </div>
           </div>
         </div>
       </div>
