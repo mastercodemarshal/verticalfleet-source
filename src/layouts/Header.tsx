@@ -21,7 +21,7 @@ const Header: React.FC = (): JSX.Element => {
         <div className="flex items-center text-[14px] text-white font-light font-open_sans leading-[19.07px]">
           <div className="md:flex text-right items-center">
             <div className="cursor-pointer md:mr-[30px] text-right">
-              info@verticalfleet.com
+              <a href="mailto:info@verticalfleet.com">info@verticalfleet.com</a>
             </div>
             <div className="md:w-[1px] w-full md:h-[40px] h-[1px] bg-gray-600"></div>
             <div className="ml-[30px] cursor-pointer">+1-888-832-8777</div>
