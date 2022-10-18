@@ -410,7 +410,7 @@ const RoundTripFormItem: React.FC = (): JSX.Element => {
                 </div>
               )}
 
-              <div className="w-full flex justify-center inline-flex xl:hidden cursor-pointer absolute top-[60px]">
+              <div className="w-full flex justify-center inline-flex xl:hidden cursor-pointer absolute top-[60px] z-20">
                 <img
                   onClick={changeDestination}
                   src={reFreshIcon}
