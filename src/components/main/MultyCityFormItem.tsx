@@ -14,6 +14,7 @@ import locationIcon from "../../assets/img/main/location.png";
 import calendarIcon from "../../assets/img/main/calendar.png";
 import usersIcon from "../../assets/img/main/users.png";
 import reloadIcon from "../../assets/img/main/reload.png";
+import reFreshIcon from "../../assets/img/main/refresh.png";
 import AirportList from "./AirportList";
 import PassengerSelect from "./PassengerSelect";
 import { FlightContext } from "../../App";
@@ -326,6 +327,20 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
     }`;
   };
 
+  const changeDestination = () => {
+    setFlightState({
+      ...flightState,
+      current: flightState.destination,
+      destination: flightState.current,
+    });
+
+    setState({
+      ...state,
+      editingCurrent: false,
+      editingDestination: false,
+    });
+  };
+
   const currentArray = flightState.current && flightState.current.split(", ");
   const destinationArray =
     flightState.destination && flightState.destination.split(", ");
@@ -334,7 +349,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
     <div className="xl:mt-0 mt-[15px]">
       <div id={idx} className="main-search-form">
         <div className="grid grid-cols-12 xl:gap-0 md:gap-[15px]">
-          <div className="xl:col-span-5 xl:flex md:col-span-9 col-span-12">
+          <div className="xl:col-span-5 xl:flex md:col-span-9 col-span-12 relative">
             <>
               {state.editingCurrent ? (
                 <div
@@ -411,22 +426,37 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                     <div className="mr-[9px]">
                       <img src={locationIcon} alt="from" />
                     </div>
-                    <div>
-                      <p className="font-hind font-bold text-[16px] leading-[107.5%] text-[#494949]">
-                        {`(${currentArray[0]}) ${currentArray[1]}`}
-                      </p>
-                      <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
-                        <span className="uppercase">{currentArray[2]}</span>
-                        {` - ${currentArray[3]}`}
-                      </p>
-                    </div>
+                    {currentArray.length ? (
+                      <div>
+                        <p className="font-hind font-bold text-[16px] leading-[107.5%] text-[#494949]">
+                          {`(${currentArray[0]}) ${currentArray[1]}`}
+                        </p>
+                        <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
+                          <span className="uppercase">{currentArray[2]}</span>
+                          {` - ${currentArray[3]}`}
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
               )}
+
+              <div className="w-full flex justify-center inline-flex xl:hidden cursor-pointer absolute top-[60px]">
+                <img
+                  onClick={changeDestination}
+                  src={reFreshIcon}
+                  width="30px"
+                  height="30px"
+                  alt=""
+                />
+              </div>
             </>
 
-            <div className="bg-white w-[16px] border-t border-[#D7D7D7] relative flex items-center xl:inline hidden">
+            <div className="bg-white w-[16px] border-t border-[#D7D7D7] relative flex items-center xl:inline hidden cursor-pointer">
               <img
+                onClick={changeDestination}
                 src={reloadIcon}
                 width="16px"
                 height="16px"
@@ -505,15 +535,19 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   <div className="mr-[9px]">
                     <img src={locationIcon} alt="from" />
                   </div>
-                  <div>
-                    <p className="font-hind font-bold text-[16px] leading-[107.5%] text-[#494949]">
-                      {`(${destinationArray[0]}) ${destinationArray[1]}`}
-                    </p>
-                    <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
-                      <span className="uppercase">{destinationArray[2]}</span>
-                      {` - ${destinationArray[3]}`}
-                    </p>
-                  </div>
+                  {destinationArray.length ? (
+                    <div>
+                      <p className="font-hind font-bold text-[16px] leading-[107.5%] text-[#494949]">
+                        {`(${destinationArray[0]}) ${destinationArray[1]}`}
+                      </p>
+                      <p className="font-open_sans font-normal text-[12px] leading-[14px] text-[#494949]">
+                        <span className="uppercase">{destinationArray[2]}</span>
+                        {` - ${destinationArray[3]}`}
+                      </p>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             )}
