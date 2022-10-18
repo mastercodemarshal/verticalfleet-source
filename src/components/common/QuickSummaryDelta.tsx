@@ -5,7 +5,7 @@ import FirstImage from "../../assets/img/quick-landing/first-class.png";
 import BusinessImage from "../../assets/img/quick-landing/business-class.png";
 import EconomyImage from "../../assets/img/quick-landing/economy-class.png";
 
-const QuickSummary = ({ data }) => {
+const QuickSummaryDelta = ({ data }) => {
   return (
     <div className="md:py-[100px] py-[50px] px-[15px]">
       <div className="text-center font-bold md:text-[80px] text-[44px] leading-[100px] uppercase text-[#10091D]/[.1]">
@@ -23,7 +23,7 @@ const QuickSummary = ({ data }) => {
           </div>
           <div className="col-span-2 relative z-10">
             <p className="uppercase text-[24px] leading-[33px] md:tracking-[.8em] tracking-[.3em] text-[#10091D] font-bold mb-[10px]">
-              first class
+              delta one
             </p>
             {data.first.content.map((content, index) => (
               <div
@@ -93,7 +93,7 @@ const QuickSummary = ({ data }) => {
           </div>
           <div className="col-span-2 relative z-10">
             <p className="uppercase text-[24px] leading-[33px] md:tracking-[.29em] tracking-[.2em] text-[#10091D] font-bold mb-[10px]">
-              PREMIUM ECONOMY
+              delta comfort plus
             </p>
             {data.economy.content.map((content, index) => (
               <div
@@ -123,4 +123,4 @@ const QuickSummary = ({ data }) => {
   );
 };
 
-export default QuickSummary;
+export default QuickSummaryDelta;

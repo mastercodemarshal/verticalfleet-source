@@ -8,6 +8,9 @@ import { QuickLandingData } from "../constants";
 import QuickSummaryJetblue from "../components/common/QuickSummaryJetblue";
 import QuickSummaryAlaska from "../components/common/QuickSummaryAlaska";
 import QuickSummarySouthwest from "../components/common/QuickSummarySouthwest";
+import QuickSummaryCanada from "../components/common/QuickSummaryCanada";
+import QuickSummaryDelta from "../components/common/QuickSummaryDelta";
+import QuickSummaryIberia from "../components/common/QuickSummaryIberia";
 
 const QuickLanding = () => {
   let { id } = useParams();
@@ -32,6 +35,12 @@ const QuickLanding = () => {
             <QuickSummaryAlaska data={QuickLandingData[id]} />
           ) : id === "southwest" ? (
             <QuickSummarySouthwest data={QuickLandingData[id]} />
+          ) : id === "canada" ? (
+            <QuickSummaryCanada data={QuickLandingData[id]} />
+          ) : id === "delta" ? (
+            <QuickSummaryDelta data={QuickLandingData[id]} />
+          ) : id === "iberia" ? (
+            <QuickSummaryIberia data={QuickLandingData[id]} />
           ) : (
             <QuickSummary data={QuickLandingData[id]} />
           )}

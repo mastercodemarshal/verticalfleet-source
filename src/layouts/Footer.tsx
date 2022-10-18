@@ -25,29 +25,46 @@ const Footer: React.FC = (): JSX.Element => {
             </p>
           </div>
           <div className="ml-auto md:mr-[100px] mr-auto md:text-left text-center mb-[30px]">
-            <p className="uppercase font-bold mb-[15px] text-[14px] border-b-2 pb-2">
+            <p className="uppercase text-center font-bold mb-[15px] text-[14px] border-b-2 pb-2">
               quick links
             </p>
-            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/france">Air France</a>
-            </div>
-            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/british">British Airways</a>
-            </div>
-            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/lufthansa">Lufthansa</a>
-            </div>
-            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/virgin">Virgin Atlantic</a>
-            </div>
-            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/alaska">Alaska Airlines</a>
-            </div>
-            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/southwest">Southwest Airlines</a>
-            </div>
-            <div className="text-[13px] hover:text-gray-400 mb-[5px]">
-              <a href="/landing/jetblue">Jetblue Airways</a>
+            <div className="grid grid-cols-2 text-left">
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/france">Air France</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/british">British Airways</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/lufthansa">Lufthansa</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/virgin">Virgin Atlantic</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/alaska">Alaska Airlines</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/southwest">Southwest Airlines</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/jetblue">Jetblue Airways</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/american">American Airlines</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/delta">Delta Airlines</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/iberia">Iberia Airlines</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/united">United Airlines</a>
+              </div>
+              <div className="text-[13px] hover:text-gray-400 mb-[5px]">
+                <a href="/landing/canada">Air Canada</a>
+              </div>
             </div>
           </div>
           <div className="md:mx-0 mx-auto">
