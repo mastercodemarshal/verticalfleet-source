@@ -245,7 +245,7 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
   const checkValidation = () => {
     const { current, destination } = flightState;
 
-    return current && destination && dateFrom;
+    return current.length > 10 && destination.length > 10 && dateFrom;
   };
 
   const handleCurrentSelect = (data: AirPort): void => {
@@ -354,7 +354,7 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                     autoComplete="off"
                   />
                   {showValidationError && (
-                    <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
+                    <div className="text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
                       Please enter a valid depart city or airport
                     </div>
                   )}
@@ -463,7 +463,7 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                   autoComplete="off"
                 />
                 {showValidationError && (
-                  <div className="invisible peer-invalid:visible text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
+                  <div className="text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
                     Please enter a valid arrival city or airport
                   </div>
                 )}
