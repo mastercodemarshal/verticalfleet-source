@@ -234,6 +234,8 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
       target: { value, name },
     } = e;
 
+    setShowValidationError(false);
+
     setFlightState({
       ...flightState,
       [name]: value,
@@ -399,7 +401,7 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                   />
                   {showValidationError && (
                     <div className="text-red-700 text-[14px] text-white px-[5px] py-[2px] bg-white absolute -top-[10px] right-[10px]">
-                      Please enter a valid depart city or airport
+                      Please enter a valid departure city or airport
                     </div>
                   )}
                   {openCurrentSelect && (
