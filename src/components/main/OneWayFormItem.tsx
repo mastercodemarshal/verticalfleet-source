@@ -345,6 +345,8 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                         editingDateFrom: false,
                         editingDateTo: false,
                       });
+
+                      setShowValidationError(false);
                     }}
                     onKeyUp={(e) => {
                       if (e.key === "Enter" && currentFilteredList?.length) {
@@ -454,6 +456,8 @@ const OneWayFormItem: React.FC = (): JSX.Element => {
                       editingDateFrom: false,
                       editingDateTo: false,
                     });
+
+                    setShowValidationError(false);
                   }}
                   onKeyUp={(e) => {
                     if (e.key === "Enter" && destinationFilteredList?.length) {

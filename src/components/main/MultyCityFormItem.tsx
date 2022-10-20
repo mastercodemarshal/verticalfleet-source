@@ -389,6 +389,8 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                         editingDateFrom: false,
                         editingDateTo: false,
                       });
+
+                      setShowValidationError(false);
                     }}
                     onKeyUp={(e) => {
                       if (e.key === "Enter" && currentFilteredList?.length) {
@@ -498,6 +500,8 @@ const SearchFormItem: React.FC<ISearchFormProps> = ({
                       editingDateFrom: false,
                       editingDateTo: false,
                     });
+
+                    setShowValidationError(false);
                   }}
                   onKeyUp={(e) => {
                     if (e.key === "Enter" && destinationFilteredList?.length) {
