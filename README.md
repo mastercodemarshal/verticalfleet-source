@@ -22,3 +22,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - React ^18.2.0
 - TypeScript ^4.4.2
 - TailwindCSS ^3.1.7
+
+You can browse this [website](https://verticalfleet.com) on internet.
