@@ -5,7 +5,7 @@ This is a small reactive lead generation website.
 ## How to run
 - Clone the project
     
-    `git clone https://github.com/golden-lib/VerticalFleet-React-TailwindCSS-Figma-.git`
+    `git clone git@github.com:top-corder/verticalfleet-source.git`
 
 - Install `node_modules`
 
